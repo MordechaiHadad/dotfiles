@@ -40,9 +40,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
   },
-  ["coc.nvim"] = {
+  ["galaxyline.nvim"] = {
     loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/coc.nvim"
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   ["lush.nvim"] = {
     loaded = true,
@@ -55,6 +59,10 @@ _G.packer_plugins = {
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-papadark"] = {
     loaded = true,

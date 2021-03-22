@@ -44,7 +44,19 @@ return require('packer').startup(function(use)
       use 'windwp/nvim-ts-autotag'
       use 'turbio/bracey.vim'
 
-      -- Autocomplete
-      use 'neoclide/coc.nvim'
+      -- Autocomplete/LSP
+	  use 'hrsh7th/nvim-compe'
+
+
+	  -- Git
+	  use {
+		  'lewis6991/gitsigns.nvim',
+		  requires = {
+			  'nvim-lua/plenary.nvim'
+          }
+      }
+
+      -- General Plugins
+      use 'b3nj5m1n/kommentary'
 
 end)
