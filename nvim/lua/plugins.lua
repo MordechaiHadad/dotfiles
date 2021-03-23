@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
       use {
         'glepnir/galaxyline.nvim',
         branch = 'main'}
+	  --use 'glepnir/dashboard-nvim'
 
       -- Colorscheme & Colors
       use 'MordechaiHadad/nvim-papadark' -- My Custom Colorscheme
@@ -58,5 +59,6 @@ return require('packer').startup(function(use)
 
       -- General Plugins
       use 'b3nj5m1n/kommentary'
+	  use 'airblade/vim-rooter'
 
 end)

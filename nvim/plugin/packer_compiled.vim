@@ -40,6 +40,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
   },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+  },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
@@ -47,6 +51,10 @@ _G.packer_plugins = {
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
+  kommentary = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/kommentary"
   },
   ["lush.nvim"] = {
     loaded = true,
@@ -109,9 +117,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
-  ["vim-startify"] = {
+  ["vim-rooter"] = {
     loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-startify"
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-rooter"
   }
 }
 
