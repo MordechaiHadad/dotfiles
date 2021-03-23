@@ -46,7 +46,8 @@ return require('packer').startup(function(use)
       use 'turbio/bracey.vim'
 
       -- Autocomplete/LSP
-	  use 'hrsh7th/nvim-compe'
+	  --use 'hrsh7th/nvim-compe'
+	  use {'neoclide/coc.nvim', branch = release}
 
 
 	  -- Git

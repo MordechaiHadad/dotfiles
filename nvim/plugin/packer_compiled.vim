@@ -40,9 +40,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
   },
-  ["dashboard-nvim"] = {
+  ["coc.nvim"] = {
     loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/coc.nvim"
   },
   ["galaxyline.nvim"] = {
     loaded = true,
@@ -60,17 +60,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/lush.nvim"
   },
-  ["nvim-autopairs"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
-  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
-  },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-papadark"] = {
     loaded = true,
@@ -120,6 +112,10 @@ _G.packer_plugins = {
   ["vim-rooter"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-rooter"
+  },
+  ["vim-startify"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-startify"
   }
 }
 
