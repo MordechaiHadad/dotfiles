@@ -32,10 +32,6 @@ local function try_loadstring(s, component, name)
 end
 
 _G.packer_plugins = {
-  ["barbar.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/barbar.nvim"
-  },
   ["bracey.vim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
@@ -59,6 +55,14 @@ _G.packer_plugins = {
   ["lush.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/lush.nvim"
+  },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+  },
+  ["nvim-bufferline.lua"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
