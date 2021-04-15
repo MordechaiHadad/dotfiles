@@ -1,4 +1,5 @@
 vim.api.nvim_set_keymap('n', '<TAB>', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 
 local colors = {
@@ -17,10 +18,6 @@ local colors = {
 }
 
 require('bufferline').setup({
-	options = {
-		view = "multiwindow",
-		sort_by = 'directory'
-	},
 	highlights = {
 		fill = {
 			guibg = colors.background

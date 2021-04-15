@@ -4,8 +4,8 @@ require('colorscheme')
 require('keymappings')
 
 -- Plugins Config
-require('plug-config/bufferline')
--- require('plug-config/barbar')
+-- require('plug-config/bufferline')
+require('plug-config/barbar')
 require('plug-config/autopairs')
 require('plug-config/floaterm')
 require('plug-config/treesitter')

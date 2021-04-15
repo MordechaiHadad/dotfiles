@@ -21,8 +21,8 @@ return require('packer').startup(function(use)
       use 'windwp/nvim-autopairs'
 
       -- UI
-	  -- use 'romgrk/barbar.nvim'
-	  use {'akinsho/nvim-bufferline.lua'}
+	  use 'romgrk/barbar.nvim'
+	  -- use 'akinsho/nvim-bufferline.lua'
 	  use 'kyazdani42/nvim-tree.lua'
       use 'kyazdani42/nvim-web-devicons'
       use 'mhinz/vim-startify'
