@@ -15,6 +15,29 @@ local colors = {
 	line_color = "#353c4a",
 }
 
+local mode_color = {
+	n = colors.blue,
+	i = colors.green,
+	v = colors.purple,
+    [''] = colors.purple,
+    V = colors.purple,
+    c = colors.yellow,
+    no = colors.blue,
+    s = colors.yellow,
+    S = colors.yellow,
+    [''] = colors.yellow,
+    ic = colors.yellow,
+    R = colors.red,
+    Rv = colors.red,
+    cv = colors.blue,
+    ce = colors.blue,
+    r = colors.red,
+    rm = colors.red,
+    ['r?'] = colors.red,
+    ['!'] = colors.blue,
+    t = colors.blue
+}
+
 local condition = require('galaxyline.condition')
 local gls = gl.section
 local vcs = require('galaxyline.provider_vcs')
@@ -44,7 +67,9 @@ gls.left[2] = {
 gls.left[3] = {
     GitBranch = {
 		condition = condition.check_git_workspace,
-        provider = 'GitBranch',
+        provider = function()
+			return vcs.get_git_branch() .. ' '
+		end,
         highlight = {colors.foreground, colors.line_color}
     }
 }
@@ -105,28 +130,6 @@ gls.right[3] = {
 gls.right[4] = {
 	ViMode = {
 		provider = function()
-			local mode_color = {
-				n = colors.blue,
-				i = colors.green,
-				v = colors.purple,
-               [''] = colors.purple,
-                V = colors.purple,
-                c = colors.yellow,
-                no = colors.blue,
-                s = colors.yellow,
-                S = colors.yellow,
-                [''] = colors.yellow,
-                ic = colors.yellow,
-                R = colors.red,
-                Rv = colors.red,
-                cv = colors.blue,
-                ce = colors.blue,
-                r = colors.cyan,
-                rm = colors.cyan,
-                ['r?'] = colors.cyan,
-                ['!'] = colors.blue,
-                t = colors.blue
-			}
 			vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
 			return '▊'
 		end,
