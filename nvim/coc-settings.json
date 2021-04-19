@@ -33,5 +33,6 @@
   "list.indicator": ">",
   "list.selectedSignText": " ",
   "suggest.floatEnable": true,
-  "suggest.labelMaxLength": 20
+  "suggest.labelMaxLength": 20,
+  "coc.preferences.jumpCommand": "edit"
 }

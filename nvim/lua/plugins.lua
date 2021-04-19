@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
 
       -- Colorscheme & Colors
       use 'MordechaiHadad/nvim-papadark' -- My Custom Colorscheme
-      use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+      use {'MordechaiHadad/nvim-treesitter', run = ':TSUpdate'}
       use 'nvim-treesitter/playground'
       use 'norcalli/nvim-colorizer.lua'
       use 'rktjmp/lush.nvim' -- Scheme creator
