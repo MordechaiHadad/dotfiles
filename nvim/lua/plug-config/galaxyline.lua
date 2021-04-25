@@ -42,13 +42,13 @@ local condition = require('galaxyline.condition')
 local gls = gl.section
 local vcs = require('galaxyline.provider_vcs')
 local fileinfo = require('galaxyline.provider_fileinfo')
-gl.short_line_list = {'NvimTree', 'packer'}
+gl.short_line_list = {'NvimTree', 'packer', 'startify', 'LspTrouble'}
 
 gls.left[1] = {
 	ViMode = {
 		provider = function()
 			vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
-			return '▊'
+			return '▊ '
 		end,
 		highlight = {colors.red, colors.line_color}
 	}
@@ -58,7 +58,7 @@ gls.left[2] = {
     GitIcon = {
 		condition = condition.check_git_workspace,
 		provider = function()
-            return '   '
+            return '  '
         end,
         highlight = {colors.blue, colors.line_color}
     }
@@ -77,7 +77,7 @@ gls.left[3] = {
 gls.left[4] = {
     DiffAdd = {
         provider = 'DiffAdd',
-        condition = condition.hide_in_width,
+        condition = condition.check_git_workspace,
         icon = '  ',
         highlight = {colors.green, colors.line_color}
     }
@@ -85,7 +85,7 @@ gls.left[4] = {
 gls.left[5] = {
     DiffModified = {
         provider = 'DiffModified',
-        condition = condition.hide_in_width,
+        condition = condition.check_git_workspace,
         icon = '  ',
         highlight = {colors.yellow, colors.line_color}
     }
@@ -93,12 +93,29 @@ gls.left[5] = {
 gls.left[6] = {
     DiffRemove = {
         provider = 'DiffRemove',
-        condition = condition.hide_in_width,
+        condition = condition.check_git_workspace,
         icon = '  ',
+        highlight = {colors.red, colors.line_color},
+        separator = '|',
+        separator_highlight = {colors.blue, colors.line_color}
+    }
+}
+
+gls.left[7] = {
+    DiagnosticError = {
+        provider = 'DiagnosticError',
+        icon = '  ',
         highlight = {colors.red, colors.line_color}
     }
 }
 
+gls.left[8] = {
+    DiagnosticWarn = {
+        provider = 'DiagnosticWarn',
+        icon = '  ',
+        highlight = {colors.yellow, colors.line_color}
+    }
+}
 
 gls.right[1] = {
 	FileFormat = {

@@ -47,11 +47,13 @@ return require('packer').startup(function(use)
       use 'turbio/bracey.vim'
 
       -- Autocomplete/LSP
-	  --use 'hrsh7th/nvim-compe'
-	  use {'neoclide/coc.nvim', branch = release}
-
-
-	  -- Git
+	  use 'hrsh7th/nvim-compe'
+      use 'neovim/nvim-lspconfig'
+      use 'kabouzeid/nvim-lspinstall'
+      use 'folke/lsp-trouble.nvim'
+      use 'glepnir/lspsaga.nvim'
+	  
+      -- Git
 	  use {
 		  'lewis6991/gitsigns.nvim',
 		  requires = {
@@ -62,5 +64,5 @@ return require('packer').startup(function(use)
       -- General Plugins
       use 'b3nj5m1n/kommentary'
 	  use 'airblade/vim-rooter'
-
+      use 'famiu/nvim-reload'
 end)
