@@ -49,7 +49,7 @@ return require('packer').startup(function(use)
       -- Autocomplete/LSP
 	  use 'hrsh7th/nvim-compe'
       use 'neovim/nvim-lspconfig'
-      use 'kabouzeid/nvim-lspinstall'
+      use 'MordechaiHadad/nvim-lspinstall'
       use 'folke/lsp-trouble.nvim'
       use 'glepnir/lspsaga.nvim'
 	  

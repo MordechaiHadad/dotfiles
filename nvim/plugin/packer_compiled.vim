@@ -95,6 +95,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp-trouble.nvim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
   ["lush.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/lush.nvim"
