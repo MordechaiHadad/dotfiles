@@ -19,13 +19,11 @@ local mode_color = {
 	n = colors.blue,
 	i = colors.green,
 	v = colors.purple,
-    [''] = colors.purple,
     V = colors.purple,
     c = colors.yellow,
     no = colors.blue,
     s = colors.yellow,
     S = colors.yellow,
-    [''] = colors.yellow,
     ic = colors.yellow,
     R = colors.red,
     Rv = colors.red,
@@ -38,17 +36,24 @@ local mode_color = {
     t = colors.blue
 }
 
+local mode_icon = {
+    n = ' ',
+    i = ' ',
+    v = ' ',
+    c = ' '
+}
+
 local condition = require('galaxyline.condition')
 local gls = gl.section
 local vcs = require('galaxyline.provider_vcs')
 local fileinfo = require('galaxyline.provider_fileinfo')
-gl.short_line_list = {'NvimTree', 'packer', 'startify', 'LspTrouble'}
+gl.short_line_list = {'NvimTree', 'packer' ,'startify' ,'LspTrouble'}
 
 gls.left[1] = {
 	ViMode = {
 		provider = function()
-			vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
-			return '▊ '
+			vim.api.nvim_command('hi GalaxyViMode guifg=' .. colors.black .. ' guibg=' .. mode_color[vim.fn.mode()])
+			return '  ' .. mode_icon[vim.fn.mode()]
 		end,
 		highlight = {colors.red, colors.line_color}
 	}
@@ -58,7 +63,7 @@ gls.left[2] = {
     GitIcon = {
 		condition = condition.check_git_workspace,
 		provider = function()
-            return '  '
+            return '   '
         end,
         highlight = {colors.blue, colors.line_color}
     }
@@ -145,11 +150,18 @@ gls.right[3] = {
 }
 
 gls.right[4] = {
-	ViMode = {
+	RightViMode = {
 		provider = function()
-			vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
+			vim.api.nvim_command('hi GalaxyRightViMode guifg=' .. mode_color[vim.fn.mode()])
 			return '▊'
 		end,
 		highlight = {colors.red, colors.line_color}
 	}
+}
+
+gl.section.short_line_left[1] = {
+    FileName = {
+        provider = 'FileName',
+        highlight = {colors.foreground, colors.line_color}
+    }
 }

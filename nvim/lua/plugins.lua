@@ -49,10 +49,11 @@ return require('packer').startup(function(use)
       -- Autocomplete/LSP
 	  use 'hrsh7th/nvim-compe'
       use 'neovim/nvim-lspconfig'
-      use 'MordechaiHadad/nvim-lspinstall'
+      use 'kabouzeid/nvim-lspinstall'
       use 'folke/lsp-trouble.nvim'
       use 'glepnir/lspsaga.nvim'
-	  
+      use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+
       -- Git
 	  use {
 		  'lewis6991/gitsigns.nvim',
@@ -65,4 +66,5 @@ return require('packer').startup(function(use)
       use 'b3nj5m1n/kommentary'
 	  use 'airblade/vim-rooter'
       use 'famiu/nvim-reload'
+	  use 'folke/which-key.nvim'
 end)

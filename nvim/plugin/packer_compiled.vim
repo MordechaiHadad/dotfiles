@@ -79,6 +79,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
   },
+  ["compe-tabnine"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/compe-tabnine"
+  },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"

@@ -23,9 +23,8 @@ require'compe'.setup {
         nvim_lsp = {kind = "  "},
         nvim_lua = {kind = "  "},
         spell = {kind = "  "},
-        tags = false,
         snippets_nvim = {kind = "  "},
-        treesitter = {kind = "  "},
-        emoji = {kind = " ﲃ "}
+        emoji = {filetypes = {"markdown", "text"}},
+		tabnine = true
     }
 }
