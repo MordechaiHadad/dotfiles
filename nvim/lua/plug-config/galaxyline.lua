@@ -19,28 +19,18 @@ local mode_color = {
 	n = colors.blue,
 	i = colors.green,
 	v = colors.purple,
-    V = colors.purple,
     c = colors.yellow,
-    no = colors.blue,
-    s = colors.yellow,
-    S = colors.yellow,
-    ic = colors.yellow,
-    R = colors.red,
-    Rv = colors.red,
-    cv = colors.blue,
-    ce = colors.blue,
-    r = colors.red,
-    rm = colors.red,
-    ['r?'] = colors.red,
-    ['!'] = colors.blue,
-    t = colors.blue
+    V = colors.purple,
+    [''] = colors.red
 }
 
 local mode_icon = {
     n = ' ',
     i = ' ',
     v = ' ',
-    c = ' '
+    c = ' ',
+    V = ' ',
+    [''] = 'tf '
 }
 
 local condition = require('galaxyline.condition')
@@ -52,8 +42,8 @@ gl.short_line_list = {'NvimTree', 'packer' ,'startify' ,'LspTrouble'}
 gls.left[1] = {
 	ViMode = {
 		provider = function()
-			vim.api.nvim_command('hi GalaxyViMode guifg=' .. colors.black .. ' guibg=' .. mode_color[vim.fn.mode()])
-			return '  ' .. mode_icon[vim.fn.mode()]
+			vim.api.nvim_command('hi GalaxyViMode guifg=' .. colors.black .. ' guibg=' .. (mode_color[vim.fn.mode()] or colors.red))
+			return '  ' .. (mode_icon[vim.fn.mode()] or 'Error')
 		end,
 		highlight = {colors.red, colors.line_color}
 	}
@@ -101,7 +91,7 @@ gls.left[6] = {
         condition = condition.check_git_workspace,
         icon = '  ',
         highlight = {colors.red, colors.line_color},
-        separator = '|',
+        separator = '| ',
         separator_highlight = {colors.blue, colors.line_color}
     }
 }
@@ -109,7 +99,7 @@ gls.left[6] = {
 gls.left[7] = {
     DiagnosticError = {
         provider = 'DiagnosticError',
-        icon = '  ',
+        icon = ' ',
         highlight = {colors.red, colors.line_color}
     }
 }
@@ -117,7 +107,7 @@ gls.left[7] = {
 gls.left[8] = {
     DiagnosticWarn = {
         provider = 'DiagnosticWarn',
-        icon = '  ',
+        icon = ' ',
         highlight = {colors.yellow, colors.line_color}
     }
 }
@@ -152,7 +142,7 @@ gls.right[3] = {
 gls.right[4] = {
 	RightViMode = {
 		provider = function()
-			vim.api.nvim_command('hi GalaxyRightViMode guifg=' .. mode_color[vim.fn.mode()])
+			vim.api.nvim_command('hi GalaxyRightViMode guifg=' .. (mode_color[vim.fn.mode()] or colors.red))
 			return '▊'
 		end,
 		highlight = {colors.red, colors.line_color}

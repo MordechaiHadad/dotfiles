@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
       use {
         'glepnir/galaxyline.nvim',
         branch = 'main'}
+    -- use 'famiu/feline.nvim'
 	  --use 'glepnir/dashboard-nvim'
 
       -- Colorscheme & Colors
@@ -67,4 +68,5 @@ return require('packer').startup(function(use)
 	  use 'airblade/vim-rooter'
       use 'famiu/nvim-reload'
 	  use 'folke/which-key.nvim'
+      -- use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 end)

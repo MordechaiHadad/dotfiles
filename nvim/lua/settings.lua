@@ -7,7 +7,7 @@ vim.o.clipboard = "unnamedplus" -- enable clipboard
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.hidden = true
-vim.cmd('set timeoutlen=400')
+vim.cmd('set timeoutlen=600')
 
 -- Indentation
 vim.o.expandtab = true -- convert tabs to spaces
