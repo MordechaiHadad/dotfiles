@@ -24,12 +24,11 @@ return require('packer').startup(function(use)
 	  use 'romgrk/barbar.nvim'
 	  -- use 'akinsho/nvim-bufferline.lua'
 	  use 'kyazdani42/nvim-tree.lua'
-      use 'kyazdani42/nvim-web-devicons'
+      use {'kyazdani42/nvim-web-devicons', module = "nvim-web-devicons"}
       use 'mhinz/vim-startify'
       use {
         'glepnir/galaxyline.nvim',
         branch = 'main'}
-    -- use 'famiu/feline.nvim'
 	  --use 'glepnir/dashboard-nvim'
 
       -- Colorscheme & Colors
@@ -45,7 +44,7 @@ return require('packer').startup(function(use)
 
       -- Web Dev
       use 'windwp/nvim-ts-autotag'
-      use 'turbio/bracey.vim'
+      use {'turbio/bracey.vim', run = 'npm install --prefix server'}
 
       -- Autocomplete/LSP
 	  use 'hrsh7th/nvim-compe'
@@ -54,6 +53,7 @@ return require('packer').startup(function(use)
       use 'folke/lsp-trouble.nvim'
       use 'glepnir/lspsaga.nvim'
       use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+	  use 'ray-x/lsp_signature.nvim'
 
       -- Git
 	  use {
@@ -65,7 +65,7 @@ return require('packer').startup(function(use)
 
       -- General Plugins
       use 'b3nj5m1n/kommentary'
-	  use 'airblade/vim-rooter'
+	  use 'ahmedkhalf/lsp-rooter.nvim'
       use 'famiu/nvim-reload'
 	  use 'folke/which-key.nvim'
       -- use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
