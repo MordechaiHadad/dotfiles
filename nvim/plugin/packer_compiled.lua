@@ -73,9 +73,41 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/barbar.nvim"
   },
+  ["bracey.vim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
+  },
+  ["compe-tabnine"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/compe-tabnine"
+  },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
+  kommentary = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/kommentary"
+  },
+  ["lsp-rooter.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp-rooter.nvim"
+  },
+  ["lsp-trouble.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp-trouble.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lush.nvim"] = {
     loaded = true,
@@ -89,9 +121,25 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-lspinstall"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+  },
   ["nvim-papadark"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-papadark"
+  },
+  ["nvim-reload"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-reload"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -100,6 +148,10 @@ _G.packer_plugins = {
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = false,
@@ -115,6 +167,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/playground"
   },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["telescope.nvim"] = {
+    commands = { "Telescope" },
+    config = { "\27LJ\1\2¥\1\0\0\a\0\r\0\0184\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\1\3\0013\2\v\0003\3\t\0003\4\a\0003\5\5\0007\6\4\0:\6\6\5:\5\b\4:\4\n\3:\3\f\2>\1\2\1G\0\1\0\rdefaults\1\0\0\rmappings\1\0\0\6i\1\0\0\n<esc>\1\0\0\nclose\nsetup\14telescope\22telescope.actions\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-floaterm"
@@ -122,12 +189,17 @@ _G.packer_plugins = {
   ["vim-startify"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-startify"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
 local module_lazy_loads = {
-  ["^nvim%-web%-devicons"] = "nvim-web-devicons"
+  ["^nvim%-web%-devicons"] = "nvim-web-devicons",
+  ["^telescope"] = "telescope.nvim"
 }
 local lazy_load_called = {['packer.load'] = true}
 local function lazy_load_module(module_name)
@@ -147,6 +219,12 @@ if not vim.g.packer_custom_loader_enabled then
   table.insert(package.loaders, 1, lazy_load_module)
   vim.g.packer_custom_loader_enabled = true
 end
+
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+vim.cmd [[command! -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+time([[Defining lazy-load commands]], false)
 
 if should_profile then save_profiles() end
 
