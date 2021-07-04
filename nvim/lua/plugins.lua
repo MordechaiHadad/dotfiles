@@ -33,14 +33,15 @@ return require('packer').startup(function(use)
 
       -- Colorscheme & Colors
       use 'MordechaiHadad/nvim-papadark' -- My Custom Colorscheme
-      use {'MordechaiHadad/nvim-treesitter', run = ':TSUpdate'}
+      use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
       use 'nvim-treesitter/playground'
       use 'norcalli/nvim-colorizer.lua'
       use 'rktjmp/lush.nvim' -- Scheme creator
 
 	  -- Telescope
-	  use { 'nvim-telescope/telescope.nvim',
-	  requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}, module = "telescope"}
+      use { 'nvim-telescope/telescope.nvim',
+	  requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}, module = 'telescope', 
+      cmd = 'Telescope', config = require('plug-config.telescope')}
 
       -- Web Dev
       use 'windwp/nvim-ts-autotag'

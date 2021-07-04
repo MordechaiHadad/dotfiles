@@ -1,17 +1,14 @@
-" Automatically generated packer.nvim plugin loader code
+-- Automatically generated packer.nvim plugin loader code
 
-if !has('nvim-0.5')
-  echohl WarningMsg
-  echom "Invalid Neovim version for packer.nvim!"
-  echohl None
-  finish
-endif
+if vim.api.nvim_call_function('has', {'nvim-0.5'}) ~= 1 then
+  vim.api.nvim_command('echohl WarningMsg | echom "Invalid Neovim version for packer.nvim! | echohl None"')
+  return
+end
 
-packadd packer.nvim
+vim.api.nvim_command('packadd packer.nvim')
 
-try
+local no_errors = pcall(function()
 
-lua << END
   local time
   local profile_info
   local should_profile = false
@@ -76,41 +73,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/barbar.nvim"
   },
-  ["bracey.vim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
-  },
-  ["compe-tabnine"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/compe-tabnine"
-  },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
-  },
-  ["gitsigns.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
-  },
-  kommentary = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/kommentary"
-  },
-  ["lsp-rooter.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp-rooter.nvim"
-  },
-  ["lsp-trouble.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp-trouble.nvim"
-  },
-  ["lsp_signature.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
-  },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lush.nvim"] = {
     loaded = true,
@@ -124,25 +89,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-compe"
-  },
-  ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
-  },
-  ["nvim-lspinstall"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
-  },
   ["nvim-papadark"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-papadark"
-  },
-  ["nvim-reload"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-reload"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -151,10 +100,6 @@ _G.packer_plugins = {
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
-  },
-  ["nvim-ts-autotag"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = false,
@@ -170,18 +115,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/playground"
   },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/plenary.nvim"
-  },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/popup.nvim"
-  },
-  ["telescope.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/telescope.nvim"
-  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-floaterm"
@@ -189,10 +122,6 @@ _G.packer_plugins = {
   ["vim-startify"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-startify"
-  },
-  ["which-key.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
@@ -221,11 +150,8 @@ end
 
 if should_profile then save_profiles() end
 
-END
+end)
 
-catch
-  echohl ErrorMsg
-  echom "Error in packer_compiled: " .. v:exception
-  echom "Please check your config for correctness"
-  echohl None
-endtry
+if not no_errors then
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: ".v:exception | echom "Please check your config for correctness" | echohl None')
+end

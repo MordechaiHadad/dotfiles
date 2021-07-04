@@ -10,9 +10,12 @@ vim.api.nvim_set_keymap('n', 'tt', ':TSPlaygroundToggle<CR>', {noremap = true, s
 vim.api.nvim_set_keymap('x', '<C-Up>', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('x', '<C-Down>', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
 
--- Move line 
+-- Move line in normal mode
 vim.api.nvim_set_keymap('n', '<C-Up>', ':m .-2<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-Down>', ':m .+1<CR>', {noremap = true, silent = true})
+-- Move line in insert mode
+vim.api.nvim_set_keymap('i', '<C-Up>', '<C-o>:m .-2<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-Down>', '<C-o>:m .+1<CR>', {noremap = true, silent = true})
 
 -- Finder keymaps
 vim.api.nvim_set_keymap('n', 'ff', ':Telescope find_files<CR>', {noremap = true, silent = true}) -- Find files
