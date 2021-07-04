@@ -25,3 +25,7 @@ vim.wo.cursorline = true
 vim.o.termguicolors = true
 vim.o.pumheight = 8
 vim.o.showtabline = 2
+
+-- Completion
+vim.o.completeopt = "menuone,noselect"
+vim.cmd('set shortmess+=c')

@@ -11,6 +11,16 @@ end -- Bootstrap packer so it auto installs everywhere
 vim.cmd [[packadd packer.nvim]]
 
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes to plugins.lua
+local packer = require('packer')
+
+packer.init({
+    git = {
+        clone_timeout = 300, -- 5 mins
+    },
+    profile = {
+        enable = true,
+    },
+})
 
 return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
@@ -40,7 +50,7 @@ return require('packer').startup(function(use)
 
         -- Telescope
         use { 'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}, module = 'telescope', 
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}, module = 'telescope',
         cmd = 'Telescope', config = require('plug-config.telescope')}
 
         -- Web Dev
@@ -48,9 +58,9 @@ return require('packer').startup(function(use)
         use {'turbio/bracey.vim', run = 'npm install --prefix server'}
 
         -- Autocomplete/LSP
-        use 'hrsh7th/nvim-compe'
+        use {'hrsh7th/nvim-compe', config = require('plug-config.compe')}
         use 'neovim/nvim-lspconfig'
-        use 'kabouzeid/nvim-lspinstall'
+        use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
         use 'folke/lsp-trouble.nvim'
         use 'glepnir/lspsaga.nvim'
         use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
