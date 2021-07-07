@@ -206,6 +206,12 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
   },
+  ["todo-comments.nvim"] = {
+    config = { "\27LJ\1\2�\a\0\0\5\0*\00014\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\a\0003\3\4\0003\4\5\0:\4\6\3:\3\b\0023\3\t\0:\3\n\0023\3\v\0:\3\f\0023\3\r\0003\4\14\0:\4\6\3:\3\15\0023\3\16\0003\4\17\0:\4\6\3:\3\18\0023\3\19\0003\4\20\0:\4\6\3:\3\21\2:\2\22\0013\2\23\0002\3\0\0:\3\24\2:\2\25\0013\2\27\0003\3\26\0:\3\28\0023\3\29\0:\3\30\0023\3\31\0:\3 \0023\3!\0:\3\"\0023\3#\0:\3$\2:\2%\0013\2&\0003\3'\0:\3(\2:\2)\1>\0\2\1G\0\1\0\vsearch\targs\1\6\0\0\18--color=never\17--no-heading\20--with-filename\18--line-number\r--column\1\0\2\fpattern\19\\b(KEYWORDS)\\b\fcommand\arg\vcolors\fdefault\1\3\0\0\15Identifier\f#7C3AED\thint\1\3\0\0\30LspDiagnosticsDefaultHint\f#10B981\tinfo\1\3\0\0%LspDiagnosticsDefaultInformation\f#2563EB\fwarning\1\4\0\0!LspDiagnosticsDefaultWarning\15WarningMsg\f#FBBF24\nerror\1\0\0\1\4\0\0\31LspDiagnosticsDefaultError\rErrorMsg\f#DC2626\14highlight\fexclude\1\0\6\fpattern\21.*<(KEYWORDS)\\s*\fkeyword\twide\17max_line_len\3�\3\vbefore\5\18comments_only\2\nafter\afg\rkeywords\tNOTE\1\2\0\0\tINFO\1\0\2\ncolor\thint\ticon\t \tPERF\1\4\0\0\nOPTIM\16PERFORMANCE\rOPTIMIZE\1\0\1\ticon\t \tWARN\1\3\0\0\fWARNING\bXXX\1\0\2\ncolor\fwarning\ticon\t \tHACK\1\0\2\ncolor\fwarning\ticon\t \tTODO\1\0\2\ncolor\tinfo\ticon\t \bFIX\1\0\0\balt\1\5\0\0\nFIXME\bBUG\nFIXIT\nISSUE\1\0\2\ncolor\nerror\ticon\t \1\0\3\18sign_priority\3\1\19merge_keywords\2\nsigns\2\nsetup\18todo-comments\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/todo-comments.nvim"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-floaterm"
@@ -257,7 +263,7 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'nvim-lspconfig', 'kommentary'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs', 'nvim-compe', 'todo-comments.nvim'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

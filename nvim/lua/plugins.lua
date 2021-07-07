@@ -1,6 +1,5 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
-
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -76,7 +75,9 @@ return require('packer').startup(function(use)
 
         -- Editing Enhancments
         use {'b3nj5m1n/kommentary', event = 'BufWinEnter'}
-        use {'windwp/nvim-autopairs', event = 'InsertEnter', config = require('plug-config/autopairs')}
+        use {'windwp/nvim-autopairs', event = 'InsertEnter', config = require('plug-config.autopairs')}
+        use {'folke/todo-comments.nvim', event = 'InsertEnter', requires = 'nvim-lua/plenary.nvim',
+        config = require('plug-config.todo-comments')}
 
 
         -- General Plugins
