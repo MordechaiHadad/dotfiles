@@ -28,7 +28,6 @@ return require('packer').startup(function(use)
 
     -- Good stuff yo
     use 'voldikss/vim-floaterm'
-    use 'windwp/nvim-autopairs'
 
     -- UI
     use 'romgrk/barbar.nvim'
@@ -58,12 +57,13 @@ return require('packer').startup(function(use)
         use {'turbio/bracey.vim', run = 'npm install --prefix server'}
 
         -- Autocomplete/LSP
-        use {'hrsh7th/nvim-compe', config = require('plug-config.compe')}
-        use 'neovim/nvim-lspconfig'
-        use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
+        use {'hrsh7th/nvim-compe', config = require('plug-config.compe'), event = 'InsertEnter'}
+        use {'norcalli/snippets.nvim', requires = 'hrsh7th/nvim-compe', after = 'nvim-compe'}
+        use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe', after = 'snippets.nvim'}
+        use {'neovim/nvim-lspconfig', event = 'BufWinEnter'}
+        use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall'), after = 'nvim-lspconfig'}
         use 'folke/lsp-trouble.nvim'
         use 'glepnir/lspsaga.nvim'
-        use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
         use 'ray-x/lsp_signature.nvim'
 
         -- Git
@@ -74,10 +74,13 @@ return require('packer').startup(function(use)
             }
         }
 
+        -- Editing Enhancments
+        use {'b3nj5m1n/kommentary', event = 'BufWinEnter'}
+        use {'windwp/nvim-autopairs', event = 'InsertEnter', config = require('plug-config/autopairs')}
+
+
         -- General Plugins
-        use 'b3nj5m1n/kommentary'
         use 'ahmedkhalf/lsp-rooter.nvim'
-        use 'famiu/nvim-reload'
-        use 'folke/which-key.nvim'
+        use {'folke/which-key.nvim', config = require('plug-config.which-key'), event = 'BufWinEnter'}
         -- use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
     end)

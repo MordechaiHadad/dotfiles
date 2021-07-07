@@ -23,7 +23,7 @@ return function()
             spell = {kind = "  "},
             snippets_nvim = {kind = "  "},
             emoji = {filetypes = {"markdown", "text"}},
-            tabnine = true
+            tabnine = true,
         }
     }
 end

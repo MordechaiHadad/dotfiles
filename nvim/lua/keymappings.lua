@@ -22,3 +22,6 @@ vim.api.nvim_set_keymap('n', 'ff', ':Telescope find_files<CR>', {noremap = true,
 
 -- LSP Keymaps
 vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true}) -- Go to Definitions
+
+-- fuck you deleted bullshit
+vim.api.nvim_set_keymap('n', "dd", "\"_dd", { silent = true, noremap = true })

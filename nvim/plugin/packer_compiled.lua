@@ -78,8 +78,13 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/bracey.vim"
   },
   ["compe-tabnine"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/compe-tabnine"
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/compe-tabnine/after/plugin/compe_tabnine.vim" },
+    load_after = {
+      ["snippets.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/compe-tabnine"
   },
   ["galaxyline.nvim"] = {
     loaded = true,
@@ -90,8 +95,9 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   kommentary = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/kommentary"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/kommentary"
   },
   ["lsp-rooter.nvim"] = {
     loaded = true,
@@ -114,34 +120,41 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/lush.nvim"
   },
   ["nvim-autopairs"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+    config = { "\27LJ\1\2Ø\1\0\0\3\1\t\2\0314\0\0\0007\0\1\0007\0\2\0>\0\1\2\b\0\0\0T\0\21€4\0\0\0007\0\1\0007\0\3\0>\0\1\0027\0\4\0\b\0\1\0T\0\t€4\0\0\0007\0\1\0007\0\5\0+\1\0\0007\1\6\1%\2\a\0>\1\2\0?\0\0\0T\0\b€+\0\0\0007\0\6\0%\1\a\0@\0\2\0T\0\3€+\0\0\0007\0\b\0@\0\1\0G\0\1\0\1À\17autopairs_cr\t<cr>\besc\18compe#confirm\rselected\18complete_info\15pumvisible\afn\bvim\0þÿÿÿ\31£\2\1\0\a\0\17\0\0294\0\0\0007\0\1\0007\0\2\0004\1\3\0%\2\4\0>\1\2\0024\2\3\0%\3\4\0>\2\2\0027\2\5\2>\2\1\0014\2\6\0002\3\0\0:\3\a\0024\2\0\0007\2\b\2%\3\n\0:\3\t\0024\2\a\0001\3\f\0:\3\v\2\16\2\0\0%\3\r\0%\4\14\0%\5\15\0003\6\16\0>\2\5\0010\0\0€G\0\1\0\1\0\2\texpr\2\fnoremap\2&v:lua.MUtils.completion_confirm()\t<CR>\6i\0\23completion_confirm\5\27completion_confirm_key\6g\vMUtils\a_G\nsetup\19nvim-autopairs\frequire\20nvim_set_keymap\bapi\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
+    after = { "snippets.nvim" },
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
     config = { "\27LJ\1\2«\4\0\0\5\0\26\0\0294\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\5\0003\3\4\0:\3\6\0023\3\a\0:\3\b\0023\3\t\0:\3\n\0023\3\v\0:\3\f\0023\3\r\0:\3\14\0023\3\15\0:\3\16\0023\3\17\0:\3\18\0023\3\19\0:\3\20\0023\3\22\0003\4\21\0:\4\23\3:\3\24\2:\2\25\1>\0\2\1G\0\1\0\vsource\nemoji\14filetypes\1\0\0\1\3\0\0\rmarkdown\ttext\18snippets_nvim\1\0\1\tkind\n ï— \nspell\1\0\1\tkind\n ï‘ˆ \rnvim_lua\1\0\1\tkind\n îŸ… \rnvim_lsp\1\0\1\tkind\n îœ– \nvsnip\1\0\1\tkind\n ï— \tcalc\1\0\1\tkind\n ï‡¬ \vbuffer\1\0\1\tkind\n ïŽ \tpath\1\0\1\ftabnine\2\1\0\1\tkind\n ï›— \1\0\f\17autocomplete\2\19source_timeout\3È\1\fenabled\2\ndebug\1\14preselect\venable\19max_abbr_width\3d\21incomplete_delay\3\3\19max_menu_width\3d\19max_kind_width\3d\15min_length\3\1\18throttle_time\3P\18documentation\2\nsetup\ncompe\frequire\0" },
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
   ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    after = { "nvim-lspinstall" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
   },
   ["nvim-lspinstall"] = {
     config = { "\27LJ\1\2¢\1\0\0\b\0\6\0\0244\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\1\0>\0\2\0027\0\3\0>\0\1\0024\1\4\0\16\2\0\0>\1\2\4D\4\a€4\6\0\0%\a\5\0>\6\2\0026\6\5\0067\6\2\0062\a\0\0>\6\2\1B\4\3\3N\4÷G\0\1\0\14lspconfig\npairs\22installed_servers\nsetup\15lspinstall\frequire5\0\0\2\1\3\0\a+\0\0\0>\0\1\0014\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\0À\fbufdo e\bcmd\bvimV\1\0\3\0\5\0\n1\0\0\0\16\1\0\0>\1\1\0014\1\1\0%\2\2\0>\1\2\0021\2\4\0:\2\3\0010\0\0€G\0\1\0\0\22post_install_hook\15lspinstall\frequire\0\0" },
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+    load_after = {
+      ["nvim-lspconfig"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/nvim-lspinstall"
   },
   ["nvim-papadark"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-papadark"
-  },
-  ["nvim-reload"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-reload"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -177,6 +190,15 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["snippets.nvim"] = {
+    after = { "compe-tabnine" },
+    load_after = {
+      ["nvim-compe"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/snippets.nvim"
+  },
   ["telescope.nvim"] = {
     commands = { "Telescope" },
     config = { "\27LJ\1\2¥\1\0\0\a\0\r\0\0184\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\1\3\0013\2\v\0003\3\t\0003\4\a\0003\5\5\0007\6\4\0:\6\6\5:\5\b\4:\4\n\3:\3\f\2>\1\2\1G\0\1\0\rdefaults\1\0\0\rmappings\1\0\0\6i\1\0\0\n<esc>\1\0\0\nclose\nsetup\14telescope\22telescope.actions\frequire\0" },
@@ -193,8 +215,10 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   ["which-key.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/which-key.nvim"
+    config = { "\27LJ\1\2^\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\1G\0\1\0\vwindow\1\0\0\1\0\1\vborder\vsingle\nsetup\14which-key\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/which-key.nvim"
   }
 }
 
@@ -222,20 +246,20 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: nvim-compe
-time([[Config for nvim-compe]], true)
-try_loadstring("\27LJ\1\2«\4\0\0\5\0\26\0\0294\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\5\0003\3\4\0:\3\6\0023\3\a\0:\3\b\0023\3\t\0:\3\n\0023\3\v\0:\3\f\0023\3\r\0:\3\14\0023\3\15\0:\3\16\0023\3\17\0:\3\18\0023\3\19\0:\3\20\0023\3\22\0003\4\21\0:\4\23\3:\3\24\2:\2\25\1>\0\2\1G\0\1\0\vsource\nemoji\14filetypes\1\0\0\1\3\0\0\rmarkdown\ttext\18snippets_nvim\1\0\1\tkind\n ï— \nspell\1\0\1\tkind\n ï‘ˆ \rnvim_lua\1\0\1\tkind\n îŸ… \rnvim_lsp\1\0\1\tkind\n îœ– \nvsnip\1\0\1\tkind\n ï— \tcalc\1\0\1\tkind\n ï‡¬ \vbuffer\1\0\1\tkind\n ïŽ \tpath\1\0\1\ftabnine\2\1\0\1\tkind\n ï›— \1\0\f\17autocomplete\2\19source_timeout\3È\1\fenabled\2\ndebug\1\14preselect\venable\19max_abbr_width\3d\21incomplete_delay\3\3\19max_menu_width\3d\19max_kind_width\3d\15min_length\3\1\18throttle_time\3P\18documentation\2\nsetup\ncompe\frequire\0", "config", "nvim-compe")
-time([[Config for nvim-compe]], false)
--- Config for: nvim-lspinstall
-time([[Config for nvim-lspinstall]], true)
-try_loadstring("\27LJ\1\2¢\1\0\0\b\0\6\0\0244\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\1\0>\0\2\0027\0\3\0>\0\1\0024\1\4\0\16\2\0\0>\1\2\4D\4\a€4\6\0\0%\a\5\0>\6\2\0026\6\5\0067\6\2\0062\a\0\0>\6\2\1B\4\3\3N\4÷G\0\1\0\14lspconfig\npairs\22installed_servers\nsetup\15lspinstall\frequire5\0\0\2\1\3\0\a+\0\0\0>\0\1\0014\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\0À\fbufdo e\bcmd\bvimV\1\0\3\0\5\0\n1\0\0\0\16\1\0\0>\1\1\0014\1\1\0%\2\2\0>\1\2\0021\2\4\0:\2\3\0010\0\0€G\0\1\0\0\22post_install_hook\15lspinstall\frequire\0\0", "config", "nvim-lspinstall")
-time([[Config for nvim-lspinstall]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
 vim.cmd [[command! -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 time([[Defining lazy-load commands]], false)
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'nvim-lspconfig', 'kommentary'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
