@@ -13,6 +13,7 @@ vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when th
 local packer = require('packer')
 
 packer.init({
+    max_jobs = 16,
     git = {
         clone_timeout = 300, -- 5 mins
     },
@@ -59,8 +60,8 @@ return require('packer').startup(function(use)
         use {'hrsh7th/nvim-compe', config = require('plug-config.compe'), event = 'InsertEnter'}
         use {'norcalli/snippets.nvim', requires = 'hrsh7th/nvim-compe', after = 'nvim-compe'}
         use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe', after = 'snippets.nvim'}
-        use {'neovim/nvim-lspconfig', event = 'BufWinEnter'}
-        use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall'), after = 'nvim-lspconfig'}
+        use {'neovim/nvim-lspconfig'}
+        use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
         use 'folke/lsp-trouble.nvim'
         use 'glepnir/lspsaga.nvim'
         use 'ray-x/lsp_signature.nvim'
