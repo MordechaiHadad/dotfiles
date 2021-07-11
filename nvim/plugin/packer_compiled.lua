@@ -107,10 +107,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp-trouble.nvim"
   },
-  ["lsp_signature.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
-  },
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"

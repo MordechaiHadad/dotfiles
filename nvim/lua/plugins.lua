@@ -64,7 +64,6 @@ return require('packer').startup(function(use)
         use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
         use 'folke/lsp-trouble.nvim'
         use 'glepnir/lspsaga.nvim'
-        use 'ray-x/lsp_signature.nvim'
 
         -- Git
         use {
