@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
     use {'wbthomason/packer.nvim', opt = true}
 
     -- Good stuff yo
-    use 'voldikss/vim-floaterm'
+    use {'akinsho/nvim-toggleterm.lua', config = require("plug-config.toggleterm")}
 
     -- UI
     use 'romgrk/barbar.nvim'
@@ -64,6 +64,7 @@ return require('packer').startup(function(use)
         use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
         use 'folke/lsp-trouble.nvim'
         use 'glepnir/lspsaga.nvim'
+        use 'simrat39/symbols-outline.nvim'
 
         -- Git
         use {
