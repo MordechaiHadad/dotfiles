@@ -13,10 +13,7 @@ vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when th
 local packer = require('packer')
 
 packer.init({
-    max_jobs = 16,
-    git = {
-        clone_timeout = 300, -- 5 mins
-    },
+    max_jobs = 6,
     profile = {
         enable = true,
     },
@@ -84,5 +81,6 @@ return require('packer').startup(function(use)
         -- General Plugins
         use 'ahmedkhalf/lsp-rooter.nvim'
         use {'folke/which-key.nvim', config = require('plug-config.which-key'), event = 'BufWinEnter'}
+        use {'folke/persistence.nvim', event = 'BufWinEnter'}
         -- use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
     end)
