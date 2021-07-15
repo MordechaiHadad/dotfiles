@@ -43,9 +43,10 @@ return require('packer').startup(function(use)
     use 'rktjmp/lush.nvim' -- Scheme creator
 
     -- Telescope
-    use { 'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}, module = 'telescope',
+    use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
         cmd = 'Telescope', config = require('plug-config.telescope')}
+    use {'nvim-telescope/telescope-frecency.nvim', requires = {'tami5/sql.nvim'},
+        after = 'telescope.nvim', config = require('plug-config.frecency')}
 
     -- Web Dev
     use 'windwp/nvim-ts-autotag'

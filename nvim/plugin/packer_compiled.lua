@@ -70,7 +70,7 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["FTerm.nvim"] = {
-    config = { '\27LJ\1\2¶\1\0\0\a\0\n\0\0164\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0003\1\6\0\16\2\0\0%\3\a\0%\4\b\0%\5\t\0\16\6\1\0>\2\5\1G\0\1\0+<CMD>lua require("FTerm").toggle()<CR>\n<F12>\6n\1\0\2\vsilent\2\fnoremap\2\20nvim_set_keymap\bapi\bvim\nsetup\nFTerm\frequire\0' },
+    config = { '\27LJ\1\2\2\0\0\a\0\f\0\0224\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0003\1\6\0\16\2\0\0%\3\a\0%\4\b\0%\5\t\0\16\6\1\0>\2\5\1\16\2\0\0%\3\n\0%\4\b\0%\5\v\0\16\6\1\0>\2\5\1G\0\1\0005<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>\6t+<CMD>lua require("FTerm").toggle()<CR>\n<F12>\6n\1\0\2\vsilent\2\fnoremap\2\20nvim_set_keymap\bapi\bvim\nsetup\nFTerm\frequire\0' },
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/FTerm.nvim"
   },
@@ -199,11 +199,25 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/snippets.nvim"
   },
+  ["sql.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/sql.nvim"
+  },
   ["symbols-outline.nvim"] = {
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim"
   },
+  ["telescope-frecency.nvim"] = {
+    config = { "\27LJ\1\2M\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0%\1\3\0>\0\2\1G\0\1\0\rfrecency\19load_extension\14telescope\frequire\0" },
+    load_after = {
+      ["telescope.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/telescope-frecency.nvim"
+  },
   ["telescope.nvim"] = {
+    after = { "telescope-frecency.nvim" },
     commands = { "Telescope" },
     config = { "\27LJ\1\2¥\1\0\0\a\0\r\0\0184\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\1\3\0013\2\v\0003\3\t\0003\4\a\0003\5\5\0007\6\4\0:\6\6\5:\5\b\4:\4\n\3:\3\f\2>\1\2\1G\0\1\0\rdefaults\1\0\0\rmappings\1\0\0\6i\1\0\0\n<esc>\1\0\0\nclose\nsetup\14telescope\22telescope.actions\frequire\0" },
     loaded = false,
@@ -230,8 +244,7 @@ _G.packer_plugins = {
 
 time([[Defining packer_plugins]], false)
 local module_lazy_loads = {
-  ["^nvim%-web%-devicons"] = "nvim-web-devicons",
-  ["^telescope"] = "telescope.nvim"
+  ["^nvim%-web%-devicons"] = "nvim-web-devicons"
 }
 local lazy_load_called = {['packer.load'] = true}
 local function lazy_load_module(module_name)
@@ -254,7 +267,7 @@ end
 
 -- Config for: FTerm.nvim
 time([[Config for FTerm.nvim]], true)
-try_loadstring('\27LJ\1\2¶\1\0\0\a\0\n\0\0164\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0003\1\6\0\16\2\0\0%\3\a\0%\4\b\0%\5\t\0\16\6\1\0>\2\5\1G\0\1\0+<CMD>lua require("FTerm").toggle()<CR>\n<F12>\6n\1\0\2\vsilent\2\fnoremap\2\20nvim_set_keymap\bapi\bvim\nsetup\nFTerm\frequire\0', "config", "FTerm.nvim")
+try_loadstring('\27LJ\1\2\2\0\0\a\0\f\0\0224\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0003\1\6\0\16\2\0\0%\3\a\0%\4\b\0%\5\t\0\16\6\1\0>\2\5\1\16\2\0\0%\3\n\0%\4\b\0%\5\v\0\16\6\1\0>\2\5\1G\0\1\0005<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>\6t+<CMD>lua require("FTerm").toggle()<CR>\n<F12>\6n\1\0\2\vsilent\2\fnoremap\2\20nvim_set_keymap\bapi\bvim\nsetup\nFTerm\frequire\0', "config", "FTerm.nvim")
 time([[Config for FTerm.nvim]], false)
 -- Config for: nvim-lspinstall
 time([[Config for nvim-lspinstall]], true)
@@ -270,8 +283,8 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'kommentary', 'persistence.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs', 'nvim-compe', 'todo-comments.nvim'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'persistence.nvim', 'which-key.nvim', 'kommentary'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
