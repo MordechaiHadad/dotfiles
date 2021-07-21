@@ -252,12 +252,18 @@ local function lazy_load_module(module_name)
   if lazy_load_called[module_name] then return nil end
   lazy_load_called[module_name] = true
   for module_pat, plugin_name in pairs(module_lazy_loads) do
-    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat)then
+    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
       to_load[#to_load + 1] = plugin_name
     end
   end
 
-  require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
+  if #to_load > 0 then
+    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
+    local loaded_mod = package.loaded[module_name]
+    if loaded_mod then
+      return function(modname) return loaded_mod end
+    end
+  end
 end
 
 if not vim.g.packer_custom_loader_enabled then
@@ -276,7 +282,9 @@ time([[Config for nvim-lspinstall]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+if vim.fn.exists(":Telescope") ~= 2 then
 vim.cmd [[command! -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+end
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]

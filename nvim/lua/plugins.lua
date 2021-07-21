@@ -23,17 +23,13 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    -- Good stuff yo
-    -- use {'akinsho/nvim-toggleterm.lua', config = require("plug-config.toggleterm")}
-    use {'numToStr/FTerm.nvim', config = require('plug-config.FTerm')}
-
     -- UI
     use 'romgrk/barbar.nvim'
-    -- use 'akinsho/nvim-bufferline.lua'
     use 'kyazdani42/nvim-tree.lua'
     use {'kyazdani42/nvim-web-devicons', module = "nvim-web-devicons"}
     use 'mhinz/vim-startify'
     use {'glepnir/galaxyline.nvim', branch = 'main'}
+    use {'numToStr/FTerm.nvim', config = require('plug-config.FTerm')}
 
     -- Colorscheme & Colors
     use 'MordechaiHadad/nvim-papadark' -- My Custom Colorscheme
@@ -50,7 +46,6 @@ return require('packer').startup(function(use)
 
     -- Web Dev
     use 'windwp/nvim-ts-autotag'
-    use {'turbio/bracey.vim', run = 'npm install --prefix server'}
 
     -- Autocomplete/LSP
     use {'hrsh7th/nvim-compe', config = require('plug-config.compe'), event = 'InsertEnter'}
