@@ -30,9 +30,10 @@ return require('packer').startup(function(use)
     use 'mhinz/vim-startify'
     use {'glepnir/galaxyline.nvim', branch = 'main'}
     use {'numToStr/FTerm.nvim', config = require('plug-config.FTerm')}
+    use 'folke/trouble.nvim'
 
     -- Colorscheme & Colors
-    use 'MordechaiHadad/nvim-papadark' -- My Custom Colorscheme
+    use '/home/morde/repos/nvim-papadark' -- Colorscheme
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/playground'
     use 'norcalli/nvim-colorizer.lua'
@@ -40,9 +41,9 @@ return require('packer').startup(function(use)
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-        cmd = 'Telescope', config = require('plug-config.telescope')}
+    cmd = 'Telescope', config = require('plug-config.telescope')}
     use {'nvim-telescope/telescope-frecency.nvim', requires = {'tami5/sql.nvim'},
-        after = 'telescope.nvim', config = require('plug-config.frecency')}
+    after = 'telescope.nvim', config = require('plug-config.frecency')}
 
     -- Web Dev
     use 'windwp/nvim-ts-autotag'
@@ -52,10 +53,8 @@ return require('packer').startup(function(use)
     use {'norcalli/snippets.nvim', requires = 'hrsh7th/nvim-compe', after = 'nvim-compe'}
     use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe', after = 'snippets.nvim'}
     use {'neovim/nvim-lspconfig'}
-    use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
-    use 'folke/lsp-trouble.nvim'
+    use {'/home/morde/repos/nvim-lspinstall', config = require('plug-config.lspinstall')}
     use 'glepnir/lspsaga.nvim'
-    use 'simrat39/symbols-outline.nvim'
 
     -- Git
     use {'lewis6991/gitsigns.nvim', requires ='nvim-lua/plenary.nvim'}
@@ -64,11 +63,13 @@ return require('packer').startup(function(use)
     use {'b3nj5m1n/kommentary', event = 'BufWinEnter'}
     use {'windwp/nvim-autopairs', event = 'InsertEnter', config = require('plug-config.autopairs')}
     use {'folke/todo-comments.nvim', event = 'InsertEnter', requires = 'nvim-lua/plenary.nvim',
-        config = require('plug-config.todo-comments')}
+    config = require('plug-config.todo-comments')}
 
 
     -- General Plugins
     use 'ahmedkhalf/lsp-rooter.nvim'
     use {'folke/which-key.nvim', config = require('plug-config.which-key'), event = 'BufWinEnter'}
-    use {'folke/persistence.nvim', event = 'BufWinEnter'}
-    end)
+    use {'folke/persistence.nvim', event = 'BufReadPre', module = 'persistence', config = function()
+        require('persistence').setup()
+    end}
+end)
