@@ -24,7 +24,7 @@ return require('packer').startup(function(use)
     use {'wbthomason/packer.nvim', opt = true}
 
     -- UI
-    use 'romgrk/barbar.nvim'
+    use {'romgrk/barbar.nvim', config = require('plug-config.barbar')}
     use 'kyazdani42/nvim-tree.lua'
     use {'kyazdani42/nvim-web-devicons', module = "nvim-web-devicons"}
     use 'mhinz/vim-startify'

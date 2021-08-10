@@ -6,7 +6,6 @@ require('lsp')
 
 -- Plugins Config
 -- require('plug-config/bufferline')
-require('plug-config/barbar')
 require('plug-config/galaxyline')
 require('plug-config/treesitter')
 require('plug-config/colorizer')
