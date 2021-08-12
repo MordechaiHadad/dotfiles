@@ -67,7 +67,7 @@ return require('packer').startup(function(use)
 
 
     -- General Plugins
-    use 'ahmedkhalf/lsp-rooter.nvim'
+    use {'ahmedkhalf/project.nvim', config = require('plug-config.project')}
     use {'folke/which-key.nvim', config = require('plug-config.which-key'), event = 'BufWinEnter'}
     use {'folke/persistence.nvim', event = 'BufReadPre', module = 'persistence', config = function()
         require('persistence').setup()
