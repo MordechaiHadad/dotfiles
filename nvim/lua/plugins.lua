@@ -28,9 +28,9 @@ return require('packer').startup(function(use)
     use 'kyazdani42/nvim-tree.lua'
     use {'kyazdani42/nvim-web-devicons', module = "nvim-web-devicons"}
     use 'mhinz/vim-startify'
-    use {'glepnir/galaxyline.nvim', branch = 'main'}
+    use {'glepnir/galaxyline.nvim', branch = 'main', config = require('plug-config.galaxyline')}
     use {'numToStr/FTerm.nvim', config = require('plug-config.FTerm')}
-    use 'folke/trouble.nvim'
+    use {'folke/trouble.nvim', config = require('plug-config.lsp-trouble')}
 
     -- Colorscheme & Colors
     use '/home/morde/repos/nvim-papadark' -- Colorscheme

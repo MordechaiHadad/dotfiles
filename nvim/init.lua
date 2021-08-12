@@ -5,11 +5,7 @@ require('keymappings')
 require('lsp')
 
 -- Plugins Config
--- require('plug-config/bufferline')
-require('plug-config/galaxyline')
 require('plug-config/treesitter')
 require('plug-config/colorizer')
 require('plug-config/lspsaga')
-require('plug-config/lsp-trouble')
-require('plug-config/dashboard')
 vim.cmd('source ~/.config/nvim/vimscript/startify.vim')
