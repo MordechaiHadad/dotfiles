@@ -8,11 +8,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 nvim/init.lua
-badd +2 .gitignore
+badd +0 .gitignore
 argglobal
 %argdel
-$argadd nvim/init.lua
+$argadd .gitignore
+edit .gitignore
+argglobal
+let s:l = 2 - ((1 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2
+normal! 013|
+lcd ~/arch-conf
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
