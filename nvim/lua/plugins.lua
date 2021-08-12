@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
     use 'mhinz/vim-startify'
     use {'glepnir/galaxyline.nvim', branch = 'main', config = require('plug-config.galaxyline')}
     use {'numToStr/FTerm.nvim', config = require('plug-config.FTerm')}
-    use {'folke/trouble.nvim', config = require('plug-config.lsp-trouble')}
+    use {'folke/trouble.nvim', config = require('plug-config.lsp-trouble'), event = 'BufWinEnter'}
 
     -- Colorscheme & Colors
     use '/home/morde/repos/nvim-papadark' -- Colorscheme

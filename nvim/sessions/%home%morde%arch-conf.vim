@@ -8,10 +8,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +10 nvim/init.lua
-badd +2 nvim/lua/plug-config/galaxyline.lua
-badd +1 nvim/lua/plug-config/lsp-trouble.lua
-badd +33 nvim/lua/plugins.lua
+badd +1 nvim/init.lua
+badd +2 .gitignore
 argglobal
 %argdel
 $argadd nvim/init.lua
@@ -27,6 +25,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
