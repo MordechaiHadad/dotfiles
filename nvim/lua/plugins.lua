@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
 
     -- Colorscheme & Colors
     use '/home/morde/repos/nvim-papadark' -- Colorscheme
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {'nvim-treesitter/nvim-treesitter', config = require('plug-config.treesitter'), run = ':TSUpdate'}
     use 'nvim-treesitter/playground'
     use 'norcalli/nvim-colorizer.lua'
     use 'rktjmp/lush.nvim' -- Scheme creator

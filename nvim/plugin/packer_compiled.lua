@@ -146,6 +146,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
+    config = { "\27LJ\1\2ð\2\0\0\4\0\16\0\0224\0\0\0%\1\1\0>\0\2\0023\1\3\0:\1\2\0004\0\0\0%\1\4\0>\0\2\0027\0\5\0003\1\6\0003\2\a\0003\3\b\0:\3\t\2:\2\n\0013\2\v\0002\3\0\0:\3\f\2:\2\r\0013\2\14\0:\2\15\1>\0\2\1G\0\1\0\fautotag\1\0\1\venable\2\15playground\fdisable\1\0\3\15updatetime\3\25\20persist_queries\1\venable\2\14highlight\20custom_captures\1\0\2\19primitive.type\fKeyword\20escape.sequence\rFunction\1\0\1\venable\2\1\0\1\21ensure_installed\ball\nsetup\28nvim-treesitter.configs\1\2\0\0\nclang\14compilers\28nvim-treesitter.install\frequire\0" },
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
@@ -270,6 +271,10 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\1\2ð\2\0\0\4\0\16\0\0224\0\0\0%\1\1\0>\0\2\0023\1\3\0:\1\2\0004\0\0\0%\1\4\0>\0\2\0027\0\5\0003\1\6\0003\2\a\0003\3\b\0:\3\t\2:\2\n\0013\2\v\0002\3\0\0:\3\f\2:\2\r\0013\2\14\0:\2\15\1>\0\2\1G\0\1\0\fautotag\1\0\1\venable\2\15playground\fdisable\1\0\3\15updatetime\3\25\20persist_queries\1\venable\2\14highlight\20custom_captures\1\0\2\19primitive.type\fKeyword\20escape.sequence\rFunction\1\0\1\venable\2\1\0\1\21ensure_installed\ball\nsetup\28nvim-treesitter.configs\1\2\0\0\nclang\14compilers\28nvim-treesitter.install\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: nvim-lspinstall
 time([[Config for nvim-lspinstall]], true)
 try_loadstring("\27LJ\1\2¢\1\0\0\b\0\6\0\0244\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\1\0>\0\2\0027\0\3\0>\0\1\0024\1\4\0\16\2\0\0>\1\2\4D\4\a€4\6\0\0%\a\5\0>\6\2\0026\6\5\0067\6\2\0062\a\0\0>\6\2\1B\4\3\3N\4÷G\0\1\0\14lspconfig\npairs\22installed_servers\nsetup\15lspinstall\frequire5\0\0\2\1\3\0\a+\0\0\0>\0\1\0014\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\0À\fbufdo e\bcmd\bvimV\1\0\3\0\5\0\n1\0\0\0\16\1\0\0>\1\1\0014\1\1\0%\2\2\0>\1\2\0021\2\4\0:\2\3\0010\0\0€G\0\1\0\0\22post_install_hook\15lspinstall\frequire\0\0", "config", "nvim-lspinstall")
