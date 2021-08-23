@@ -73,4 +73,5 @@ return require('packer').startup(function(use)
     use {'folke/persistence.nvim', event = 'BufReadPre', module = 'persistence', config = function()
         require('persistence').setup()
     end}
+    use {'vhyrro/neorg', branch = 'unstable', config = require('plug-config.neorg'), after = 'nvim-compe'}
 end)

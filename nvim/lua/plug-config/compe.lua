@@ -24,6 +24,7 @@ return function()
             snippets_nvim = {kind = "  "},
             emoji = {filetypes = {"markdown", "text"}},
             tabnine = true,
+            neorg = true
         }
     }
 end
