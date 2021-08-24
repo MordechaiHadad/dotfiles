@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
     use 'glepnir/lspsaga.nvim'
 
     -- Git
-    use {'lewis6991/gitsigns.nvim', requires ='nvim-lua/plenary.nvim'}
+    use {'lewis6991/gitsigns.nvim', requires ='nvim-lua/plenary.nvim', config = require('plug-config.gitsigns')}
     use {'TimUntersberger/neogit', requires ='nvim-lua/plenary.nvim', config = require('plug-config.neogit')}
 
     -- Editing Enhancments
@@ -73,5 +73,5 @@ return require('packer').startup(function(use)
     use {'folke/persistence.nvim', event = 'BufReadPre', module = 'persistence', config = function()
         require('persistence').setup()
     end}
-    use {'vhyrro/neorg', branch = 'unstable', config = require('plug-config.neorg'), after = 'nvim-compe'}
+    use {'vhyrro/neorg', branch = 'unstable', config = require('plug-config.neorg'), after = 'nvim-compe'} --Very epic
 end)
