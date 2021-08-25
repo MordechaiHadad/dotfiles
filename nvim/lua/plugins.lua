@@ -48,10 +48,15 @@ return require('packer').startup(function(use)
     -- Web Dev
     use 'windwp/nvim-ts-autotag'
 
-    -- Autocomplete/LSP
-    use {'hrsh7th/nvim-compe', config = require('plug-config.compe'), event = 'InsertEnter'}
-    use {'norcalli/snippets.nvim', requires = 'hrsh7th/nvim-compe', after = 'nvim-compe'}
-    use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe', after = 'snippets.nvim'}
+    -- Autocomplete
+    use {'hrsh7th/nvim-cmp', config = require('plug-config.cmp'), }
+    use {'hrsh7th/cmp-buffer', }
+    use {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'}
+    use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
+    use {'tzachar/cmp-tabnine', run='./install.sh', after = 'nvim-cmp'}
+    use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
+
+    -- LSP
     use {'neovim/nvim-lspconfig'}
     use {'/home/morde/repos/nvim-lspinstall', config = require('plug-config.lspinstall')}
     use 'glepnir/lspsaga.nvim'
@@ -73,5 +78,5 @@ return require('packer').startup(function(use)
     use {'folke/persistence.nvim', event = 'BufReadPre', module = 'persistence', config = function()
         require('persistence').setup()
     end}
-    use {'vhyrro/neorg', branch = 'unstable', config = require('plug-config.neorg'), after = 'nvim-compe'} --Very epic
+    use {'vhyrro/neorg', branch = 'unstable', config = require('plug-config.neorg')}
 end)
