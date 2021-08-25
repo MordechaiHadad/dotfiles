@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
 
     -- UI
     use {'romgrk/barbar.nvim', config = require('plug-config.barbar')}
-    use 'kyazdani42/nvim-tree.lua'
+    use {'kyazdani42/nvim-tree.lua', config = require('plug-config.nvim-tree')}
     use {'kyazdani42/nvim-web-devicons', module = "nvim-web-devicons"}
     use 'mhinz/vim-startify'
     use {'glepnir/galaxyline.nvim', branch = 'main', config = require('plug-config.galaxyline')}

@@ -84,24 +84,28 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/cmp-buffer"
   },
   ["cmp-nvim-lsp"] = {
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp"
   },
   ["cmp-nvim-lua"] = {
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua/after/plugin/cmp_nvim_lua.lua" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua"
   },
   ["cmp-path"] = {
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-path"
   },
   ["cmp-tabnine"] = {
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/after/plugin/cmp-tabnine.lua" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -169,6 +173,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-papadark"
   },
   ["nvim-tree.lua"] = {
+    config = { "\27LJ\1\0026\0\0\2\0\3\0\0054\0\0\0007\0\1\0'\1\1\0:\1\2\0G\0\1\0\25nvim_tree_auto_close\6g\bvim\0" },
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
@@ -297,6 +302,10 @@ time([[Config for nvim-treesitter]], false)
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\1\2Ь\3\0\0\a\0\27\00014\0\0\0%\1\1\0>\0\2\0027\1\2\0003\2\4\0003\3\3\0:\3\5\0023\3\b\0007\4\6\0007\4\a\4'\5ья>\4\2\2:\4\t\0037\4\6\0007\4\a\4'\5\4\0>\4\2\2:\4\n\0037\4\6\0007\4\v\4>\4\1\2:\4\f\0037\4\6\0007\4\r\4>\4\1\2:\4\14\0037\4\6\0007\4\15\0043\5\18\0007\6\16\0007\6\17\6:\6\19\5>\4\2\2:\4\20\3:\3\6\0022\3\6\0003\4\21\0;\4\1\0033\4\22\0;\4\2\0033\4\23\0;\4\3\0033\4\24\0;\4\4\0033\4\25\0;\4\5\3:\3\26\2>\1\2\1G\0\1\0\fsources\1\0\1\tname\tpath\1\0\1\tname\ftabnine\1\0\1\tname\rnvim_lua\1\0\1\tname\vbuffer\1\0\1\tname\rnvim_lsp\t<CR>\rbehavior\1\0\1\vselect\2\fReplace\20ConfirmBehavior\fconfirm\n<C-e>\nclose\14<C-Space>\rcomplete\n<C-f>\n<C-d>\1\0\0\16scroll_docs\fmapping\15completion\1\0\0\1\0\1\16completeopt\21menuone,noselect\nsetup\bcmp\frequire\0", "config", "nvim-cmp")
 time([[Config for nvim-cmp]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\1\0026\0\0\2\0\3\0\0054\0\0\0007\0\1\0'\1\1\0:\1\2\0G\0\1\0\25nvim_tree_auto_close\6g\bvim\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
 -- Config for: neorg
 time([[Config for neorg]], true)
 try_loadstring("\27LJ\1\2Х\1\0\0\6\0\14\0\0194\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\f\0003\2\3\0002\3\0\0:\3\4\0022\3\0\0:\3\5\0023\3\t\0003\4\a\0003\5\6\0:\5\b\4:\4\n\3:\3\v\2:\2\r\1>\0\2\1G\0\1\0\tload\1\0\0\21core.norg.dirman\vconfig\1\0\0\15workspaces\1\0\0\1\0\1\17my_workspace\f~/neorg\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
