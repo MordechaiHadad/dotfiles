@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
     use {'kyazdani42/nvim-web-devicons', module = "nvim-web-devicons"}
     use 'mhinz/vim-startify'
     use {'glepnir/galaxyline.nvim', branch = 'main', config = require('plug-config.galaxyline')}
+    -- use {'famiu/feline.nvim', config = require('plug-config.feline')}
     use {'numToStr/FTerm.nvim', config = require('plug-config.FTerm')}
     use {'folke/trouble.nvim', config = require('plug-config.lsp-trouble'), event = 'BufWinEnter'}
 
@@ -55,11 +56,13 @@ return require('packer').startup(function(use)
     use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
     use {'tzachar/cmp-tabnine', run='./install.sh', after = 'nvim-cmp'}
     use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
+    use {'L3MON4D3/LuaSnip', after = 'nvim-cmp'}
+    use {'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp'}
+
 
     -- LSP
     use {'neovim/nvim-lspconfig'}
-    use {'/home/morde/repos/nvim-lspinstall', config = require('plug-config.lspinstall')}
-    use 'glepnir/lspsaga.nvim'
+    -- use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
 
     -- Git
     use {'lewis6991/gitsigns.nvim', requires ='nvim-lua/plenary.nvim', config = require('plug-config.gitsigns')}
@@ -79,4 +82,7 @@ return require('packer').startup(function(use)
         require('persistence').setup()
     end}
     use {'vhyrro/neorg', branch = 'unstable', config = require('plug-config.neorg')}
+
+    -- Self plugin
+    use {'/home/morde/repos/nvim-lspmanager', config = require('plug-config.lspmanager')}
 end)

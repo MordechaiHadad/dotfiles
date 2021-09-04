@@ -10,6 +10,11 @@ return function()
                     my_workspace = "~/neorg"
                 }
             }
+        },
+        ["core.norg.completion"] = {
+            config = {
+                engine = "nvim-cmp"
+            }
         }
     },
 }

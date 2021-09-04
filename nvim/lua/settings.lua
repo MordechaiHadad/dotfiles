@@ -1,6 +1,7 @@
 -- General settings
 vim.wo.wrap = false -- no wraping
 vim.o.fileencoding = "utf-8"
+vim.opt.fileformat = "unix"
 vim.o.mouse = "a" -- enable mouse
 vim.wo.number = true -- enable numbers
 vim.o.clipboard = "unnamedplus" -- enable clipboard
