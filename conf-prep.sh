@@ -20,7 +20,7 @@ sudo pacman-key --init
 sudo pacman-key --populate archlinux
 
 # Install packages
-yay -S neovim zsh neofetch wget nodejs lazygit lsd 
+yay -S neovim zsh neofetch wget nodejs lazygit lsd clang
 
 
 # Configure internet
