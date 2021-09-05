@@ -45,6 +45,7 @@ return function()
                     path = "(Path)",
                     luasnip = "(Snippet)",
                     buffer = "(Buffer)",
+                    neorg = "(Neorg)"
                 })[entry.source.name]
                 vim_item.dup = ({
                     buffer = 1,
