@@ -81,6 +81,7 @@ return require('packer').startup(function(use)
         require('persistence').setup()
     end}
     use {'vhyrro/neorg', branch = 'unstable', config = require('plug-config.neorg')}
+    use {'vuki656/package-info.nvim', cofig = require('plug-config.package-info')}
 
     -- Self plugin
     use {'/home/morde/repos/nvim-lspmanager', config = require('plug-config.lspmanager')}
