@@ -142,7 +142,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/neogit"
   },
   neorg = {
-    config = { "\27LJ\1\2\2\0\0\6\0\17\0\0234\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\15\0003\2\3\0002\3\0\0:\3\4\0022\3\0\0:\3\5\0023\3\t\0003\4\a\0003\5\6\0:\5\b\4:\4\n\3:\3\v\0023\3\r\0003\4\f\0:\4\n\3:\3\14\2:\2\16\1>\0\2\1G\0\1\0\tload\1\0\0\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp\21core.norg.dirman\vconfig\1\0\0\15workspaces\1\0\0\1\0\1\17my_workspace\f~/neorg\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
+    config = { "\27LJ\1\2Æ\2\0\0\6\0\20\0\0274\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\18\0003\2\3\0002\3\0\0:\3\4\0023\3\6\0003\4\5\0:\4\a\3:\3\b\0022\3\0\0:\3\t\0023\3\r\0003\4\v\0003\5\n\0:\5\f\4:\4\a\3:\3\14\0023\3\16\0003\4\15\0:\4\a\3:\3\17\2:\2\19\1>\0\2\1G\0\1\0\tload\1\0\0\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp\21core.norg.dirman\1\0\0\15workspaces\1\0\0\1\0\1\17my_workspace\f~/neorg\24core.norg.concealer\18core.keybinds\vconfig\1\0\0\1\0\1\21default_keybinds\2\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/neorg"
