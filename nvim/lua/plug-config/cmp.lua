@@ -45,7 +45,8 @@ return function()
                     path = "(Path)",
                     luasnip = "(Snippet)",
                     buffer = "(Buffer)",
-                    neorg = "(Neorg)"
+                    neorg = "(Neorg)",
+                    calc = "(Calculator)"
                 })[entry.source.name]
                 vim_item.dup = ({
                     buffer = 1,
@@ -78,6 +79,7 @@ return function()
             { name = 'tabnine' },
             { name = 'path' },
             { name = 'neorg' },
+            { name = 'calc'}
         },
     }
 end
