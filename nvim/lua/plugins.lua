@@ -83,6 +83,9 @@ return require('packer').startup(function(use)
     end}
     use {'nvim-neorg/neorg', branch = 'unstable', config = require('plug-config.neorg'), ft = 'norg'}
     use {'vuki656/package-info.nvim', cofig = require('plug-config.package-info')}
+    use {'abecodes/tabout.nvim', config = function ()
+        require('tabout').setup()
+    end}
 
     -- Self plugin
     use {'/home/morde/repos/nvim-lspmanager', config = require('plug-config.lspmanager')}
