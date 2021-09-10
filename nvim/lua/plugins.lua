@@ -62,11 +62,9 @@ return require('packer').startup(function(use)
 
     -- LSP
     use {'neovim/nvim-lspconfig'}
-    -- use {'kabouzeid/nvim-lspinstall', config = require('plug-config.lspinstall')}
 
     -- Git
     use {'lewis6991/gitsigns.nvim', requires ='nvim-lua/plenary.nvim', config = require('plug-config.gitsigns')}
-    use {'TimUntersberger/neogit', requires ='nvim-lua/plenary.nvim', config = require('plug-config.neogit')}
 
     -- Editing Enhancments
     use {'b3nj5m1n/kommentary', event = 'BufWinEnter'}
