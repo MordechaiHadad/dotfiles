@@ -79,7 +79,7 @@ return require('packer').startup(function(use)
     use {'folke/persistence.nvim', event = 'BufReadPre', module = 'persistence', config = function()
         require('persistence').setup()
     end}
-    use {'nvim-neorg/neorg', branch = 'unstable', config = require('plug-config.neorg'), ft = 'norg'}
+    use {'nvim-neorg/neorg', branch = 'gtd_base', config = require('plug-config.neorg'), ft = 'norg'}
     use {'vuki656/package-info.nvim', cofig = require('plug-config.package-info')}
     use {'abecodes/tabout.nvim', config = function ()
         require('tabout').setup()
