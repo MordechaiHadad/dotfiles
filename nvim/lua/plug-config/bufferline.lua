@@ -1,6 +1,6 @@
-vim.api.nvim_set_keymap('n', '<TAB>', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 
 local colors = {
     foreground = "#E5E9F0",
@@ -14,14 +14,14 @@ local colors = {
     red = "#d94848",
     light_blue = "#8fc6e3",
     blue_green = "#4EC9B0",
-	line_color = "#353c4a",
+    line_color = "#353c4a",
 }
 
-require('bufferline').setup({
-	highlights = {
-		fill = {
-			guibg = colors.background
-		},
+require("bufferline").setup({
+    highlights = {
+        fill = {
+            guibg = colors.background,
+        },
         --[[ buffer_visible = {
             guifg = '<color-value-here>',
             guibg = '<color-value-here>'
@@ -29,9 +29,9 @@ require('bufferline').setup({
         buffer_selected = {
             guifg = colors.foreground,
             guibg = colors.line_color,
-            gui = "bold,italic"
+            gui = "bold,italic",
         },
-		--[[ separator_selected = {
+        --[[ separator_selected = {
 			guifg = colors.purple,
 			guibg = colors.purple
         },
@@ -43,14 +43,14 @@ require('bufferline').setup({
 			guifg = colors.purple,
 			guibg = colors.purple
         }, ]]
-		modified = {
-			guifg = colors.yellow
-		},
-		modified_visible = {
-        	guifg = colors.yellow
+        modified = {
+            guifg = colors.yellow,
+        },
+        modified_visible = {
+            guifg = colors.yellow,
         },
         modified_selected = {
-        	guifg = colors.yellow
+            guifg = colors.yellow,
         },
-	}
+    },
 })

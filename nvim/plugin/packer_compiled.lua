@@ -118,7 +118,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-path"
   },
   cmp_luasnip = {
-    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.lua" },
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.lua", "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.vim" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -138,6 +138,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/kommentary"
+  },
+  ["lua-dev.nvim"] = {
+    loaded = true,
+    path = "/home/morde/.local/share/nvim/site/pack/packer/start/lua-dev.nvim"
   },
   ["lush.nvim"] = {
     loaded = true,
@@ -169,7 +173,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-lspmanager"] = {
-    config = { "\27LJ\1\0028\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\15lspmanager\frequire\0" },
+    config = { "\27LJ\1\2¼\1\0\0\3\0\t\0\0214\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\3\0>\0\2\0027\0\2\0003\1\5\0003\2\4\0:\2\6\1>\0\2\0024\1\0\0%\2\a\0>\1\2\0027\1\b\0017\1\2\1\16\2\0\0>\1\2\1G\0\1\0\16sumneko_lua\14lspconfig\flibrary\1\0\0\1\0\3\fplugins\1\ntypes\2\15vimruntime\2\flua-dev\nsetup\15lspmanager\frequire\0" },
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspmanager"
   },
@@ -197,10 +201,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
-  },
-  ["package-info.nvim"] = {
-    loaded = true,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/start/package-info.nvim"
   },
   ["packer.nvim"] = {
     loaded = false,
@@ -326,14 +326,14 @@ time([[Config for barbar.nvim]], false)
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-lspmanager
+time([[Config for nvim-lspmanager]], true)
+try_loadstring("\27LJ\1\2¼\1\0\0\3\0\t\0\0214\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\3\0>\0\2\0027\0\2\0003\1\5\0003\2\4\0:\2\6\1>\0\2\0024\1\0\0%\2\a\0>\1\2\0027\1\b\0017\1\2\1\16\2\0\0>\1\2\1G\0\1\0\16sumneko_lua\14lspconfig\flibrary\1\0\0\1\0\3\fplugins\1\ntypes\2\15vimruntime\2\flua-dev\nsetup\15lspmanager\frequire\0", "config", "nvim-lspmanager")
+time([[Config for nvim-lspmanager]], false)
 -- Config for: galaxyline.nvim
 time([[Config for galaxyline.nvim]], true)
 try_loadstring("\27LJ\1\2Ø\1\0\0\6\3\v\0\0314\0\0\0007\0\1\0007\0\2\0%\1\3\0+\2\0\0007\2\4\2%\3\5\0+\4\1\0004\5\0\0007\5\6\0057\5\a\5>\5\1\0026\4\5\4\14\0\4\0T\5\2€+\4\0\0007\4\b\4$\1\4\1>\0\2\1%\0\t\0+\1\2\0004\2\0\0007\2\6\0027\2\a\2>\2\1\0026\1\2\1\14\0\1\0T\2\1€%\1\n\0$\0\1\0H\0\2\0\1À\2À\3À\nError\a  \bred\tmode\afn\f guibg=\nblack\27hi GalaxyViMode guifg=\17nvim_command\bapi\bvim\22\0\0\1\0\1\0\2%\0\0\0H\0\2\0\v  îœ¥ 2\0\0\2\1\2\0\6+\0\0\0007\0\0\0>\0\1\2%\1\1\0$\0\1\0H\0\2\0\6À\6 \19get_git_branch3\0\0\2\1\2\0\6+\0\0\0007\0\0\0>\0\1\2%\1\1\0$\0\1\0H\0\2\0\aÀ\6 \20get_file_format/\0\0\2\1\2\0\6+\0\0\0007\0\0\0>\0\1\2%\1\1\0$\0\1\0H\0\2\0\aÀ\6 \16line_column”\1\0\0\4\2\b\0\0184\0\0\0007\0\1\0007\0\2\0%\1\3\0+\2\0\0004\3\0\0007\3\4\0037\3\5\3>\3\1\0026\2\3\2\14\0\2\0T\3\2€+\2\1\0007\2\6\2$\1\2\1>\0\2\1%\0\a\0H\0\2\0\2À\1À\bâ–Š\bred\tmode\afn hi GalaxyRightViMode guifg=\17nvim_command\bapi\bvimÁ\14\1\0\r\0M\0Ò\0014\0\0\0%\1\1\0>\0\2\0023\1\2\0003\2\4\0007\3\3\1:\3\5\0027\3\6\1:\3\a\0027\3\b\1:\3\t\0027\3\n\1:\3\v\0027\3\b\1:\3\f\0027\3\r\1:\3\14\0023\3\15\0004\4\0\0%\5\16\0>\4\2\0027\5\17\0004\6\0\0%\a\18\0>\6\2\0024\a\0\0%\b\19\0>\a\2\0023\b\21\0:\b\20\0007\b\22\0053\t\28\0003\n\24\0001\v\23\0:\v\25\n2\v\3\0007\f\r\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n\29\t;\t\1\b7\b\22\0053\t\"\0003\n\31\0007\v\30\4:\v \n1\v!\0:\v\25\n2\v\3\0007\f\3\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n#\t;\t\2\b7\b\22\0053\t'\0003\n$\0007\v\30\4:\v \n1\v%\0:\v\25\n2\v\3\0007\f&\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n(\t;\t\3\b7\b\22\0053\t*\0003\n)\0007\v\30\4:\v \n2\v\3\0007\f\6\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n+\t;\t\4\b7\b\22\0053\t-\0003\n,\0007\v\30\4:\v \n2\v\3\0007\f\n\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n.\t;\t\5\b7\b\22\0053\t1\0003\n/\0007\v\30\4:\v \n2\v\3\0007\f\r\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n2\v\3\0007\f\3\1;\f\1\v7\f\26\1;\f\2\v:\v0\n:\n2\t;\t\6\b7\b\22\0053\t4\0003\n3\0002\v\3\0007\f\r\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n5\t;\t\a\b7\b\22\0053\t7\0003\n6\0002\v\3\0007\f\n\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n8\t;\t\b\b7\b9\0053\t<\0003\n;\0001\v:\0:\v\25\n2\v\3\0007\f&\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\n=\t;\t\1\b7\b9\0053\t?\0003\n>\0002\v\3\0007\f&\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n2\v\3\0007\f\3\1;\f\1\v7\f\26\1;\f\2\v:\v0\n:\n@\t;\t\2\b7\b9\0053\tC\0003\nB\0001\vA\0:\v\25\n2\v\3\0007\f&\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\nD\t;\t\3\b7\b9\0053\tG\0003\nF\0001\vE\0:\v\25\n2\v\3\0007\f\r\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\nH\t;\t\4\b7\b\17\0007\bI\b3\tK\0003\nJ\0002\v\3\0007\f&\1;\f\1\v7\f\26\1;\f\2\v:\v\27\n:\nL\t;\t\1\b0\0\0€G\0\1\0\rFileName\1\0\0\1\0\1\rprovider\rFileName\20short_line_left\16RightViMode\1\0\0\1\0\0\0\15LineColumn\1\0\0\1\0\0\0\16LinePercent\1\0\0\1\0\2\14separator\6|\rprovider\16LinePercent\15FileFormat\1\0\0\1\0\0\0\nright\19DiagnosticWarn\1\0\0\1\0\2\ticon\tï”© \rprovider\19DiagnosticWarn\20DiagnosticError\1\0\0\1\0\2\ticon\tï™™ \rprovider\20DiagnosticError\15DiffRemove\1\0\0\24separator_highlight\1\0\3\14separator\a| \rprovider\15DiffRemove\ticon\n ï‘˜ \17DiffModified\1\0\0\1\0\2\ticon\n ï‘™ \rprovider\17DiffModified\fDiffAdd\1\0\0\1\0\2\ticon\n ï‘— \rprovider\fDiffAdd\14GitBranch\1\0\0\15foreground\0\1\0\0\fGitIcon\1\0\0\0\14condition\1\0\0\24check_git_workspace\vViMode\1\0\0\14highlight\15line_color\rprovider\1\0\0\0\tleft\1\5\0\0\rNvimTree\vpacker\rstartify\15LspTrouble\20short_line_list!galaxyline.provider_fileinfo\28galaxyline.provider_vcs\fsection\25galaxyline.condition\1\0\6\6V\tïœ‡ \6c\tî• \6v\tïœ‡ \6\22\btf \6n\tïŸ› \6i\tï£ª \6\22\bred\6V\6c\vyellow\6v\vpurple\6i\ngreen\6n\1\0\0\tblue\1\0\f\tblue\f#5d8ac2\nblack\f#2b2e36\15light_blue\f#8fc6e3\tgrey\f#3B4048\ngreen\f#98C379\15foreground\f#E5E9F0\15blue_green\f#4EC9B0\vyellow\f#d4d198\15line_color\f#353c4a\15background\f#2E3440\bred\f#d94848\vpurple\f#c487b9\15galaxyline\frequire\0", "config", "galaxyline.nvim")
 time([[Config for galaxyline.nvim]], false)
--- Config for: nvim-lspmanager
-time([[Config for nvim-lspmanager]], true)
-try_loadstring("\27LJ\1\0028\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\15lspmanager\frequire\0", "config", "nvim-lspmanager")
-time([[Config for nvim-lspmanager]], false)
 -- Config for: tabout.nvim
 time([[Config for tabout.nvim]], true)
 try_loadstring("\27LJ\1\0024\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\vtabout\frequire\0", "config", "tabout.nvim")

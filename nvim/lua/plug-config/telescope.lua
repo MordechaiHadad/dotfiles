@@ -1,15 +1,14 @@
 return function()
+    local actions = require("telescope.actions")
 
-    local actions = require('telescope.actions')
-
-    require('telescope').setup{
+    require("telescope").setup({
         defaults = {
             mappings = {
                 i = {
-                    ["<esc>"] = actions.close
-                }
-            }
-        }
-    }
-    require('telescope').load_extension('projects')
+                    ["<esc>"] = actions.close,
+                },
+            },
+        },
+    })
+    require("telescope").load_extension("projects")
 end

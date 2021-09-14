@@ -1,5 +1,5 @@
 return function()
-    local vi_mode_utils = require('feline.providers.vi_mode')
+    local vi_mode_utils = require("feline.providers.vi_mode")
 
     local colors = {
         foreground = "#E5E9F0",
@@ -13,105 +13,106 @@ return function()
         red = "#d94848",
         light_blue = "#8fc6e3",
         blue_green = "#4EC9B0",
-        line_color = "#353c4a"}
+        line_color = "#353c4a",
+    }
 
-        local components = {
-            left = {active = {}, inactive = {}},
-            mid = {active = {}, inactive = {}},
-            right = {active = {}, inactive = {}}
-        }
+    local components = {
+        left = { active = {}, inactive = {} },
+        mid = { active = {}, inactive = {} },
+        right = { active = {}, inactive = {} },
+    }
 
-        local vi_mode_colors = {
-            NORMAL = 'blue',
-            OP = 'green',
-            INSERT = 'green',
-            VISUAL = 'purple',
-            BLOCK = 'skyblue',
-            REPLACE = 'violet',
-            ['V-REPLACE'] = 'violet',
-            ENTER = 'cyan',
-            MORE = 'cyan',
-            SELECT = 'orange',
-            COMMAND = 'yellow',
-            SHELL = 'green',
-            TERM = 'green',
-            NONE = 'yellow'
-        }
+    local vi_mode_colors = {
+        NORMAL = "blue",
+        OP = "green",
+        INSERT = "green",
+        VISUAL = "purple",
+        BLOCK = "skyblue",
+        REPLACE = "violet",
+        ["V-REPLACE"] = "violet",
+        ENTER = "cyan",
+        MORE = "cyan",
+        SELECT = "orange",
+        COMMAND = "yellow",
+        SHELL = "green",
+        TERM = "green",
+        NONE = "yellow",
+    }
 
-        local vi_mode_text = {
-            NORMAL = ' ',
-            INSERT = ' ',
-            VISUAL = ' ',
-            BLOCK = '<>',
-            REPLACE = '<>',
-            ['V-REPLACE'] = '<>',
-            ENTER = '<>',
-            MORE = '<>',
-            SELECT = '<>',
-            COMMAND = ' ',
-            SHELL = '<|',
-            TERM = '<|',
-            NONE = '<>'
-        }
+    local vi_mode_text = {
+        NORMAL = " ",
+        INSERT = " ",
+        VISUAL = " ",
+        BLOCK = "<>",
+        REPLACE = "<>",
+        ["V-REPLACE"] = "<>",
+        ENTER = "<>",
+        MORE = "<>",
+        SELECT = "<>",
+        COMMAND = " ",
+        SHELL = "<|",
+        TERM = "<|",
+        NONE = "<>",
+    }
 
-        components.left.active[1] = {
-            provider = function ()
-                return ' ' .. vi_mode_text[vi_mode_utils.get_vim_mode() or 'Error']
-            end,
-            hl = function ()
-                local val = {}
+    components.left.active[1] = {
+        provider = function()
+            return " " .. vi_mode_text[vi_mode_utils.get_vim_mode() or "Error"]
+        end,
+        hl = function()
+            local val = {}
 
-                val.bg = vi_mode_utils.get_mode_color()
-                val.fg = 'black'
+            val.bg = vi_mode_utils.get_mode_color()
+            val.fg = "black"
 
-                return val
-            end
-        }
+            return val
+        end,
+    }
 
-        components.left.active[2] = {
-            provider = 'git_branch',
+    components.left.active[2] = {
+        provider = "git_branch",
+        hl = {
+            fg = "blue",
+            bg = "line_color",
+            style = "bold",
+        },
+    }
+
+    components.left.active[3] = {
+        provider = "git_diff_added",
+        icon = "  ",
+        hl = {
+            fg = "green",
+        },
+    }
+
+    components.left.active[4] = {
+        provider = "git_diff_changed",
+        icon = "  ",
+        hl = {
+            fg = "yellow",
+        },
+    }
+
+    components.left.active[5] = {
+        provider = "git_diff_removed",
+        icon = "  ",
+        hl = {
+            fg = "red",
+        },
+        right_sep = {
+            str = " |",
             hl = {
-                fg = 'blue',
-                bg = 'line_color',
-                style = 'bold'
-            }
-        }
-
-        components.left.active[3] = {
-            provider = 'git_diff_added',
-            icon = '  ',
-            hl = {
-                fg = 'green'
-            }
-        }
-
-        components.left.active[4] = {
-            provider = 'git_diff_changed',
-            icon = '  ',
-            hl = {
-                fg = 'yellow'
-            }
-        }
-
-        components.left.active[5] = {
-            provider = 'git_diff_removed',
-            icon = '  ',
-            hl = {
-                fg = 'red'
+                fg = "blue",
             },
-            right_sep = {
-                str = ' |',
-                hl = {
-                    fg = 'blue'
-                }
-            }
-        }
+        },
+    }
 
-        require('feline').setup{
-            colors = colors,
-            default_bg = 'line_color',
-            default_fg = 'foreground',
-            vi_mode_colors = vi_mode_colors,
-            components = components,
-        }
-    end
+    require("feline").setup({
+        colors = colors,
+        default_bg = "line_color",
+        default_fg = "foreground",
+        vi_mode_colors = vi_mode_colors,
+        components = components,
+    })
+end

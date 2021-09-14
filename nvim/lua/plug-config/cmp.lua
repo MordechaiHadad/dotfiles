@@ -1,5 +1,5 @@
 return function()
-    local cmp = require('cmp')
+    local cmp = require("cmp")
 
     local icons = {
         Class = " ",
@@ -33,7 +33,7 @@ return function()
         -- Variable = " ",
         Variable = "",
     }
-    cmp.setup {
+    cmp.setup({
         completion = {
             completeopt = "menuone,noselect",
         },
@@ -46,7 +46,7 @@ return function()
                     luasnip = "(Snippet)",
                     buffer = "(Buffer)",
                     neorg = "(Neorg)",
-                    calc = "(Calculator)"
+                    calc = "(Calculator)",
                 })[entry.source.name]
                 vim_item.dup = ({
                     buffer = 1,
@@ -57,29 +57,29 @@ return function()
             end,
         },
         mapping = {
-            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.close(),
-            ['<CR>'] = cmp.mapping.confirm({
+            ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+            ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            ["<C-Space>"] = cmp.mapping.complete(),
+            ["<C-e>"] = cmp.mapping.close(),
+            ["<CR>"] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = true,
-            })
+            }),
         },
         snippet = {
             expand = function(args)
-                require'luasnip'.lsp_expand(args.body)
-            end
+                require("luasnip").lsp_expand(args.body)
+            end,
         },
         sources = {
-            { name = 'nvim_lsp' },
-            { name = 'buffer' },
-            { name = 'luasnip'},
-            { name = 'nvim_lua' },
-            { name = 'tabnine' },
-            { name = 'path' },
-            { name = 'neorg' },
-            { name = 'calc'}
+            { name = "nvim_lsp" },
+            { name = "buffer" },
+            { name = "luasnip" },
+            { name = "nvim_lua" },
+            { name = "tabnine" },
+            { name = "path" },
+            { name = "neorg" },
+            { name = "calc" },
         },
-    }
+    })
 end
