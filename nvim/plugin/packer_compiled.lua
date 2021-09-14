@@ -103,13 +103,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp"
   },
-  ["cmp-nvim-lua"] = {
-    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua/after/plugin/cmp_nvim_lua.lua" },
-    load_after = {},
-    loaded = true,
-    needs_bufread = false,
-    path = "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua"
-  },
   ["cmp-path"] = {
     after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
     load_after = {},
@@ -160,7 +153,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-nvim-lsp", "cmp_luasnip", "cmp-nvim-lua", "cmp-path", "LuaSnip", "cmp-calc" },
+    after = { "LuaSnip", "cmp_luasnip", "cmp-nvim-lsp", "cmp-path", "cmp-calc" },
     loaded = true,
     only_config = true
   },
@@ -316,7 +309,7 @@ try_loadstring("\27LJ\1\2�\4\0\0\5\0\24\0!4\0\0\0%\1\1\0>\0\2\0023\1\3\0:\1\2\00
 time([[Config for nvim-treesitter]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
-try_loadstring("\27LJ\1\2�\1\0\2\4\1\a\0\18+\2\0\0007\3\0\0016\2\3\2:\2\0\0013\2\2\0007\3\3\0007\3\4\0036\2\3\2:\2\1\0013\2\6\0007\3\3\0007\3\4\0036\2\3\2\14\0\2\0T\3\1�'\2\0\0:\2\5\1H\1\2\0\1�\1\0\3\tpath\3\1\rnvim_lsp\3\0\vbuffer\3\1\bdup\tname\vsource\1\0\6\fluasnip\14(Snippet)\nneorg\f(Neorg)\rnvim_lsp\n(LSP)\vbuffer\r(Buffer)\tcalc\17(Calculator)\tpath\v(Path)\tmenu\tkindC\0\1\3\0\4\0\a4\1\0\0%\2\1\0>\1\2\0027\1\2\0017\2\3\0>\1\2\1G\0\1\0\tbody\15lsp_expand\fluasnip\frequire�\a\1\0\b\0'\0A4\0\0\0%\1\1\0>\0\2\0023\1\2\0007\2\3\0003\3\5\0003\4\4\0:\4\6\0033\4\b\0001\5\a\0:\5\t\4:\4\n\0033\4\r\0007\5\v\0007\5\f\5'\6��>\5\2\2:\5\14\0047\5\v\0007\5\f\5'\6\4\0>\5\2\2:\5\15\0047\5\v\0007\5\16\5>\5\1\2:\5\17\0047\5\v\0007\5\18\5>\5\1\2:\5\19\0047\5\v\0007\5\20\0053\6\23\0007\a\21\0007\a\22\a:\a\24\6>\5\2\2:\5\25\4:\4\v\0033\4\27\0001\5\26\0:\5\28\4:\4\29\0032\4\t\0003\5\30\0;\5\1\0043\5\31\0;\5\2\0043\5 \0;\5\3\0043\5!\0;\5\4\0043\5\"\0;\5\5\0043\5#\0;\5\6\0043\5$\0;\5\a\0043\5%\0;\5\b\4:\4&\3>\2\2\0010\0\0�G\0\1\0\fsources\1\0\1\tname\tcalc\1\0\1\tname\nneorg\1\0\1\tname\tpath\1\0\1\tname\ftabnine\1\0\1\tname\rnvim_lua\1\0\1\tname\fluasnip\1\0\1\tname\vbuffer\1\0\1\tname\rnvim_lsp\fsnippet\vexpand\1\0\0\0\t<CR>\rbehavior\1\0\1\vselect\2\fReplace\20ConfirmBehavior\fconfirm\n<C-e>\nclose\14<C-Space>\rcomplete\n<C-f>\n<C-d>\1\0\0\16scroll_docs\fmapping\15formatting\vformat\1\0\0\0\15completion\1\0\0\1\0\1\16completeopt\21menuone,noselect\nsetup\1\0\25\tText\b\vMethod\bƒ \rOperator\b\14Interface\tﰮ \nColor\t \vModule\t \nEvent\b\rFunction\t \16Constructor\t \15EnumMember\t \rProperty\t \rConstant\t \vStruct\t \rVariable\b\fSnippet\t﬌ \vFolder\t \tUnit\b塞\nValue\t \18TypeParameter\5\tFile\b\nClass\t \nField\bﰠ\tEnum\t了 \fKeyword\t \14Reference\b\bcmp\frequire\0", "config", "nvim-cmp")
+try_loadstring("\27LJ\1\2�\1\0\2\4\1\a\0\18+\2\0\0007\3\0\0016\2\3\2:\2\0\0013\2\2\0007\3\3\0007\3\4\0036\2\3\2:\2\1\0013\2\6\0007\3\3\0007\3\4\0036\2\3\2\14\0\2\0T\3\1�'\2\0\0:\2\5\1H\1\2\0\1�\1\0\3\tpath\3\1\rnvim_lsp\3\0\vbuffer\3\1\bdup\tname\vsource\1\0\6\fluasnip\14(Snippet)\nneorg\f(Neorg)\rnvim_lsp\n(LSP)\vbuffer\r(Buffer)\tcalc\17(Calculator)\tpath\v(Path)\tmenu\tkindC\0\1\3\0\4\0\a4\1\0\0%\2\1\0>\1\2\0027\1\2\0017\2\3\0>\1\2\1G\0\1\0\tbody\15lsp_expand\fluasnip\frequire�\a\1\0\b\0&\0?4\0\0\0%\1\1\0>\0\2\0023\1\2\0007\2\3\0003\3\5\0003\4\4\0:\4\6\0033\4\b\0001\5\a\0:\5\t\4:\4\n\0033\4\r\0007\5\v\0007\5\f\5'\6��>\5\2\2:\5\14\0047\5\v\0007\5\f\5'\6\4\0>\5\2\2:\5\15\0047\5\v\0007\5\16\5>\5\1\2:\5\17\0047\5\v\0007\5\18\5>\5\1\2:\5\19\0047\5\v\0007\5\20\0053\6\23\0007\a\21\0007\a\22\a:\a\24\6>\5\2\2:\5\25\4:\4\v\0033\4\27\0001\5\26\0:\5\28\4:\4\29\0032\4\b\0003\5\30\0;\5\1\0043\5\31\0;\5\2\0043\5 \0;\5\3\0043\5!\0;\5\4\0043\5\"\0;\5\5\0043\5#\0;\5\6\0043\5$\0;\5\a\4:\4%\3>\2\2\0010\0\0�G\0\1\0\fsources\1\0\1\tname\tcalc\1\0\1\tname\nneorg\1\0\1\tname\tpath\1\0\1\tname\ftabnine\1\0\1\tname\fluasnip\1\0\1\tname\vbuffer\1\0\1\tname\rnvim_lsp\fsnippet\vexpand\1\0\0\0\t<CR>\rbehavior\1\0\1\vselect\2\fReplace\20ConfirmBehavior\fconfirm\n<C-e>\nclose\14<C-Space>\rcomplete\n<C-f>\n<C-d>\1\0\0\16scroll_docs\fmapping\15formatting\vformat\1\0\0\0\15completion\1\0\0\1\0\1\16completeopt\21menuone,noselect\nsetup\1\0\25\tText\b\vMethod\bƒ \rOperator\b\14Interface\tﰮ \nColor\t \vModule\t \nEvent\b\rFunction\t \16Constructor\t \15EnumMember\t \rProperty\t \rConstant\t \vStruct\t \rVariable\b\fSnippet\t﬌ \vFolder\t \tUnit\b塞\nValue\t \18TypeParameter\5\tFile\b\nClass\t \nField\bﰠ\tEnum\t了 \fKeyword\t \14Reference\b\bcmp\frequire\0", "config", "nvim-cmp")
 time([[Config for nvim-cmp]], false)
 -- Config for: barbar.nvim
 time([[Config for barbar.nvim]], true)
@@ -350,9 +343,8 @@ time([[Config for project.nvim]], false)
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd cmp-path ]]
 vim.cmd [[ packadd cmp-calc ]]
-vim.cmd [[ packadd cmp_luasnip ]]
-vim.cmd [[ packadd cmp-nvim-lua ]]
 vim.cmd [[ packadd cmp-nvim-lsp ]]
+vim.cmd [[ packadd cmp_luasnip ]]
 vim.cmd [[ packadd LuaSnip ]]
 time([[Sequenced loading]], false)
 
