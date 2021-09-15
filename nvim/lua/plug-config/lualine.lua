@@ -16,6 +16,11 @@ return function()
         line_color = "#353c4a",
     }
 
+    local files = {
+        ["cs"] = "C#",
+        ["cpp"] = "C++",
+    }
+
     local conditions = {
         buffer_not_empty = function()
             return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -28,6 +33,10 @@ return function()
             local gitdir = vim.fn.finddir(".git", filepath .. ";")
             return gitdir and #gitdir > 0 and #gitdir < #filepath
         end,
+
+        if_startify = function ()
+            return vim.bo.filetype == "startify"
+        end
     }
 
     local config = {
@@ -62,6 +71,7 @@ return function()
             lualine_c = {},
             lualine_x = {},
         },
+        extensions = {'nvim-tree'}
     }
 
     local function ins_left(component)
@@ -96,13 +106,21 @@ return function()
                 t = colors.red,
             }
             vim.api.nvim_command(
-                "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
+            "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
             )
             return "▊"
         end,
         color = "LualineMode", -- Sets highlighting of component
         padding = { left = 0, right = 1 }, -- We don't need space before this
     })
+
+    ins_left {
+        function ()
+                return 'Startify'
+        end,
+        padding = { left = 0, right = 0 },
+        cond = conditions.if_startify
+    }
 
     ins_left({
         cond = conditions.check_git_workspace,
@@ -136,6 +154,7 @@ return function()
     })
 
     ins_left({
+        cond = conditions.check_git_workspace,
         function()
             return "|"
         end,
@@ -165,6 +184,7 @@ return function()
     })
 
     ins_right({
+        cond = conditions.buffer_not_empty,
         function()
             return "|"
         end,
@@ -176,6 +196,25 @@ return function()
 
     ins_right({
         "location",
+        cond = conditions.buffer_not_empty
+    })
+
+    ins_right({
+        function ()
+            return string.upper(vim.bo.fileencoding)
+        end,
+        cond = conditions.buffer_not_empty,
+
+        padding = {left = 0, right = 1}
+    })
+
+    ins_right({
+        function ()
+            return files[vim.bo.filetype] or (vim.bo.filetype:gsub("^%l", string.upper))
+        end,
+        cond = conditions.buffer_not_empty,
+
+        padding = {left = 0, right = 1}
     })
 
     ins_right({
@@ -202,7 +241,7 @@ return function()
                 t = colors.red,
             }
             vim.api.nvim_command(
-                "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
+            "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
             )
             return "▊"
         end,
