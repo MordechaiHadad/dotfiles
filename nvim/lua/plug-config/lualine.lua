@@ -31,12 +31,14 @@ return function()
         check_git_workspace = function()
             local filepath = vim.fn.expand("%:p:h")
             local gitdir = vim.fn.finddir(".git", filepath .. ";")
-            return gitdir and #gitdir > 0 and #gitdir < #filepath
+            return gitdir and #gitdir > 0 and #gitdir < #filepath and vim.bo.filetype ~= "startify"
         end,
 
         if_startify = function ()
-            return vim.bo.filetype == "startify"
-        end
+            if vim.bo.filetype == "startify" then
+                return true
+            end
+        end,
     }
 
     local config = {
@@ -116,7 +118,7 @@ return function()
 
     ins_left {
         function ()
-                return 'Startify'
+            return 'Startify'
         end,
         padding = { left = 0, right = 0 },
         cond = conditions.if_startify
