@@ -95,7 +95,7 @@ return function()
                 no = colors.red,
                 s = colors.orange,
                 S = colors.orange,
-                [""] = colors.orange,
+                [""] = colors.red,
                 ic = colors.yellow,
                 R = colors.violet,
                 Rv = colors.violet,
