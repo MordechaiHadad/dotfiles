@@ -1,5 +1,5 @@
 return function()
-    local lualine = require 'lualine'
+    local lualine = require("lualine")
 
     local colors = {
         fg = "#E5E9F0",
@@ -18,14 +18,14 @@ return function()
 
     local conditions = {
         buffer_not_empty = function()
-            return vim.fn.empty(vim.fn.expand '%:t') ~= 1
+            return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
         end,
         hide_in_width = function()
             return vim.fn.winwidth(0) > 80
         end,
         check_git_workspace = function()
-            local filepath = vim.fn.expand '%:p:h'
-            local gitdir = vim.fn.finddir('.git', filepath .. ';')
+            local filepath = vim.fn.expand("%:p:h")
+            local gitdir = vim.fn.finddir(".git", filepath .. ";")
             return gitdir and #gitdir > 0 and #gitdir < #filepath
         end,
     }
@@ -33,8 +33,8 @@ return function()
     local config = {
         options = {
             -- Disable sections and component separators
-            component_separators = '',
-            section_separators = '',
+            component_separators = "",
+            section_separators = "",
             theme = {
                 -- We are going to use lualine_c an lualine_x as left and
                 -- right section. Both are highlighted by c theme .  So we
@@ -72,7 +72,7 @@ return function()
         table.insert(config.sections.lualine_x, component)
     end
 
-    ins_left {
+    ins_left({
         function()
             local mode_color = {
                 n = colors.blue,
@@ -83,7 +83,7 @@ return function()
                 no = colors.red,
                 s = colors.orange,
                 S = colors.orange,
-                [''] = colors.orange,
+                [""] = colors.orange,
                 ic = colors.yellow,
                 R = colors.violet,
                 Rv = colors.violet,
@@ -91,38 +91,40 @@ return function()
                 ce = colors.red,
                 r = colors.cyan,
                 rm = colors.cyan,
-                ['r?'] = colors.cyan,
-                ['!'] = colors.red,
+                ["r?"] = colors.cyan,
+                ["!"] = colors.red,
                 t = colors.red,
             }
-            vim.api.nvim_command('hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. ' guibg=' .. colors.line_color)
-            return '▊'
+            vim.api.nvim_command(
+                "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
+            )
+            return "▊"
         end,
-        color = 'LualineMode', -- Sets highlighting of component
+        color = "LualineMode", -- Sets highlighting of component
         padding = { left = 0, right = 1 }, -- We don't need space before this
-    }
+    })
 
-    ins_left {
+    ins_left({
         cond = conditions.check_git_workspace,
 
-        function ()
-            return ''
+        function()
+            return ""
         end,
 
-        padding = {left = 0, right = 0 },
-        color = { fg = colors.blue}
-    }
+        padding = { left = 0, right = 0 },
+        color = { fg = colors.blue },
+    })
 
-    ins_left {
-        'branch',
+    ins_left({
+        "branch",
         cond = conditions.check_git_workspace,
-        icon = '',
-        padding = {left = 0}
-    }
+        icon = "",
+        padding = { left = 0 },
+    })
 
-    ins_left {
-        'diff',
-        symbols = { added = ' ', modified = ' ', removed = ' ' },
+    ins_left({
+        "diff",
+        symbols = { added = " ", modified = " ", removed = " " },
         diff_color = {
             added = { fg = colors.green },
             modified = { fg = colors.yellow },
@@ -130,53 +132,53 @@ return function()
         },
         cond = conditions.check_git_workspace,
 
-        padding = {left = 1, right = 0}
-    }
+        padding = { left = 1, right = 0 },
+    })
 
-    ins_left {
-        function ()
-            return '|'
+    ins_left({
+        function()
+            return "|"
         end,
 
-        color = {fg = colors.blue}
-    }
+        color = { fg = colors.blue },
+    })
 
-    ins_left {
-        'diagnostics',
-        sources = { 'nvim_lsp' },
-        symbols = { error = ' ', warn = ' ' },
+    ins_left({
+        "diagnostics",
+        sources = { "nvim_lsp" },
+        symbols = { error = " ", warn = " " },
         diagnostics_color = {
             color_error = { fg = colors.red },
             color_warn = { fg = colors.yellow },
         },
         update_in_insert = true,
 
-        padding = {left = 0}
-    }
+        padding = { left = 0 },
+    })
 
-    ins_right {
-        function ()
+    ins_right({
+        function()
             return string.upper(vim.bo.fileformat)
         end,
         cond = conditions.buffer_not_empty,
-        padding = {right = 0}
-    }
+        padding = { right = 0 },
+    })
 
-    ins_right {
-        function ()
-            return '|'
+    ins_right({
+        function()
+            return "|"
         end,
 
-        color = {fg = colors.blue},
+        color = { fg = colors.blue },
 
-        padding = {left = 1}
-    }
+        padding = { left = 1 },
+    })
 
-    ins_right {
-        'location'
-    }
+    ins_right({
+        "location",
+    })
 
-    ins_right {
+    ins_right({
         function()
             local mode_color = {
                 n = colors.blue,
@@ -187,7 +189,7 @@ return function()
                 no = colors.red,
                 s = colors.orange,
                 S = colors.orange,
-                [''] = colors.orange,
+                [""] = colors.orange,
                 ic = colors.yellow,
                 R = colors.violet,
                 Rv = colors.violet,
@@ -195,16 +197,18 @@ return function()
                 ce = colors.red,
                 r = colors.cyan,
                 rm = colors.cyan,
-                ['r?'] = colors.cyan,
-                ['!'] = colors.red,
+                ["r?"] = colors.cyan,
+                ["!"] = colors.red,
                 t = colors.red,
             }
-            vim.api.nvim_command('hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. ' guibg=' .. colors.line_color)
-            return '▊'
+            vim.api.nvim_command(
+                "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
+            )
+            return "▊"
         end,
-        color = 'LualineMode', -- Sets highlighting of component
-        padding = {right = 0}
-    }
+        color = "LualineMode", -- Sets highlighting of component
+        padding = { right = 0 },
+    })
 
     lualine.setup(config)
 end
