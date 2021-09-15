@@ -25,10 +25,10 @@ return require("packer").startup(function(use)
 
     -- UI
     use({ "romgrk/barbar.nvim", config = require("plug-config.barbar") })
+    use({ "shadmansaleh/lualine.nvim", config = require("plug-config.lualine")})
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
     use("mhinz/vim-startify")
-    use({ "glepnir/galaxyline.nvim", branch = "main", config = require("plug-config.galaxyline") })
     -- use {'famiu/feline.nvim', config = require('plug-config.feline')}
     use({ "numToStr/FTerm.nvim", config = require("plug-config.FTerm") })
     use({ "folke/trouble.nvim", config = require("plug-config.lsp-trouble"), event = "BufWinEnter" })

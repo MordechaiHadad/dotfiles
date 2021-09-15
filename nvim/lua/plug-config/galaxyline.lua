@@ -1,5 +1,4 @@
 return function()
-    local gl = require("galaxyline")
 
     local colors = {
         foreground = "#E5E9F0",
@@ -34,10 +33,7 @@ return function()
         [""] = "tf ",
     }
 
-    local condition = require("galaxyline.condition")
     local gls = gl.section
-    local vcs = require("galaxyline.provider_vcs")
-    local fileinfo = require("galaxyline.provider_fileinfo")
     gl.short_line_list = { "NvimTree", "packer", "startify", "LspTrouble" }
 
     gls.left[1] = {
