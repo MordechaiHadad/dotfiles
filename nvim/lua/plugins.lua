@@ -54,7 +54,7 @@ return require("packer").startup(function(use)
     })
 
     -- Web Dev
-    use("windwp/nvim-ts-autotag")
+    use({"windwp/nvim-ts-autotag", ft = "html"})
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plug-config.cmp") })
@@ -69,7 +69,7 @@ return require("packer").startup(function(use)
     use({ "neovim/nvim-lspconfig" })
 
     -- Git
-    use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim", config = require("plug-config.gitsigns") })
+    use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim", config = require("plug-config.gitsigns"), event = "BufWinEnter"})
 
     -- Editing Enhancments
     use({ "b3nj5m1n/kommentary", event = "BufWinEnter" })
@@ -82,7 +82,7 @@ return require("packer").startup(function(use)
     })
 
     -- General Plugins
-    use({ "ahmedkhalf/project.nvim", config = require("plug-config.project") })
+    use({ "ahmedkhalf/project.nvim", config = require("plug-config.project"), event = "BufWinEnter" })
     use({ "folke/which-key.nvim", config = require("plug-config.which-key"), event = "BufWinEnter" })
     use({
         "folke/persistence.nvim",
