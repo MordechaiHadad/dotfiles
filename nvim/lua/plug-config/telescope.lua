@@ -11,4 +11,5 @@ return function()
         },
     })
     require("telescope").load_extension("projects")
+    require("telescope").load_extension("frecency")
 end
