@@ -73,7 +73,6 @@ return function()
             lualine_c = {},
             lualine_x = {},
         },
-        extensions = {'nvim-tree'}
     }
 
     local function ins_left(component)
@@ -150,13 +149,13 @@ return function()
             modified = { fg = colors.yellow },
             removed = { fg = colors.red },
         },
-        cond = conditions.check_git_workspace,
+        cond = conditions.check_git_workspace and conditions.hide_in_width,
 
         padding = { left = 1, right = 0 },
     })
 
     ins_left({
-        cond = conditions.check_git_workspace,
+        cond = conditions.check_git_workspace and conditions.hide_in_width,
         function()
             return "|"
         end,
