@@ -29,7 +29,7 @@ return require("packer").startup(function(use)
     -- use({ "NTBBloodbath/galaxyline.nvim", config = require("plug-config.galaxyline")})
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
-    use("mhinz/vim-startify")
+    use({ "goolord/alpha-nvim", config = require("plug-config.alpha")})
     -- use {'famiu/feline.nvim', config = require('plug-config.feline')}
     use({ "numToStr/FTerm.nvim", config = require("plug-config.FTerm") })
     use({ "folke/trouble.nvim", config = require("plug-config.lsp-trouble"), event = "BufWinEnter" })

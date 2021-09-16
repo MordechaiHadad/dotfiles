@@ -6,4 +6,3 @@ require("lsp")
 
 -- Plugins Config
 require("plug-config/colorizer")
-vim.cmd("source ~/.config/nvim/vimscript/startify.vim")
