@@ -208,7 +208,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["persistence.nvim"] = {
-    config = { "\27LJ\1\0029\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\16persistence\frequire\0" },
+    config = { "\27LJ\1\2Î\1\0\0\5\0\r\0\0214\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\t\0004\2\3\0007\2\4\0027\2\5\0024\3\3\0007\3\4\0037\3\6\3%\4\a\0>\3\2\2%\4\b\0$\3\4\3>\2\2\2:\2\n\0013\2\v\0:\2\f\1>\0\2\1G\0\1\0\foptions\1\5\0\0\fbuffers\vcurdir\rtabpages\fwinsize\bdir\1\0\0\15/sessions/\tdata\fstdpath\vexpand\afn\bvim\nsetup\16persistence\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/persistence.nvim"

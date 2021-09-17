@@ -34,7 +34,7 @@ return function()
             return gitdir and #gitdir > 0 and #gitdir < #filepath and vim.bo.filetype ~= "alpha"
         end,
 
-        if_alpha = function ()
+        if_alpha = function()
             if vim.bo.filetype == "alpha" then
                 return true
             end
@@ -107,7 +107,7 @@ return function()
                 t = colors.red,
             }
             vim.api.nvim_command(
-            "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
+                "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
             )
             return "▊"
         end,
@@ -115,13 +115,13 @@ return function()
         padding = { left = 0, right = 1 }, -- We don't need space before this
     })
 
-    ins_left {
-        function ()
-            return 'Alpha'
+    ins_left({
+        function()
+            return "Alpha"
         end,
         padding = { left = 0, right = 0 },
-        cond = conditions.if_alpha
-    }
+        cond = conditions.if_alpha,
+    })
 
     ins_left({
         cond = conditions.check_git_workspace,
@@ -197,25 +197,25 @@ return function()
 
     ins_right({
         "location",
-        cond = conditions.buffer_not_empty
+        cond = conditions.buffer_not_empty,
     })
 
     ins_right({
-        function ()
+        function()
             return string.upper(vim.bo.fileencoding)
         end,
         cond = conditions.buffer_not_empty,
 
-        padding = {left = 0, right = 1}
+        padding = { left = 0, right = 1 },
     })
 
     ins_right({
-        function ()
+        function()
             return files[vim.bo.filetype] or (vim.bo.filetype:gsub("^%l", string.upper))
         end,
         cond = conditions.buffer_not_empty,
 
-        padding = {left = 0, right = 1}
+        padding = { left = 0, right = 1 },
     })
 
     ins_right({
@@ -242,7 +242,7 @@ return function()
                 t = colors.red,
             }
             vim.api.nvim_command(
-            "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
+                "hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.line_color
             )
             return "▊"
         end,

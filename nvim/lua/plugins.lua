@@ -29,7 +29,7 @@ return require("packer").startup(function(use)
     -- use({ "NTBBloodbath/galaxyline.nvim", config = require("plug-config.galaxyline")})
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
-    use({ "goolord/alpha-nvim", config = require("plug-config.alpha")})
+    use({ "goolord/alpha-nvim", config = require("plug-config.alpha") })
     -- use {'famiu/feline.nvim', config = require('plug-config.feline')}
     use({ "numToStr/FTerm.nvim", config = require("plug-config.FTerm") })
     use({ "folke/trouble.nvim", config = require("plug-config.lsp-trouble"), event = "BufWinEnter" })
@@ -54,7 +54,7 @@ return require("packer").startup(function(use)
     })
 
     -- Web Dev
-    use({"windwp/nvim-ts-autotag", ft = "html"})
+    use({ "windwp/nvim-ts-autotag", ft = "html" })
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plug-config.cmp") })
@@ -69,7 +69,12 @@ return require("packer").startup(function(use)
     use({ "neovim/nvim-lspconfig" })
 
     -- Git
-    use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim", config = require("plug-config.gitsigns"), event = "BufWinEnter"})
+    use({
+        "lewis6991/gitsigns.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = require("plug-config.gitsigns"),
+        event = "BufWinEnter",
+    })
 
     -- Editing Enhancments
     use({ "b3nj5m1n/kommentary", event = "BufWinEnter" })
@@ -88,9 +93,7 @@ return require("packer").startup(function(use)
         "folke/persistence.nvim",
         event = "BufReadPre",
         module = "persistence",
-        config = function()
-            require("persistence").setup()
-        end,
+        config = require("plug-config.persistence"),
     })
     use({ "nvim-neorg/neorg", branch = "gtd_base", config = require("plug-config.neorg"), ft = "norg" })
     use({
