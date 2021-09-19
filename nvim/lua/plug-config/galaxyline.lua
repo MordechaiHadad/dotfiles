@@ -2,8 +2,8 @@ return function()
     local gl = require("galaxyline")
 
     local colors = {
-        foreground = "#E5E9F0",
-        background = "#2E3440",
+        fg = "#E5E9F0",
+        bg = "#2E3440",
         yellow = "#d4d198",
         green = "#98C379",
         black = "#2b2e36",
@@ -25,28 +25,39 @@ return function()
         [""] = colors.red,
     }
 
-    local mode_icon = {
-        n = " ",
-        i = " ",
-        v = " ",
-        c = " ",
-        V = " ",
-        [""] = "tf ",
+    local files = {
+        ["cs"] = "C#",
+        ["cpp"] = "C++",
     }
 
-    local condition = require("galaxyline.condition")
-    local gls = gl.section
-    local vcs = require("galaxyline.provider_vcs")
-    local fileinfo = require("galaxyline.provider_fileinfo")
-    gl.short_line_list = { "NvimTree", "packer", "startify", "LspTrouble" }
+    local conditions = {
+        buffer_not_empty = function()
+            return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 and vim.bo.modifiable == true
+        end,
+        hide_in_width = function()
+            return vim.fn.winwidth(0) > 80
+        end,
+        check_git_workspace = function()
+            local filepath = vim.fn.expand("%:p:h")
+            local gitdir = vim.fn.finddir(".git", filepath .. ";")
+            return gitdir and #gitdir > 0 and #gitdir < #filepath and vim.bo.filetype ~= "alpha"
+        end,
 
-    gls.left[1] = {
-        ViMode = {
+        if_alpha = function()
+            if vim.bo.filetype == "alpha" then
+                return true
+            end
+        end,
+    }
+    local gls = gl.section
+    local vcs = require("galaxyline.providers.vcs")
+    local fileinfo = require("galaxyline.providers.fileinfo")
+
+    gls.right[1] = {
+        LeftViMode = {
             provider = function()
-                vim.api.nvim_command(
-                    "hi GalaxyViMode guifg=" .. colors.black .. " guibg=" .. (mode_color[vim.fn.mode()] or colors.red)
-                )
-                return "  " .. (mode_icon[vim.fn.mode()] or "Error")
+                vim.api.nvim_command("hi GalaxyLeftViMode guifg=" .. (mode_color[vim.fn.mode()] or colors.red))
+                return "▊"
             end,
             highlight = { colors.red, colors.line_color },
         },
@@ -54,7 +65,7 @@ return function()
 
     gls.left[2] = {
         GitIcon = {
-            condition = condition.check_git_workspace,
+            condition = conditions.check_git_workspace,
             provider = function()
                 return "   "
             end,
@@ -64,18 +75,18 @@ return function()
 
     gls.left[3] = {
         GitBranch = {
-            condition = condition.check_git_workspace,
+            condition = conditions.check_git_workspace,
             provider = function()
                 return vcs.get_git_branch() .. " "
             end,
-            highlight = { colors.foreground, colors.line_color },
+            highlight = { colors.fg, colors.line_color },
         },
     }
 
     gls.left[4] = {
         DiffAdd = {
             provider = "DiffAdd",
-            condition = condition.check_git_workspace,
+            condition = conditions.check_git_workspace,
             icon = "  ",
             highlight = { colors.green, colors.line_color },
         },
@@ -83,7 +94,7 @@ return function()
     gls.left[5] = {
         DiffModified = {
             provider = "DiffModified",
-            condition = condition.check_git_workspace,
+            condition = conditions.check_git_workspace,
             icon = "  ",
             highlight = { colors.yellow, colors.line_color },
         },
@@ -91,7 +102,7 @@ return function()
     gls.left[6] = {
         DiffRemove = {
             provider = "DiffRemove",
-            condition = condition.check_git_workspace,
+            condition = conditions.check_git_workspace,
             icon = "  ",
             highlight = { colors.red, colors.line_color },
             separator = "| ",
@@ -120,14 +131,14 @@ return function()
             provider = function()
                 return fileinfo.get_file_format() .. " "
             end,
-            highlight = { colors.foreground, colors.line_color },
+            highlight = { colors.fg, colors.line_color },
         },
     }
 
     gls.right[2] = {
         LinePercent = {
             provider = "LinePercent",
-            highlight = { colors.foreground, colors.line_color },
+            highlight = { colors.fg, colors.line_color },
             separator = "|",
             separator_highlight = { colors.blue, colors.line_color },
         },
@@ -138,24 +149,36 @@ return function()
             provider = function()
                 return fileinfo.line_column() .. " "
             end,
-            highlight = { colors.foreground, colors.line_color },
+            highlight = { colors.fg, colors.line_color },
         },
     }
 
     gls.right[4] = {
+        FileFormat = {
+            provider = function()
+                return string.upper(vim.bo.fileencoding)
+            end,
+            condition = conditions.buffer_not_empty,
+        },
+    }
+
+    gls.right[5] = {
+        FileType = {
+            provider = function()
+                return files[vim.bo.filetype] or (vim.bo.filetype:gsub("^%l", string.upper))
+            end,
+            condition = conditions.buffer_not_empty,
+            highlight = { colors.line_color },
+        },
+    }
+
+    gls.right[6] = {
         RightViMode = {
             provider = function()
                 vim.api.nvim_command("hi GalaxyRightViMode guifg=" .. (mode_color[vim.fn.mode()] or colors.red))
                 return "▊"
             end,
             highlight = { colors.red, colors.line_color },
-        },
-    }
-
-    gl.section.short_line_left[1] = {
-        FileName = {
-            provider = "FileName",
-            highlight = { colors.foreground, colors.line_color },
         },
     }
 end
