@@ -20,8 +20,9 @@ keymap("n", "<C-Down>", ":m .+1<CR>", opts)
 keymap("i", "<C-Up>", "<C-o>:m .-2<CR>", opts)
 keymap("i", "<C-Down>", "<C-o>:m .+1<CR>", opts)
 
--- Finder keymaps
+-- Telescope keymaps
 keymap("n", "ff", ":Telescope find_files<CR>", opts) -- Find files
+keymap("n", "fw", ":Telescope live_grep<CR>", opts)
 
 -- LSP Keymaps
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definitions
