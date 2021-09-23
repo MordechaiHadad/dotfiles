@@ -116,7 +116,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp-path"
   },
   cmp_luasnip = {
-    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.lua", "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.vim" },
+    after_files = { "/home/morde/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.lua" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -246,7 +246,7 @@ _G.packer_plugins = {
   },
   ["telescope.nvim"] = {
     commands = { "Telescope" },
-    config = { "\27LJ\1\2ñ\2\0\0\a\0\24\0*4\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\1\3\0013\2\v\0003\3\t\0003\4\a\0003\5\5\0007\6\4\0:\6\6\5:\5\b\4:\4\n\3:\3\f\2>\1\2\0014\1\0\0%\2\2\0>\1\2\0027\1\r\1%\2\14\0>\1\2\0014\1\0\0%\2\2\0>\1\2\0027\1\r\1%\2\15\0>\1\2\0014\1\16\0007\1\17\0017\1\18\1\a\1\19\0T\1\a€4\1\0\0%\2\20\0>\1\2\0027\1\21\0017\1\22\1%\2\23\0>\1\2\1G\0\1\0 core.integrations.telescope\16load_module\fmodules\nneorg\tnorg\rfiletype\abo\bvim\rfrecency\rprojects\19load_extension\rdefaults\1\0\0\rmappings\1\0\0\6i\1\0\0\n<esc>\1\0\0\nclose\nsetup\14telescope\22telescope.actions\frequire\0" },
+    config = { "\27LJ\1\2”\3\0\0\a\0\25\00004\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\1\3\0013\2\v\0003\3\t\0003\4\a\0003\5\5\0007\6\4\0:\6\6\5:\5\b\4:\4\n\3:\3\f\2>\1\2\0014\1\0\0%\2\2\0>\1\2\0027\1\r\1%\2\14\0>\1\2\0014\1\0\0%\2\2\0>\1\2\0027\1\r\1%\2\15\0>\1\2\0014\1\0\0%\2\2\0>\1\2\0027\1\r\1%\2\16\0>\1\2\0014\1\17\0007\1\18\0017\1\19\1\a\1\20\0T\1\a€4\1\0\0%\2\21\0>\1\2\0027\1\22\0017\1\23\1%\2\24\0>\1\2\1G\0\1\0 core.integrations.telescope\16load_module\fmodules\nneorg\tnorg\rfiletype\abo\bvim\15lspmanager\rfrecency\rprojects\19load_extension\rdefaults\1\0\0\rmappings\1\0\0\6i\1\0\0\n<esc>\1\0\0\nclose\nsetup\14telescope\22telescope.actions\frequire\0" },
     loaded = false,
     needs_bufread = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/opt/telescope.nvim"

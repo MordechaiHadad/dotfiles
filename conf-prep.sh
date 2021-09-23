@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export WD=$PWD # Save conf location
-export RUNZSH=no
+WD=$PWD # Save conf location
+RUNZSH=no
 
 # Download and Install yay
 cd /tmp
