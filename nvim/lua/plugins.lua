@@ -106,4 +106,8 @@ return require("packer").startup(function(use)
 
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
+
+    -- Testing Plugins
+    use({ "RishabhRD/nvim-cheat.sh" })
+    use({ "RishabhRD/popfix" })
 end)
