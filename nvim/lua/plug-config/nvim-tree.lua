@@ -1,3 +1,5 @@
 return function()
-    vim.g.nvim_tree_auto_close = 1
+    require('nvim-tree').setup {
+        auto_close = 0
+    }
 end
