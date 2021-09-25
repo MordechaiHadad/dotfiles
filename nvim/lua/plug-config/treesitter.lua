@@ -12,7 +12,10 @@ return function()
     }
 
     require("nvim-treesitter.configs").setup({
-        ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        ensure_installed = {"bash", "c", "c_sharp", "cpp", "comment", "css", "dockerfile", "gdscript",
+                            "html", "hjson", "javascript", "json", "json5", "lua",
+                            "query", "regex", "rust", "scss", "svelte", "toml", "tsx",
+                            "typescript", "yaml"},
         highlight = {
             enable = true, -- false will disable the whole extension
             custom_captures = {
