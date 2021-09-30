@@ -67,6 +67,7 @@ return require("packer").startup(function(use)
 
     -- LSP
     use({ "neovim/nvim-lspconfig" })
+    use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
 
     -- Git
     use({
@@ -110,4 +111,6 @@ return require("packer").startup(function(use)
     -- Testing Plugins
     use({ "RishabhRD/nvim-cheat.sh" })
     use({ "RishabhRD/popfix" })
+
+    use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate") })
 end)
