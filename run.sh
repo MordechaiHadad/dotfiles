@@ -20,6 +20,7 @@ echo "removed yay directory"
 echo "Successfully installed yay"
 
 if echo $OS | grep "WSL" > /dev/null; then
+
     # Initing and populating pacman key
     sudo pacman-key --init
     sudo pacman-key --populate archlinux
