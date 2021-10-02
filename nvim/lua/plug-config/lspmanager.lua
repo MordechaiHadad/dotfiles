@@ -1,6 +1,4 @@
 return function()
-    require("lspmanager").setup()
-
     local luadev = require("lua-dev").setup({
         library = {
             vimruntime = true,
@@ -8,6 +6,7 @@ return function()
             plugins = false,
         },
     })
-
-    require("lspconfig").sumneko_lua.setup(luadev)
+    require("lspmanager").setup({
+        sumneko_lua = luadev,
+    })
 end

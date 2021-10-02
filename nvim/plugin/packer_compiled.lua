@@ -182,7 +182,7 @@ _G.packer_plugins = {
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-lspmanager"] = {
-    config = { "\27LJ\1\2¼\1\0\0\3\0\t\0\0214\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\3\0>\0\2\0027\0\2\0003\1\5\0003\2\4\0:\2\6\1>\0\2\0024\1\0\0%\2\a\0>\1\2\0027\1\b\0017\1\2\1\16\2\0\0>\1\2\1G\0\1\0\16sumneko_lua\14lspconfig\flibrary\1\0\0\1\0\3\fplugins\1\ntypes\2\15vimruntime\2\flua-dev\nsetup\15lspmanager\frequire\0" },
+    config = { "\27LJ\1\2¡\1\0\0\3\0\t\0\0164\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\0024\1\0\0%\2\6\0>\1\2\0027\1\2\0013\2\a\0:\0\b\2>\1\2\1G\0\1\0\16sumneko_lua\1\0\0\15lspmanager\flibrary\1\0\0\1\0\3\fplugins\1\ntypes\2\15vimruntime\2\nsetup\flua-dev\frequire\0" },
     loaded = true,
     path = "/home/morde/.local/share/nvim/site/pack/packer/start/nvim-lspmanager"
   },
@@ -323,7 +323,7 @@ end
 
 -- Config for: nvim-lspmanager
 time([[Config for nvim-lspmanager]], true)
-try_loadstring("\27LJ\1\2¼\1\0\0\3\0\t\0\0214\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\3\0>\0\2\0027\0\2\0003\1\5\0003\2\4\0:\2\6\1>\0\2\0024\1\0\0%\2\a\0>\1\2\0027\1\b\0017\1\2\1\16\2\0\0>\1\2\1G\0\1\0\16sumneko_lua\14lspconfig\flibrary\1\0\0\1\0\3\fplugins\1\ntypes\2\15vimruntime\2\flua-dev\nsetup\15lspmanager\frequire\0", "config", "nvim-lspmanager")
+try_loadstring("\27LJ\1\2¡\1\0\0\3\0\t\0\0164\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\0024\1\0\0%\2\6\0>\1\2\0027\1\2\0013\2\a\0:\0\b\2>\1\2\1G\0\1\0\16sumneko_lua\1\0\0\15lspmanager\flibrary\1\0\0\1\0\3\fplugins\1\ntypes\2\15vimruntime\2\nsetup\flua-dev\frequire\0", "config", "nvim-lspmanager")
 time([[Config for nvim-lspmanager]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)

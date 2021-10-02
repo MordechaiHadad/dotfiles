@@ -112,5 +112,5 @@ return require("packer").startup(function(use)
     use({ "RishabhRD/nvim-cheat.sh" })
     use({ "RishabhRD/popfix" })
 
-    use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter"})
+    use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter" })
 end)
