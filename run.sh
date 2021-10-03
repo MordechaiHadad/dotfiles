@@ -28,7 +28,7 @@ fi
 
 # Install packages
 echo "Installing good packages"
-yay -S neovim zsh neofetch wget nodejs lazygit lsd clang
+yay -S neovim zsh neofetch wget nodejs lazygit lsd clang jq
 
 # Download and install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
