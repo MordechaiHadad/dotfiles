@@ -101,6 +101,7 @@ export NVIMRC="$HOME/.config/nvim/"
 #
 # Aliases
 alias ls='lsd'
+alias ps='procs'
 
 
 show-colors () {
@@ -112,3 +113,5 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(direnv hook zsh)"
