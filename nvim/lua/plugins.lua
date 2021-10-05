@@ -40,6 +40,7 @@ return require("packer").startup(function(use)
     use("nvim-treesitter/playground")
     use("norcalli/nvim-colorizer.lua")
     use("rktjmp/lush.nvim") -- Scheme creator
+    use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter" })
 
     -- Telescope
     use({
@@ -112,5 +113,4 @@ return require("packer").startup(function(use)
     use({ "RishabhRD/nvim-cheat.sh" })
     use({ "RishabhRD/popfix" })
 
-    use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter" })
 end)
