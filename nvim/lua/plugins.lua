@@ -97,7 +97,7 @@ return require("packer").startup(function(use)
         module = "persistence",
         config = require("plug-config.persistence"),
     })
-    use({ "nvim-neorg/neorg", branch = "dev", config = require("plug-config.neorg"), ft = "norg" })
+    use({ "nvim-neorg/neorg", branch = "unstable", config = require("plug-config.neorg"), ft = "norg" })
     use({
         "abecodes/tabout.nvim",
         config = function()
