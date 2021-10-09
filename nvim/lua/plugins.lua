@@ -97,7 +97,7 @@ return require("packer").startup(function(use)
         module = "persistence",
         config = require("plug-config.persistence"),
     })
-    use({ "nvim-neorg/neorg", branch = "gtd_base", config = require("plug-config.neorg"), ft = "norg" })
+    use({ "nvim-neorg/neorg", branch = "dev", config = require("plug-config.neorg"), ft = "norg" })
     use({
         "abecodes/tabout.nvim",
         config = function()
@@ -112,5 +112,4 @@ return require("packer").startup(function(use)
     -- Testing Plugins
     use({ "RishabhRD/nvim-cheat.sh" })
     use({ "RishabhRD/popfix" })
-
 end)
