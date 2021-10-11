@@ -55,7 +55,7 @@ return require("packer").startup(function(use)
     })
 
     -- Web Dev
-    use({ "windwp/nvim-ts-autotag", ft = "html" })
+    use({ "windwp/nvim-ts-autotag", ft = { "html", "svelte" } })
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plug-config.cmp") })
