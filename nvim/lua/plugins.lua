@@ -13,7 +13,7 @@ vim.cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when t
 local packer = require("packer")
 
 packer.init({
-    max_jobs = 6,
+    max_jobs = 4,
     profile = {
         enable = true,
     },
