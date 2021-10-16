@@ -110,5 +110,5 @@ return require("packer").startup(function(use)
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
 
     -- Testing plugins
-    use({"pianocomposer321/yabs.nvim", config = require("plug-config.yabs")})
+    use({ "pianocomposer321/yabs.nvim", config = require("plug-config.yabs") })
 end)
