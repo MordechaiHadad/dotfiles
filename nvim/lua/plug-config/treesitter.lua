@@ -38,6 +38,7 @@ return function()
             "yaml",
             "norg",
             "godotResource",
+            "python",
         },
         highlight = {
             enable = true, -- false will disable the whole extension
