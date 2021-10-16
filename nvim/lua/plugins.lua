@@ -105,6 +105,7 @@ return require("packer").startup(function(use)
         end,
     })
     use({ "folke/lua-dev.nvim" })
+    use({"nanotee/luv-vimdocs"})
 
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
