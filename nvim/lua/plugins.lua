@@ -31,7 +31,8 @@ return require("packer").startup(function(use)
     use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
     use({ "goolord/alpha-nvim", config = require("plug-config.alpha") })
     -- use {'famiu/feline.nvim', config = require('plug-config.feline')}
-    use({ "numToStr/FTerm.nvim", config = require("plug-config.FTerm") })
+    -- use({ "numToStr/FTerm.nvim", config = require("plug-config.FTerm") })
+    use({"akinsho/toggleterm.nvim", config = require("plug-config.toggleterm")})
     use({ "folke/trouble.nvim", config = require("plug-config.lsp-trouble"), event = "BufWinEnter" })
 
     -- Colorscheme & Colors
@@ -106,10 +107,8 @@ return require("packer").startup(function(use)
     })
     use({ "folke/lua-dev.nvim" })
     use({"nanotee/luv-vimdocs"})
+    use({ "pianocomposer321/yabs.nvim", config = require("plug-config.yabs") })
 
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
-
-    -- Testing plugins
-    use({ "pianocomposer321/yabs.nvim", config = require("plug-config.yabs") })
 end)
