@@ -8,6 +8,6 @@ return function()
     })
 
     require("lspmanager").setup({
-        sumneko_lua = luadev
+        sumneko_lua = luadev,
     })
 end
