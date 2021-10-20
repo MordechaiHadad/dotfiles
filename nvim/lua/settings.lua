@@ -31,4 +31,5 @@ vim.cmd("set shortmess+=c")
 
 if vim.loop.os_uname().sysname == "Windows_NT" then
     vim.g.sqlite_clib_path = "C:/Program Files/Sqlite/sqlite3.dll"
+    vim.o.shell = "powershell"
 end
