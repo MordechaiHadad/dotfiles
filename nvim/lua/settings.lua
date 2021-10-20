@@ -16,8 +16,6 @@ vim.o.autoindent = true -- tabs be smart?
 vim.cmd("set smarttab")
 vim.cmd("set ts=4") -- insert 4 spaces for tabs
 vim.cmd("set sw=4")
-vim.cmd("set list lcs=trail:·,tab:»·")
-vim.cmd("set nolist")
 vim.cmd("set undofile")
 
 -- UI
