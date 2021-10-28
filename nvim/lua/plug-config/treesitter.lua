@@ -45,6 +45,7 @@ return function()
 			custom_captures = {
 				["primitive.type"] = "Keyword",
 				["escape.sequence"] = "Function",
+                ["function.name"] = "Function",
 			},
 		},
 		playground = {
