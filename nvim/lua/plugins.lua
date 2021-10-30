@@ -118,6 +118,10 @@ return require("packer").startup(function(use)
     -- Tests
     use({ "edluffy/specs.nvim" })
 
+    use({
+        "/home/morde/repos/themer.lua",
+    })
+
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
 end)
