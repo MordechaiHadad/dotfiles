@@ -6,13 +6,13 @@ return function()
             plugins = false,
         },
         lspconfig = {
-            cmd = "lol"
+            cmd = "lol",
         },
     })
 
     require("lspmanager").setup({
         lsps = {
-            sumneko_lua = luadev
-        }
+            sumneko_lua = luadev,
+        },
     })
 end

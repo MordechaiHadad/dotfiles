@@ -82,9 +82,9 @@ return function()
         },
     })
 
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
         sources = {
-            { name = 'cmdline' }
-        }
+            { name = "cmdline" },
+        },
     })
 end
