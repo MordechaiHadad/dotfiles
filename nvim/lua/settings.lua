@@ -9,6 +9,7 @@ vim.o.backup = false
 vim.o.writebackup = false
 vim.o.hidden = true
 vim.cmd("set timeoutlen=600")
+vim.cmd("syntax on")
 
 -- Indentation
 vim.o.expandtab = true -- convert tabs to spaces
@@ -33,5 +34,3 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
     vim.g.sqlite_clib_path = "C:/Program Files/Sqlite/sqlite3.dll"
     vim.o.shell = "powershell"
 end
-
-vim.cmd("syntax on")
