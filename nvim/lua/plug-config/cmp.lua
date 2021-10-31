@@ -47,6 +47,7 @@ return function()
                     buffer = "(Buffer)",
                     neorg = "(Neorg)",
                     calc = "(Calculator)",
+                    cmp_tabnine = "(Tabnine)",
                 })[entry.source.name]
                 vim_item.dup = ({
                     buffer = 1,
@@ -73,9 +74,9 @@ return function()
         },
         sources = {
             { name = "nvim_lsp" },
-            { name = "buffer" },
             { name = "luasnip" },
-            { name = "tabnine" },
+            { name = "cmp_tabnine" },
+            { name = "buffer" },
             { name = "path" },
             { name = "neorg" },
             { name = "calc" },

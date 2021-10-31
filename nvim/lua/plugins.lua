@@ -69,6 +69,7 @@ return require("packer").startup(function(use)
     use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
+    use {'tzachar/cmp-tabnine', run='./install.sh', after = "nvim-cmp"}
 
     -- LSP
     use({ "neovim/nvim-lspconfig" })
