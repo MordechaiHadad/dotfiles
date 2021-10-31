@@ -29,4 +29,3 @@ keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definition
 
 -- fuck you deleted bullshit
 keymap("n", "dd", '"_dd', opts)
-keymap("s", "sd", "sad", opts)
