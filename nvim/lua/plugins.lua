@@ -42,7 +42,7 @@ return require("packer").startup(function(use)
     })
     use({ "nvim-treesitter/nvim-treesitter", config = require("plug-config.treesitter"), run = ":TSUpdate" })
     use("nvim-treesitter/playground")
-    use({"norcalli/nvim-colorizer.lua", config = require("plug-config.colorizer")})
+    use({ "norcalli/nvim-colorizer.lua", config = require("plug-config.colorizer") })
     use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter" })
 
     -- Telescope
