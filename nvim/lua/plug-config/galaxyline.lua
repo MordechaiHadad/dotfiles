@@ -56,11 +56,11 @@ return function()
 
     gls.left[1] = {
         ModeColorLeft = {
-            provider = function ()
+            provider = function()
                 vim.api.nvim_command("hi GalaxyMode guifg=" .. mode_color[vim.fn.mode()])
                 return "▊ "
             end,
-            highlight = {colors.red, colors.line_color},
+            highlight = { colors.red, colors.line_color },
         },
     }
 end

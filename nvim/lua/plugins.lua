@@ -68,7 +68,7 @@ return require("packer").startup(function(use)
     use({ "L3MON4D3/LuaSnip", after = "nvim-cmp" })
     use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
-    use {"hrsh7th/cmp-cmdline", after = "nvim-cmp"}
+    use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
 
     -- LSP
     use({ "neovim/nvim-lspconfig" })
@@ -121,7 +121,6 @@ return require("packer").startup(function(use)
 
     -- Tests
     use({ "edluffy/specs.nvim" })
-
 
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
