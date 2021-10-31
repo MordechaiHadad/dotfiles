@@ -76,6 +76,9 @@ return function()
             { name = "neorg" },
             { name = "calc" },
         },
+        experimental = {
+            ghost_text = true,
+        },
     })
 
     cmp.setup.cmdline(":", {

@@ -61,7 +61,7 @@ return require("packer").startup(function(use)
     use({ "windwp/nvim-ts-autotag", ft = { "html", "svelte" } })
 
     -- Autocomplete
-    use({ "hrsh7th/nvim-cmp", config = require("plug-config.cmp"), event = "InsertEnter" })
+    use({ "hrsh7th/nvim-cmp", config = require("plug-config.cmp"), event = "BufWinEnter" })
     use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
