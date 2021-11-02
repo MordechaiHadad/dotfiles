@@ -38,6 +38,13 @@ return require("packer").startup(function(use)
         "/home/morde/repos/themer.lua",
         config = function()
             require("themer").load("papa_dark")
+            require("themer").setup({
+                integrations = {
+                    indent_blankline = {
+                        enabled = false,
+                    },
+                },
+            })
         end,
     })
     use({ "nvim-treesitter/nvim-treesitter", config = require("plug-config.treesitter"), run = ":TSUpdate" })
