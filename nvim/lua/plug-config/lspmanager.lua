@@ -6,20 +6,20 @@ return function()
             plugins = false,
         },
         lspconfig = {
-            on_attach = function (client)
+            on_attach = function(client)
                 require("illuminate").on_attach(client)
             end,
-        }
+        },
     })
 
     require("lspmanager").setup({
         lsps = {
             sumneko_lua = luadev,
             rust_analyzer = {
-                on_attach = function (client)
+                on_attach = function(client)
                     require("illuminate").on_attach(client)
                 end,
-            }
+            },
         },
     })
 end
