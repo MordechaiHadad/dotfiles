@@ -25,7 +25,7 @@ return require("packer").startup(function(use)
 
     -- UI
     use({ "romgrk/barbar.nvim", config = require("plug-config.barbar") })
-    use({ "shadmansaleh/lualine.nvim", config = require("plug-config.lualine") })
+    use({ "nvim-lualine/lualine.nvim", config = require("plug-config.lualine") })
     -- use({ "NTBBloodbath/galaxyline.nvim", config = require("plug-config.galaxyline")})
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })

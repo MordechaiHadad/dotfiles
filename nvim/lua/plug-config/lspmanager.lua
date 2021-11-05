@@ -5,14 +5,11 @@ return function()
             types = true,
             plugins = false,
         },
-        lspconfig = {
-            cmd = "lol",
-        },
     })
 
     require("lspmanager").setup({
         lsps = {
-            sumneko_lua = luadev,
+            sumneko_lua = luadev
         },
     })
 end
