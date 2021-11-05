@@ -127,9 +127,6 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- Tests
-    use({ "edluffy/specs.nvim" })
-
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
 end)
