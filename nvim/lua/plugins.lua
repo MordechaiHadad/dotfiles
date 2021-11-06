@@ -38,7 +38,7 @@ return require("packer").startup(function(use)
         "/home/morde/repos/themer.lua",
         config = function()
             require("themer").setup({
-                colorscheme = 'papa_dark',
+                colorscheme = "papa_dark",
                 integrations = {
                     indent_blankline = {
                         enabled = false,
