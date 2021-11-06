@@ -37,8 +37,8 @@ return require("packer").startup(function(use)
     use({
         "/home/morde/repos/themer.lua",
         config = function()
-            require("themer").load("papa_dark")
             require("themer").setup({
+                colorscheme = 'papa_dark',
                 integrations = {
                     indent_blankline = {
                         enabled = false,
@@ -88,6 +88,9 @@ return require("packer").startup(function(use)
         requires = "nvim-lua/plenary.nvim",
         config = require("plug-config.gitsigns"),
         event = "BufWinEnter",
+    })
+    use({
+        "TimUntersberger/neogit",
     })
 
     -- Editing Enhancments

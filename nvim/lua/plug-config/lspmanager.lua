@@ -21,5 +21,9 @@ return function()
                 end,
             }
         },
+        ensure_installed = {
+            "sumneko_lua",
+            "rust_analyzer",
+        }
     })
 end
