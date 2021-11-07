@@ -35,7 +35,8 @@ return require("packer").startup(function(use)
 
     -- Colorscheme & Colors
     use({
-        "/home/morde/repos/themer.lua",
+        "NarutoXY/themer.lua",
+        branch = "dev",
         config = function()
             require("themer").setup({
                 colorscheme = "papa_dark",
