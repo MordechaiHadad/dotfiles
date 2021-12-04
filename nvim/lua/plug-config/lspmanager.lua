@@ -20,6 +20,11 @@ return function()
                     require("illuminate").on_attach(client)
                 end,
             },
+            pyright = {
+                on_attach = function(client) 
+                    require("illuminate").on_attach(client)
+                end
+            },
         },
         ensure_installed = {
             "sumneko_lua",
