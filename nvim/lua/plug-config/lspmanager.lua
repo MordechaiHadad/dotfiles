@@ -21,9 +21,9 @@ return function()
                 end,
             },
             pyright = {
-                on_attach = function(client) 
+                on_attach = function(client)
                     require("illuminate").on_attach(client)
-                end
+                end,
             },
         },
         ensure_installed = {
