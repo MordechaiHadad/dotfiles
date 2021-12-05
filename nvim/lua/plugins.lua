@@ -120,7 +120,6 @@ return require("packer").startup(function(use)
     })
     use({ "folke/lua-dev.nvim" })
     use({ "nanotee/luv-vimdocs" })
-    use({ "pianocomposer321/yabs.nvim", config = require("plug-config.yabs") })
 
     use({
         "luukvbaal/stabilize.nvim",
