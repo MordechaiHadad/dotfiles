@@ -28,7 +28,7 @@ fi
 
 # Install packages
 echo "Installing good packages"
-yay -S neovim zsh neofetch wget nodejs npm lazygit lsd llvm jq procs direnv zoxide unzip
+yay -S neovim zsh neofetch wget nodejs npm lazygit lsd llvm jq procs direnv zoxide unzip fd
 
 # Download and install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
