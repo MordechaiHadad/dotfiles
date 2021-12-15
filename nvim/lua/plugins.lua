@@ -111,7 +111,7 @@ return require("packer").startup(function(use)
         module = "persistence",
         config = require("plug-config.persistence"),
     })
-    use({ "nvim-neorg/neorg", branch = "unstable", config = require("plug-config.neorg"), ft = "norg" })
+    use({ "nvim-neorg/neorg", branch = "main", config = require("plug-config.neorg"), ft = "norg" })
     use({
         "abecodes/tabout.nvim",
         config = function()
@@ -119,8 +119,8 @@ return require("packer").startup(function(use)
         end,
     })
     use({ "folke/lua-dev.nvim" })
-    use({ "nanotee/luv-vimdocs" })
 
+    use({ "nanotee/luv-vimdocs" })
     use({
         "luukvbaal/stabilize.nvim",
         config = function()
