@@ -37,16 +37,7 @@ return require("packer").startup(function(use)
     use({
         "/home/morde/repos/themer.lua",
         branch = "dev",
-        config = function()
-            require("themer").setup({
-                colorscheme = "papa_dark",
-                integrations = {
-                    indent_blankline = {
-                        enabled = false,
-                    },
-                },
-            })
-        end,
+        config = require("plug-config.themer"),
     })
     use({ "nvim-treesitter/nvim-treesitter", config = require("plug-config.treesitter"), run = ":TSUpdate" })
     use("nvim-treesitter/playground")
