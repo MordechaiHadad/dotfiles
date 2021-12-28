@@ -24,12 +24,12 @@ return require("packer").startup(function(use)
     use({ "wbthomason/packer.nvim", opt = true })
 
     -- UI
+    use({ "startup-nvim/startup.nvim", config = require("plug-config.startup") })
     use({ "romgrk/barbar.nvim", config = require("plug-config.barbar") })
     use({ "nvim-lualine/lualine.nvim", config = require("plug-config.lualine") })
     -- use({ "NTBBloodbath/galaxyline.nvim", config = require("plug-config.galaxyline")})
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
-    use({ "goolord/alpha-nvim", config = require("plug-config.alpha") })
     use({ "akinsho/toggleterm.nvim", config = require("plug-config.toggleterm") })
     use({ "folke/trouble.nvim", config = require("plug-config.lsp-trouble"), event = "BufWinEnter" })
 
