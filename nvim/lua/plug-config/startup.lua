@@ -1,4 +1,3 @@
-
 return function()
     local lspmanager = require("lspmanager")
 
@@ -24,9 +23,9 @@ return function()
             content = {
                 { "  New file", "lua require'startup'.new_file()", "e" },
                 { "  Find file", "Telescope frecency", "f" },
-                { "  Projects", "Telescope projects", "p"},
-                { "  Open last session", "lua require('persistence').load()", "s"},
-                { "  Quit", "qa", "q"},
+                { "  Projects", "Telescope projects", "p" },
+                { "  Open last session", "lua require('persistence').load()", "s" },
+                { "  Quit", "qa", "q" },
             },
             highlight = "Function",
         },
