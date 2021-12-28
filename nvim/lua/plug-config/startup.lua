@@ -1,7 +1,5 @@
 
 return function()
-    local lspmanager = require("lspmanager")
-
     require("startup").setup({
         header = {
             content = {
@@ -34,7 +32,7 @@ return function()
             type = "text",
             align = "center",
             content = {
-                "Initialized with " .. #lspmanager.installed_servers() .. " language servers",
+                "Initialized with " .. vim.tbl_count(packer_plugins) .. " plugins and " .. #require("lspmanager").installed_servers() .. " language servers",
             },
             highlight = "Function",
         },
