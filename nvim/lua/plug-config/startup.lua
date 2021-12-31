@@ -25,7 +25,7 @@ return function()
                 { "  Open last session", "lua require('persistence').load()", "s" },
                 { "  Quit", "qa", "q" },
             },
-            highlight = "Function",
+            highlight = "#E5E9F0",
         },
         footer = {
             type = "text",
