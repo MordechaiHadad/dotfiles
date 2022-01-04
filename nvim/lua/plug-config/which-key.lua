@@ -12,6 +12,7 @@ return function()
             name = "Refactor",
             r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename Symbol" },
         },
+        f = {"<cmd>lua vim.lsp.buf.formatting_sync()<cr>", "Format Document"},
     }, {
         prefix = "<leader>",
     })
