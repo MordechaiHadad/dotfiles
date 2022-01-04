@@ -93,7 +93,7 @@ return require("packer").startup(function(use)
         requires = "nvim-lua/plenary.nvim",
         config = require("plug-config.todo-comments"),
     })
-    use ({'booperlv/nvim-gomove', config = require("plug-config.gomove")})
+    use({ "booperlv/nvim-gomove", config = require("plug-config.gomove") })
 
     -- General Plugins
     use({ "ahmedkhalf/project.nvim", config = require("plug-config.project"), event = "BufWinEnter" })
