@@ -71,6 +71,7 @@ return require("packer").startup(function(use)
 
     -- LSP
     use({ "neovim/nvim-lspconfig" })
+    use({ "jose-elias-alvarez/null-ls.nvim", config = require("plug-config.null-ls") })
 
     -- Git
     use({
