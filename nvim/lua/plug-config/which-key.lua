@@ -13,6 +13,7 @@ return function()
             r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename Symbol" },
         },
         f = { "<cmd>lua vim.lsp.buf.formatting_sync()<cr>", "Format Document" },
+        g = { "<cmd>Godbolt<cr>", "Godbolt Explore Current Document" },
     }, {
         prefix = "<leader>",
     })
