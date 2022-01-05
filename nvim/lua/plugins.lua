@@ -98,7 +98,6 @@ return require("packer").startup(function(use)
     -- Lang-dev
     use({ "p00f/godbolt.nvim", run = "rm -rf fnl/", event = "BufWinEnter", config = require("plug-config.godbolt") })
 
-
     -- General Plugins
     use({ "ahmedkhalf/project.nvim", config = require("plug-config.project"), event = "BufWinEnter" })
     use({ "folke/which-key.nvim", config = require("plug-config.which-key"), event = "BufWinEnter" })
