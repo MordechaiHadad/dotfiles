@@ -56,4 +56,7 @@ return function()
         },
         autotag = { enable = true },
     })
+
+    -- Folds
+    vim.opt.foldmethod="indent"
 end
