@@ -58,6 +58,7 @@ return require("packer").startup(function(use)
 
     -- Web Dev
     use({ "windwp/nvim-ts-autotag", ft = { "html", "svelte" } })
+    use({ "themaxmarchuk/tailwindcss-colors.nvim", ft = { "html", "svelte" }, config = require("plug-config.tailwindcss-colors") })
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plug-config.cmp"), event = "BufWinEnter" })

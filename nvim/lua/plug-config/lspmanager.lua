@@ -25,6 +25,11 @@ return function()
                     require("illuminate").on_attach(client)
                 end,
             },
+            tailwindcss = {
+                on_attach = function (client, bufnr)
+                    require("tailwindcss-colors").buf_attach(bufnr)
+                end
+            },
         },
         ensure_installed = {
             "sumneko_lua",
