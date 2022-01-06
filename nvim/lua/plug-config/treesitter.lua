@@ -58,5 +58,5 @@ return function()
     })
 
     -- Folds
-    vim.opt.foldmethod="indent"
+    vim.opt.foldmethod = "indent"
 end
