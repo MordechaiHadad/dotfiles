@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
     -- use({ "NTBBloodbath/galaxyline.nvim", config = require("plug-config.galaxyline")})
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
-    use({ "akinsho/toggleterm.nvim", config = require("plug-config.toggleterm") })
+    use({ "akinsho/toggleterm.nvim", config = require("plug-config.toggleterm"), keys = "<F12>" })
     use({ "folke/trouble.nvim", config = require("plug-config.lsp-trouble"), event = "BufWinEnter" })
 
     -- Colorscheme & Colors
@@ -40,7 +40,7 @@ return require("packer").startup(function(use)
         config = require("plug-config.themer"),
     })
     use({ "nvim-treesitter/nvim-treesitter", config = require("plug-config.treesitter"), run = ":TSUpdate" })
-    use("nvim-treesitter/playground")
+    use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
     use({ "norcalli/nvim-colorizer.lua", config = require("plug-config.colorizer") })
     use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter" })
 
@@ -54,11 +54,16 @@ return require("packer").startup(function(use)
     use({
         "nvim-telescope/telescope-frecency.nvim",
         requires = { "tami5/sql.nvim" },
+        cmd = "Telescope",
     })
 
     -- Web Dev
     use({ "windwp/nvim-ts-autotag", ft = { "html", "svelte" } })
-    use({ "themaxmarchuk/tailwindcss-colors.nvim", ft = { "html", "svelte" }, config = require("plug-config.tailwindcss-colors") })
+    use({
+        "themaxmarchuk/tailwindcss-colors.nvim",
+        ft = { "html", "svelte" },
+        config = require("plug-config.tailwindcss-colors"),
+    })
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plug-config.cmp"), event = "BufWinEnter" })
@@ -83,6 +88,7 @@ return require("packer").startup(function(use)
     })
     use({
         "TimUntersberger/neogit",
+        cmd = "Neogit"
     })
 
     -- Editing Enhancments
@@ -108,12 +114,13 @@ return require("packer").startup(function(use)
         module = "persistence",
         config = require("plug-config.persistence"),
     })
-    use({ "nvim-neorg/neorg", branch = "main", config = require("plug-config.neorg"), ft = "norg" })
+    use({ "nvim-neorg/neorg", config = require("plug-config.neorg"), ft = "norg" })
     use({
         "abecodes/tabout.nvim",
         config = function()
             require("tabout").setup()
         end,
+        event = "BufWinEnter",
     })
     use({ "folke/lua-dev.nvim" })
 
@@ -123,6 +130,7 @@ return require("packer").startup(function(use)
         config = function()
             require("stabilize").setup()
         end,
+        event = "BufWinEnter",
     })
 
     use({
