@@ -26,9 +26,9 @@ return function()
                 end,
             },
             tailwindcss = {
-                on_attach = function (client, bufnr)
+                on_attach = function(client, bufnr)
                     require("tailwindcss-colors").buf_attach(bufnr)
-                end
+                end,
             },
         },
         ensure_installed = {
