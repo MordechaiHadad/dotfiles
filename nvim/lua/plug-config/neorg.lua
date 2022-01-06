@@ -1,4 +1,5 @@
 return function()
+    vim.cmd([[packadd nvim-cmp]])
     require("neorg").setup({
         -- Tell Neorg what modules to load
         load = {
