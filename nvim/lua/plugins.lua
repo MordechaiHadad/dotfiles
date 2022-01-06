@@ -124,6 +124,13 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({
+        "anuvyklack/pretty-fold.nvim",
+        config = function()
+            require("pretty-fold").setup({})
+        end,
+    })
+
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
 end)
