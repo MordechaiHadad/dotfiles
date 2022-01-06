@@ -88,7 +88,7 @@ return require("packer").startup(function(use)
     })
     use({
         "TimUntersberger/neogit",
-        cmd = "Neogit"
+        cmd = "Neogit",
     })
 
     -- Editing Enhancments
