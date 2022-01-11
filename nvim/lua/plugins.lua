@@ -43,14 +43,26 @@ return require("packer").startup(function(use)
     -- Telescope
     use({
         "nvim-telescope/telescope.nvim",
-        requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+        requires = {
+            { "nvim-lua/popup.nvim" },
+            { "nvim-lua/plenary.nvim" },
+            {
+                "nvim-telescope/telescope-frecency.nvim",
+                requires = { "tami5/sql.nvim" },
+                opt = true,
+            },
+            {
+                "AckslD/nvim-neoclip.lua",
+                requires = {
+                    { "tami5/sqlite.lua", module = "sqlite" },
+                    { "nvim-telescope/telescope.nvim" },
+                },
+                config = require("plug-config.neoclip"),
+                opt = true,
+            },
+        },
         cmd = "Telescope",
         config = require("plug-config.telescope"),
-    })
-    use({
-        "nvim-telescope/telescope-frecency.nvim",
-        requires = { "tami5/sql.nvim" },
-        opt = true,
     })
 
     -- Web Dev
@@ -131,16 +143,6 @@ return require("packer").startup(function(use)
         config = function()
             require("pretty-fold").setup({})
         end,
-    })
-
-    use({
-        "AckslD/nvim-neoclip.lua",
-        requires = {
-            { "tami5/sqlite.lua", module = "sqlite" },
-            { "nvim-telescope/telescope.nvim" },
-        },
-        config = require("plug-config.neoclip"),
-        opt = true,
     })
 
     -- Self plugin
