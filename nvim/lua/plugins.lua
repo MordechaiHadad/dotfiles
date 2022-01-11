@@ -51,18 +51,17 @@ return require("packer").startup(function(use)
                 requires = { "tami5/sql.nvim" },
                 opt = true,
             },
-            {
-                "AckslD/nvim-neoclip.lua",
-                requires = {
-                    { "tami5/sqlite.lua", module = "sqlite" },
-                    { "nvim-telescope/telescope.nvim" },
-                },
-                config = require("plug-config.neoclip"),
-                opt = true,
-            },
         },
         cmd = "Telescope",
         config = require("plug-config.telescope"),
+    })
+    use({
+        "AckslD/nvim-neoclip.lua",
+        requires = {
+            { "tami5/sqlite.lua", module = "sqlite" },
+        },
+        config = require("plug-config.neoclip"),
+        after = "telescope.nvim",
     })
 
     -- Web Dev
