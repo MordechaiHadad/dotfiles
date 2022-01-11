@@ -34,13 +34,9 @@ return require("packer").startup(function(use)
     use({ "folke/trouble.nvim", config = require("plug-config.lsp-trouble"), event = "BufWinEnter" })
 
     -- Colorscheme & Colors
-    use({
-        "/home/morde/repos/themer.lua",
-        branch = "dev",
-        config = require("plug-config.themer"),
-    })
+    use({ "/home/morde/repos/themer.lua", config = require("plug-config.themer") })
     use({ "nvim-treesitter/nvim-treesitter", config = require("plug-config.treesitter"), run = ":TSUpdate" })
-    use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
+    use({ "nvim-treesitter/playground", cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" } })
     use({ "norcalli/nvim-colorizer.lua", config = require("plug-config.colorizer") })
     use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter" })
 
@@ -54,7 +50,7 @@ return require("packer").startup(function(use)
     use({
         "nvim-telescope/telescope-frecency.nvim",
         requires = { "tami5/sql.nvim" },
-        cmd = "Telescope",
+        opt = true,
     })
 
     -- Web Dev
@@ -86,10 +82,7 @@ return require("packer").startup(function(use)
         config = require("plug-config.gitsigns"),
         event = "BufWinEnter",
     })
-    use({
-        "TimUntersberger/neogit",
-        cmd = "Neogit",
-    })
+    use({ "TimUntersberger/neogit", cmd = "Neogit" })
 
     -- Editing Enhancments
     use({ "b3nj5m1n/kommentary", event = "BufWinEnter" })
@@ -140,6 +133,19 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({
+        "AckslD/nvim-neoclip.lua",
+        requires = {
+            { "tami5/sqlite.lua", module = "sqlite" },
+            { "nvim-telescope/telescope.nvim" },
+        },
+        config = require("plug-config.neoclip"),
+        opt = true,
+    })
+
     -- Self plugin
     use({ "/home/morde/repos/nvim-lspmanager", config = require("plug-config.lspmanager") })
+    use({
+        "/home/morde/repos/mappy.nvim/",
+    })
 end)

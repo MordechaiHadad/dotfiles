@@ -37,7 +37,6 @@ return function()
             "typescript",
             "yaml",
             "norg",
-            "godotResource",
             "python",
         },
         highlight = {
