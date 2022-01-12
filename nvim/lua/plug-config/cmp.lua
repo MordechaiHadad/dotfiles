@@ -33,6 +33,11 @@ return function()
             completeopt = "menuone,noselect",
         },
         formatting = {
+            fields = {
+                cmp.ItemField.Kind,
+                cmp.ItemField.Abbr,
+                cmp.ItemField.Menu,
+            },
             format = function(entry, vim_item)
                 vim_item.kind = icons[vim_item.kind]
                 vim_item.menu = ({
