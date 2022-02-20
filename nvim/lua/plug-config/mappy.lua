@@ -1,6 +1,6 @@
-return function ()
+return function()
     require("mappy")({
-        version = "stable"
+        version = "stable",
     })
 
     local module = require("mappy"):new()
