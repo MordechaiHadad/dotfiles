@@ -116,3 +116,5 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
+
+export PATH=$PATH:/home/morde/.local/share/neovim/bin

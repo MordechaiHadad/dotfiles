@@ -1,3 +1,3 @@
 return function()
-    require("yabs"):setup({})
+	require("yabs"):setup({})
 end
