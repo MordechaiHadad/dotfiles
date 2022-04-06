@@ -1,15 +1,15 @@
 return function()
-    require("nvim-treesitter.install").compilers = { "clang" }
+	require("nvim-treesitter.install").compilers = { "clang" }
 
-    local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+	local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
 
-    parser_configs.norg = {
-        install_info = {
-            url = "https://github.com/nvim-neorg/tree-sitter-norg",
-            files = { "src/parser.c", "src/scanner.cc" },
-            branch = "main",
-        },
-    }
+	parser_configs.norg = {
+		install_info = {
+			url = "https://github.com/nvim-neorg/tree-sitter-norg",
+			files = { "src/parser.c", "src/scanner.cc" },
+			branch = "main",
+		},
+	}
 
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
@@ -48,6 +48,6 @@ return function()
 		autotag = { enable = true },
 	})
 
-    -- Folds
-    vim.opt.foldmethod = "indent"
+	-- Folds
+	vim.opt.foldmethod = "indent"
 end

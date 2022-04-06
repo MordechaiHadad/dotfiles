@@ -1,14 +1,14 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    })
+	packer_bootstrap = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
 end
 
 vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
@@ -16,16 +16,15 @@ vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
 local packer = require("packer")
 
 packer.init({
-    max_jobs = 4,
-    profile = {
-        enable = true,
-    },
+	max_jobs = 4,
+	profile = {
+		enable = true,
+	},
 })
 
 return packer.startup(function(use)
-    use("wbthomason/packer.nvim")
+	use("wbthomason/packer.nvim")
 
-<<<<<<< HEAD
 	-- Colorscheme
 	use({ "/home/morde/repos/themer.lua", config = require("plug-config.themer") })
 	use({ "nvim-treesitter/nvim-treesitter", config = require("plug-config.treesitter"), run = ":TSUpdate" })
@@ -90,11 +89,8 @@ return packer.startup(function(use)
 			require("sniprun").setup()
 		end,
 	}) -- Not Even working
-=======
-    use({ "/home/morde/repos/themer.lua", config = require("plug-config.themer") })
->>>>>>> 1a5a1a97f0b28b534a9c29126741d2c999082631
 
-    if packer_bootstrap then
-        require("packer").sync()
-    end
+	if packer_bootstrap then
+		require("packer").sync()
+	end
 end)
