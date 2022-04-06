@@ -1,6 +1,7 @@
 return function()
-	local cmp = require("cmp")
+    local cmp = require("cmp")
 
+<<<<<<< HEAD
 	local icons = {
 		Text = "",
 		Method = "",
@@ -99,4 +100,3 @@ return function()
 			{ name = "buffer" },
 		},
 	})
-end

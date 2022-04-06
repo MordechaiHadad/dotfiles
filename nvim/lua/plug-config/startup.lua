@@ -32,6 +32,7 @@ return function()
 			type = "text",
 			align = "center",
 			content = {
+
                 "Initialized with "
                     .. vim.tbl_count(packer_plugins)
                     .. " plugins and "
