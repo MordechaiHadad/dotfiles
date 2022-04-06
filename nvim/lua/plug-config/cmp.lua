@@ -48,6 +48,7 @@ return function()
 					neorg = "(Neorg)",
 					calc = "(Calculator)",
 					cmp_tabnine = "(Tabnine)",
+					cmp_nuget = "(NuGet)",
 				})[entry.source.name]
 				vim_item.dup = ({
 					buffer = 1,
@@ -80,6 +81,7 @@ return function()
 			{ name = "path" },
 			{ name = "neorg" },
 			{ name = "calc" },
+			{ name = "cmp-nuget" },
 		},
 		experimental = {
 			ghost_text = true,
@@ -89,6 +91,12 @@ return function()
 	cmp.setup.cmdline(":", {
 		sources = {
 			{ name = "cmdline" },
+		},
+	})
+
+	cmp.setup.cmdline("/", {
+		sources = {
+			{ name = "buffer" },
 		},
 	})
 end
