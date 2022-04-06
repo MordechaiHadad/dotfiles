@@ -1,3 +1,3 @@
 return function()
-	require("tailwindcss-colors").setup()
+    require("tailwindcss-colors").setup()
 end

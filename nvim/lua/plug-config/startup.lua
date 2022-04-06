@@ -1,33 +1,33 @@
 return function()
-	require("startup").setup({
-		header = {
-			content = {
-				"",
-				"██████╗  █████╗ ██████╗  █████╗ ██╗   ██╗██╗███╗   ███╗",
-				"██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║   ██║██║████╗ ████║",
-				"██████╔╝███████║██████╔╝███████║██║   ██║██║██╔████╔██║",
-				"██╔═══╝ ██╔══██║██╔═══╝ ██╔══██║╚██╗ ██╔╝██║██║╚██╔╝██║",
-				"██║     ██║  ██║██║     ██║  ██║ ╚████╔╝ ██║██║ ╚═╝ ██║",
-				"╚═╝     ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝",
-			},
-			type = "text",
-			align = "center",
-			highlight = "Statement",
-		},
-		body = {
-			type = "mapping",
-			align = "center",
-			title = "Commands",
-			content = {
-				{ "  New file", "lua require'startup'.new_file()", "e" },
-				{ "  Find file", "Telescope frecency", "f" },
-				{ "  Projects", "Telescope projects", "p" },
-				{ "  Open last session", "lua require('persistence').load()", "s" },
-				{ "  Quit", "qa", "q" },
-			},
-			highlight = "#E5E9F0",
-		},
-		--[[
+    require("startup").setup({
+        header = {
+            content = {
+                "",
+                "██████╗  █████╗ ██████╗  █████╗ ██╗   ██╗██╗███╗   ███╗",
+                "██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║   ██║██║████╗ ████║",
+                "██████╔╝███████║██████╔╝███████║██║   ██║██║██╔████╔██║",
+                "██╔═══╝ ██╔══██║██╔═══╝ ██╔══██║╚██╗ ██╔╝██║██║╚██╔╝██║",
+                "██║     ██║  ██║██║     ██║  ██║ ╚████╔╝ ██║██║ ╚═╝ ██║",
+                "╚═╝     ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝",
+            },
+            type = "text",
+            align = "center",
+            highlight = "Statement",
+        },
+        body = {
+            type = "mapping",
+            align = "center",
+            title = "Commands",
+            content = {
+                { "  New file", "lua require'startup'.new_file()", "e" },
+                { "  Find file", "Telescope frecency", "f" },
+                { "  Projects", "Telescope projects", "p" },
+                { "  Open last session", "lua require('persistence').load()", "s" },
+                { "  Quit", "qa", "q" },
+            },
+            highlight = "#E5E9F0",
+        },
+        --[[
 		footer = {
 			type = "text",
 			align = "center",
@@ -41,10 +41,10 @@ return function()
             },
 			highlight = "Function",
 		}, ]]
-		options = {
-			mapping_keys = true,
-		},
+        options = {
+            mapping_keys = true,
+        },
 
-		parts = { "header", "body" },
-	})
+        parts = { "header", "body" },
+    })
 end
