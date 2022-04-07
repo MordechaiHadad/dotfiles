@@ -33,7 +33,6 @@ return packer.startup(function(use)
 
     -- UI
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
-
     use({ "startup-nvim/startup.nvim", config = require("plug-config.startup") })
     use("kyazdani42/nvim-web-devicons")
     use({
@@ -66,6 +65,7 @@ return packer.startup(function(use)
         config = function()
             require("rust-tools").setup({})
         end,
+        ft = "rs",
     })
 
     -- Telescope
@@ -118,7 +118,7 @@ return packer.startup(function(use)
     use({ "nvim-neorg/neorg", config = require("plug-config.neorg"), ft = "norg" })
 
     -- Editing Enhancments
-    use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = require("plug-config.autopairs") })
+    use({ "windwp/nvim-autopairs", event = "InsertEnter", config = require("plug-config.autopairs") })
     use({
         "folke/todo-comments.nvim",
         event = "BufWinEnter",
@@ -130,6 +130,7 @@ return packer.startup(function(use)
         config = function()
             require("Comment").setup()
         end,
+        event = "BufWinEnter",
     })
 
     -- General Plugins
@@ -156,6 +157,7 @@ return packer.startup(function(use)
         config = function()
             require("sniprun").setup()
         end,
+        event = "BufWinEnter"
     }) -- Not Even working
 
     if packer_bootstrap then
