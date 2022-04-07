@@ -157,7 +157,7 @@ return packer.startup(function(use)
         config = function()
             require("sniprun").setup()
         end,
-        event = "BufWinEnter"
+        event = "BufWinEnter",
     }) -- Not Even working
 
     if packer_bootstrap then
