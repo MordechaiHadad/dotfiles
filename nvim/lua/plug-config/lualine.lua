@@ -53,7 +53,7 @@ return function()
                 normal = { c = { fg = colors.fg, bg = colors.line_color } },
                 inactive = { c = { fg = colors.fg, bg = colors.bg } },
             },
-                globalstatus = true,
+            globalstatus = true,
         },
         sections = {
             -- these are to remove the defaults
