@@ -38,4 +38,4 @@ end
 -- Folds
 vim.opt.foldlevel = 100
 
-vim.cmd("set laststatus=3")
+vim.opt.laststatus = 3 -- Statusline
