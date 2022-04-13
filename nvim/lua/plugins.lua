@@ -32,6 +32,8 @@ return packer.startup(function(use)
     use({ "RRethy/vim-illuminate", config = require("plug-config.illuminate"), event = "BufWinEnter" })
 
     -- UI
+    use({ "romgrk/barbar.nvim", config = require("plug-config.barbar") })
+    use({ "nvim-lualine/lualine.nvim", config = require("plug-config.lualine") })
     use({ "kyazdani42/nvim-tree.lua", config = require("plug-config.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "startup-nvim/startup.nvim", config = require("plug-config.startup") })
     use("kyazdani42/nvim-web-devicons")
