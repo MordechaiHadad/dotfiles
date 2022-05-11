@@ -136,7 +136,7 @@ return packer.startup(function(use)
     })
 
     -- General Plugins
-    use({ "booperlv/nvim-gomove", config = require("plug-config.gomove"), event = "BufWinEnter" })
+    use({ "fedepujol/move.nvim", event = "BufWinEnter" })
     use("LudoPinelli/comment-box.nvim") -- No idea how this works
     use({
         "rmagatti/goto-preview",

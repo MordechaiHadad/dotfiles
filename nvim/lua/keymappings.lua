@@ -10,15 +10,16 @@ keymap("i", "<C-s>", "<C-o>:w<CR>", opts) -- Save file in insert mode
 keymap("n", "tt", ":TSPlaygroundToggle<CR>", opts) -- Toggle TreeSitter playground
 
 -- Move selected line / block of text in visual mode
-keymap("x", "<C-Up>", "<Plug>GoVSMUp", {})
-keymap("x", "<C-Down>", "<Plug>GoVSMDown", {})
+keymap("x", "<C-Up>", ":MoveBlock(-1)<CR>", opts)
+keymap("x", "<C-Down>", ":MoveBlock(1)<CR>", opts)
 
 -- Move line in normal mode
-keymap("n", "<C-Up>", "<Plug>GoNSMUp", {})
-keymap("n", "<C-Down>", "<Plug>GoNSMDown", {})
+keymap("n", "<C-Up>", ":MoveLine(-1)<CR>", opts)
+keymap("n", "<C-Down>", ":MoveLine(1)<CR>", opts)
+
 -- Move line in insert mode
-keymap("i", "<C-Up>", "<C-o><Plug>GoNSMUp", {})
-keymap("i", "<C-Down>", "<C-o><Plug>GoNSMDown", {})
+keymap("i", "<C-Up>", ":MoveLine(-1)<CR>", opts)
+keymap("i", "<C-Down>", ":MoveLine(1)<CR>", opts)
 
 -- Telescope keymaps
 keymap("n", "ff", ":Telescope find_files<CR>", opts) -- Find files
