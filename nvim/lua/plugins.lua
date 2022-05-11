@@ -138,12 +138,12 @@ return packer.startup(function(use)
     -- General Plugins
     use({ "fedepujol/move.nvim", event = "BufWinEnter" })
     use("LudoPinelli/comment-box.nvim") -- No idea how this works
-    use({
-        "rmagatti/goto-preview",
-        config = function()
-            require("goto-preview").setup({})
-        end,
-    })
+    -- use({
+    --     "rmagatti/goto-preview",
+    --     config = function()
+    --         require("goto-preview").setup({})
+    --     end,
+    -- })
     use({ "akinsho/toggleterm.nvim", config = require("plug-config.toggleterm"), keys = "<F12>" })
     use({ "folke/which-key.nvim", config = require("plug-config.which-key"), event = "BufWinEnter" })
     use({
