@@ -15,6 +15,7 @@ return function()
     })
     require("telescope").load_extension("projects")
     require("telescope").load_extension("frecency")
+    require("telescope").load_extension("themes")
     --require("telescope").load_extension("lspmanager")
 
     if vim.bo.filetype == "norg" then
