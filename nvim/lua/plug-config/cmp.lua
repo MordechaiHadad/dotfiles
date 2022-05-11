@@ -109,8 +109,8 @@ return function()
             end,
         },
         sources = {
-            { name = "nvim_lsp" },
             { name = "luasnip" },
+            { name = "nvim_lsp" },
             { name = "cmp_tabnine" },
             { name = "buffer" },
             { name = "path" },
