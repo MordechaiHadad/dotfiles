@@ -1,4 +1,4 @@
 require("plugins")
-require("settings")
-require("keymappings")
-require("lsp")
+require("core.settings")
+require("core.keymappings")
+require("core.lsp")
