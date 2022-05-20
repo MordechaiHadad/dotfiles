@@ -32,7 +32,7 @@ return packer.startup(function(use)
     use({ "RRethy/vim-illuminate", config = require("plugins.configs.illuminate"), event = "BufWinEnter" })
 
     -- UI
-    use({ "akinsho/bufferline.nvim", config = require("plugins.configs.bufferline") })
+    use({ "akinsho/bufferline.nvim", branch = "dev", config = require("plugins.configs.bufferline") })
     use({ "nvim-lualine/lualine.nvim", config = require("plugins.configs.lualine") })
     use({ "kyazdani42/nvim-tree.lua", config = require("plugins.configs.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "startup-nvim/startup.nvim", config = require("plugins.configs.startup") })
