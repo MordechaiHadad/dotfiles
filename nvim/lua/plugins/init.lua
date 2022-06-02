@@ -45,6 +45,7 @@ return packer.startup(function(use)
         event = "BufWinEnter",
     })
     use({ "folke/trouble.nvim", config = require("plugins.configs.lsp-trouble"), event = "BufWinEnter" })
+    use({ "famiu/bufdelete.nvim" })
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plugins.configs.cmp"), event = "BufWinEnter" })

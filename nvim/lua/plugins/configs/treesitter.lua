@@ -11,6 +11,14 @@ return function()
         },
     }
 
+    parser_configs.vinyl = {
+        install_info = {
+            url = "~/repos/vinyl-lang/vendor/tree-sitter-vinyl",
+            files = { "src/parser.c" },
+        },
+        filetype = "vnl",
+    }
+
     require("nvim-treesitter.configs").setup({
         ensure_installed = {
             "bash",
