@@ -21,4 +21,9 @@ autocmd({ "FileType" }, {
     desc = "Map q and esc to close help, man, startuptime buffers",
 })
 
-autocmd("BufEnter", {callback=function() vim.bo.ft="vinyl" end, pattern="*.vnl"})
+autocmd("BufEnter", {
+    callback = function()
+        vim.bo.ft = "vinyl"
+    end,
+    pattern = "*.vnl",
+})
