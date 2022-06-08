@@ -1,5 +1,6 @@
 return function()
     vim.cmd([[packadd nvim-cmp]])
+    vim.cmd([[packadd neorg-kanban]])
     require("neorg").setup({
         -- Tell Neorg what modules to load
         load = {
@@ -29,6 +30,7 @@ return function()
                     exclude = { "file_to_exclude.norg" }, -- Optional: all excluded files from the workspace are not part of the gtd workflow
                 },
             },
+            ["external.kanban"] = {},
         },
     })
     local neorg_callbacks = require("neorg.callbacks")

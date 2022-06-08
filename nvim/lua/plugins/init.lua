@@ -46,6 +46,8 @@ return packer.startup(function(use)
     })
     use({ "folke/trouble.nvim", config = require("plugins.configs.lsp-trouble"), event = "BufWinEnter" })
     use({ "famiu/bufdelete.nvim" })
+    use({ "fgheng/winbar.nvim", config = require("plugins.configs.winbar") })
+    use({ "SmiteshP/nvim-gps", config = require("nvim-gps").setup() })
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plugins.configs.cmp"), event = "BufWinEnter" })
@@ -125,6 +127,7 @@ return packer.startup(function(use)
 
     -- Note Taking
     use({ "nvim-neorg/neorg", config = require("plugins.configs.neorg"), ft = "norg" })
+    use({ "max397574/neorg-kanban", opt = true })
 
     -- Editing Enhancments
     use({ "windwp/nvim-autopairs", event = "InsertEnter", config = require("plugins.configs.autopairs") })
@@ -160,14 +163,6 @@ return packer.startup(function(use)
         config = require("plugins.configs.persistence"),
     })
     use({ "ahmedkhalf/project.nvim", config = require("plugins.configs.project"), event = "BufWinEnter" })
-    use({
-        "michaelb/sniprun",
-        run = "bash ./install.sh",
-        config = function()
-            require("sniprun").setup()
-        end,
-        event = "BufWinEnter",
-    }) -- Not Even working
 
     if packer_bootstrap then
         require("packer").sync()
