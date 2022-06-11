@@ -51,8 +51,8 @@ return packer.startup(function(use)
         requires = {
             "neovim/nvim-lspconfig",
             "williamboman/nvim-lsp-installer",
-            config = require("nvim-navic").setup({}),
         },
+        config = require("nvim-navic").setup({}),
     })
 
     -- Autocomplete
