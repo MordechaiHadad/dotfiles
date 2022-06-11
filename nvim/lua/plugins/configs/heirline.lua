@@ -25,6 +25,7 @@ return function()
     end
 
     local conditions = require("heirline.conditions")
+    local utils = require("heirline.utils")
 
     local ModeComponent = {
         init = function(self)
@@ -129,7 +130,7 @@ return function()
         {
 
             condition = function(self)
-                local count = self.status_dict.changes or 0
+                local count = self.status_dict.changed or 0
                 return count > 0
             end,
             provider = "",
@@ -240,14 +241,8 @@ return function()
     }
 
     local FileTypeComponent = {
-        on_click = {
-            callback = function()
-                require("neogit").open()
-            end,
-            name = "toggle_neogit",
-        },
         provider = function()
-            return (vim.bo.filetype:gsub("^%l", string.upper))
+            return (files[vim.bo.filetype] or vim.bo.filetype:gsub("^%l", string.upper))
         end,
         alignment(1),
     }
@@ -264,7 +259,67 @@ return function()
         ModeComponent,
         hl = { bg = colors.line_color },
     }
-    local winbar = {}
 
-    require("heirline").setup(statusline)
+    local function split(path, delimiter)
+        local result = {}
+        for match in (path .. delimiter):gmatch("(.-)" .. delimiter) do
+            table.insert(result, match)
+        end
+        return result
+    end
+
+    local function get_path()
+        local path = vim.api.nvim_buf_get_name(0)
+        path = vim.fn.fnamemodify(path, ":.")
+        return split(path, "/")
+    end
+
+    local BufferComponent = {
+        init = function(self)
+            local path = get_path()
+            local children = {}
+            for index, value in ipairs(path) do
+                if index == #path then
+                    local extension = vim.fn.fnamemodify(value, ":e")
+                    local icon, color = require("nvim-web-devicons").get_icon_color(value, extension)
+                    local child = {
+                        {
+                            provider = icon,
+                            hl = { fg = color },
+                            alignment(1),
+                        },
+                        {
+                            provider = value,
+                        },
+                        alignment(1),
+                    }
+
+                    table.insert(children, child)
+                else
+                    table.insert(children, {
+                        alignment(1),
+                        provider = value .. " >",
+                    })
+                end
+                self[1] = self:new(children, 1)
+            end
+        end,
+    }
+
+    local Navic = {
+        condition = require("nvim-navic").is_available,
+        provider = function()
+            local data = require("nvim-navic").get_location()
+
+            local seperator = ""
+            if #data > 0 then
+                seperator = "> "
+            end
+            return seperator .. require("nvim-navic").get_location()
+        end,
+    }
+
+    local winbar = { BufferComponent, Navic }
+
+    require("heirline").setup(statusline, winbar)
 end

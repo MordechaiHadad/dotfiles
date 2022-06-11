@@ -14,6 +14,10 @@ return function()
         -- This setup() function will take the provided server configuration and decorate it with the necessary properties
         -- before passing it onwards to lspconfig.
         -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+        opts.on_attach = function(client, bufnr)
+            require("nvim-navic").attach(client, bufnr)
+            require("illuminate").on_attach(client)
+        end
         server:setup(opts)
     end)
 end

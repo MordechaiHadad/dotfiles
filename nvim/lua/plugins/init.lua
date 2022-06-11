@@ -34,7 +34,6 @@ return packer.startup(function(use)
     -- UI
     use({ "akinsho/bufferline.nvim", branch = "dev", config = require("plugins.configs.bufferline") })
     use({ "rebelot/heirline.nvim", config = require("plugins.configs.heirline") })
-    -- use({ "nvim-lualine/lualine.nvim", config = require("plugins.configs.lualine") })
     use({ "kyazdani42/nvim-tree.lua", config = require("plugins.configs.nvim-tree"), cmd = "NvimTreeToggle" })
     use({ "startup-nvim/startup.nvim", config = require("plugins.configs.startup") })
     use("kyazdani42/nvim-web-devicons")
@@ -47,8 +46,14 @@ return packer.startup(function(use)
     })
     use({ "folke/trouble.nvim", config = require("plugins.configs.lsp-trouble"), event = "BufWinEnter" })
     use({ "famiu/bufdelete.nvim" })
-    -- use({ "fgheng/winbar.nvim", config = require("plugins.configs.winbar") })
-    use({ "SmiteshP/nvim-gps", config = require("nvim-gps").setup() })
+    use({
+        "SmiteshP/nvim-navic",
+        requires = {
+            "neovim/nvim-lspconfig",
+            "williamboman/nvim-lsp-installer",
+            config = require("nvim-navic").setup({}),
+        },
+    })
 
     -- Autocomplete
     use({ "hrsh7th/nvim-cmp", config = require("plugins.configs.cmp"), event = "BufWinEnter" })
