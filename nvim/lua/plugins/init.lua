@@ -92,6 +92,7 @@ return packer.startup(function(use)
             },
         },
         cmd = "Telescope",
+        module = "telescope",
         config = require("plugins.configs.telescope"),
     })
     use({

@@ -85,12 +85,6 @@ return function()
 
     local GitComponent = {
         condition = conditions.is_git_repo,
-        on_click = {
-            callback = function()
-                require("neogit").open()
-            end,
-            name = "toggle_neogit",
-        },
 
         init = function(self)
             self.status_dict = vim.b.gitsigns_status_dict
@@ -100,64 +94,79 @@ return function()
         end,
         alignment(1),
         {
-            provider = "",
-            hl = { fg = colors.blue },
-            alignment(1),
-        },
-        {
-            provider = function(self)
-                return self.status_dict.head
-            end,
-            alignment(1),
-        },
-        {
-
-            condition = function(self)
-                local count = self.status_dict.added or 0
-                return count > 0
-            end,
-            provider = "",
-            hl = { fg = colors.green },
-            alignment(1),
-            {
-                provider = function(self)
-                    return self.status_dict.added
+            on_click = {
+                callback = function()
+                    require("telescope.builtin").git_branches()
                 end,
-                hl = { fg = colors.fg },
+                name = "git_branches",
             },
-            alignment(1),
-        },
-        {
-
-            condition = function(self)
-                local count = self.status_dict.changed or 0
-                return count > 0
-            end,
-            provider = "",
-            hl = { fg = colors.yellow },
-            alignment(1),
+            {
+                provider = "",
+                hl = { fg = colors.blue },
+                alignment(1),
+            },
             {
                 provider = function(self)
-                    return self.status_dict.changed
+                    return self.status_dict.head
                 end,
-                hl = { fg = colors.fg },
                 alignment(1),
             },
         },
         {
-            condition = function(self)
-                local count = self.status_dict.removed or 0
-                return count > 0
-            end,
-            provider = "",
-            hl = { fg = colors.red },
-            alignment(1),
-            {
-                provider = function(self)
-                    return self.status_dict.removed
+            on_click = {
+                callback = function()
+                    require("neogit").open()
                 end,
-                hl = { fg = colors.fg },
+                name = "toggle_neogit",
+            },
+            {
+                condition = function(self)
+                    local count = self.status_dict.added or 0
+                    return count > 0
+                end,
+                provider = "",
+                hl = { fg = colors.green },
                 alignment(1),
+                {
+                    provider = function(self)
+                        return self.status_dict.added
+                    end,
+                    hl = { fg = colors.fg },
+                },
+                alignment(1),
+            },
+            {
+
+                condition = function(self)
+                    local count = self.status_dict.changed or 0
+                    return count > 0
+                end,
+                provider = "",
+                hl = { fg = colors.yellow },
+                alignment(1),
+                {
+                    provider = function(self)
+                        return self.status_dict.changed
+                    end,
+                    hl = { fg = colors.fg },
+                    alignment(1),
+                },
+            },
+            {
+                condition = function(self)
+                    local count = self.status_dict.removed or 0
+                    return count > 0
+                end,
+                provider = "",
+                hl = { fg = colors.red },
+                alignment(1),
+                {
+                    provider = function(self)
+                        return self.status_dict.removed
+                    end,
+                    hl = { fg = colors.fg },
+                    alignment(1),
+                },
             },
         },
     }
@@ -275,6 +284,9 @@ return function()
     end
 
     local BufferComponent = {
+        condition = function()
+            return conditions.buffer_matches({ filetype = { "NvimTree" } }) == false
+        end,
         init = function(self)
             local path = get_path()
             local children = {}
@@ -306,20 +318,62 @@ return function()
         end,
     }
 
+    local ExplorerComponent = {
+        condition = function()
+            return conditions.buffer_matches({ filetype = { "NvimTree" } })
+        end,
+        provider = "Explorer",
+    }
+
     local Navic = {
         condition = require("nvim-navic").is_available,
-        provider = function()
-            local data = require("nvim-navic").get_location()
+        static = {
+            type_colors = {
+                ["Method"] = colors.yellow,
+                ["Function"] = colors.yellow,
+                ["Property"] = colors.light_blue,
+                ["Field"] = colors.light_blue,
+                ["Variable"] = colors.light_blue,
+            },
+        },
+        init = function(self)
+            local data = require("nvim-navic").get_data() or {}
+            local children = {}
 
-            local seperator = ""
-            if #data > 0 then
-                seperator = "> "
+            for index, value in ipairs(data) do
+                local seperator
+
+                if index == 1 then
+                    seperator = "> "
+                else
+                    seperator = " > "
+                end
+                local child = {
+                    {
+                        provider = seperator,
+                    },
+                    {
+                        provider = value.icon,
+                        hl = { fg = self.type_colors[value.type] },
+                    },
+                    {
+                        provider = value.name,
+                    },
+                }
+                table.insert(children, child)
             end
-            return seperator .. require("nvim-navic").get_location()
+            self[1] = self:new(children, 1)
         end,
     }
 
-    local winbar = { BufferComponent, Navic }
+    local winbar = {
+        condition = function()
+            return conditions.buffer_matches({ filetype = { "toggleterm", "Trouble" } }) == false
+        end,
+        BufferComponent,
+        ExplorerComponent,
+        Navic,
+    }
 
     require("heirline").setup(statusline, winbar)
 end
