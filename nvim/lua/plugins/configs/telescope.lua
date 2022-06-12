@@ -11,7 +11,7 @@ return function()
                     ["<esc>"] = actions.close,
                 },
             },
-            prompt_prefix = "   "
+            prompt_prefix = "   ",
         },
     })
     require("telescope").load_extension("projects")
