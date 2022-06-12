@@ -367,9 +367,14 @@ return function()
     }
 
     local winbar = {
-        condition = function()
-            return conditions.buffer_matches({ filetype = { "toggleterm", "Trouble" } }) == false
-        end,
+        {
+            condition = function()
+                return conditions.buffer_matches({ filetype = { "toggleterm", "Trouble" } })
+            end,
+            init = function()
+                vim.opt_local.winbar = nil
+            end,
+        },
         BufferComponent,
         ExplorerComponent,
         Navic,
