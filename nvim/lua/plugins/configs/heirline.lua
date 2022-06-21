@@ -303,7 +303,6 @@ return function()
                         {
                             provider = value,
                         },
-                        alignment(1),
                     }
 
                     table.insert(children, child)
@@ -335,23 +334,17 @@ return function()
                 ["Field"] = colors.light_blue,
                 ["Variable"] = colors.light_blue,
                 ["Struct"] = colors.blue_green,
+                ["Class"] = colors.blue_green,
             },
         },
         init = function(self)
             local data = require("nvim-navic").get_data() or {}
             local children = {}
 
-            for index, value in ipairs(data) do
-                local seperator
-
-                if index == 1 then
-                    seperator = "> "
-                else
-                    seperator = " > "
-                end
+            for _, value in ipairs(data) do
                 local child = {
                     {
-                        provider = seperator,
+                        provider = " > ",
                     },
                     {
                         provider = value.icon,
@@ -379,6 +372,7 @@ return function()
         BufferComponent,
         ExplorerComponent,
         Navic,
+        alignment(1),
         {
             provider = "",
             hl = { fg = colors.line_color, bg = colors.bg },
