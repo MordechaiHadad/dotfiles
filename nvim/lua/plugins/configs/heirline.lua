@@ -363,7 +363,9 @@ return function()
     local winbar = {
         {
             condition = function()
-                return conditions.buffer_matches({ filetype = { "toggleterm", "Trouble", "WhichKey", "startup" } })
+                return conditions.buffer_matches({
+                    filetype = { "toggleterm", "Trouble", "WhichKey", "startup", "neogitstatus" },
+                })
             end,
             init = function()
                 vim.opt_local.winbar = nil
