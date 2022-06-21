@@ -30,6 +30,12 @@ return packer.startup(function(use)
     use({ "nvim-treesitter/nvim-treesitter", config = require("plugins.configs.treesitter"), run = ":TSUpdate" })
     use({ "nvim-treesitter/playground", cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" } })
     use({ "RRethy/vim-illuminate", config = require("plugins.configs.illuminate"), event = "BufWinEnter" })
+    -- use({
+    --     "zbirenbaum/neodim",
+    --     config = function()
+    --         require("neodim").setup()
+    --     end,
+    -- })
 
     -- UI
     use({ "akinsho/bufferline.nvim", branch = "dev", config = require("plugins.configs.bufferline") })

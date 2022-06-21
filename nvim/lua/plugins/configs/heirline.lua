@@ -334,6 +334,7 @@ return function()
                 ["Property"] = colors.light_blue,
                 ["Field"] = colors.light_blue,
                 ["Variable"] = colors.light_blue,
+                ["Struct"] = colors.blue_green,
             },
         },
         init = function(self)
@@ -378,6 +379,11 @@ return function()
         BufferComponent,
         ExplorerComponent,
         Navic,
+        {
+            provider = "",
+            hl = { fg = colors.line_color, bg = colors.bg },
+        },
+        hl = { bg = colors.line_color },
     }
 
     require("heirline").setup(statusline, winbar)
