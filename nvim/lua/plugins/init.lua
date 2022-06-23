@@ -1,7 +1,6 @@
 --         ╭──────────────────────────────────────────────────────────╮
---         │                    Main Plugins File                     │
+--         │                           Plugins                        │
 --         ╰──────────────────────────────────────────────────────────╯
-
 
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -35,12 +34,12 @@ return packer.startup(function(use)
     use({ "nvim-treesitter/nvim-treesitter", config = require("plugins.configs.treesitter"), run = ":TSUpdate" })
     use({ "nvim-treesitter/playground", cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" } })
     use({ "RRethy/vim-illuminate", config = require("plugins.configs.illuminate"), event = "BufWinEnter" })
-    -- use({
-    --     "zbirenbaum/neodim",
-    --     config = function()
-    --         require("neodim").setup()
-    --     end,
-    -- })
+    use({
+        "zbirenbaum/neodim",
+        config = function()
+            require("neodim").setup()
+        end,
+    })
 
     -- UI
     use({ "akinsho/bufferline.nvim", branch = "dev", config = require("plugins.configs.bufferline") })
@@ -55,7 +54,7 @@ return packer.startup(function(use)
         end,
         event = "BufWinEnter",
     })
-    use({ "folke/trouble.nvim", config = require("plugins.configs.lsp-trouble"), event = "BufWinEnter" })
+    use({ "folke/trouble.nvim", config = require("plugins.configs.lsp-trouble"), event = "BufWinEnter" }) -- Buggy F
     use({ "famiu/bufdelete.nvim" })
     use({
         "SmiteshP/nvim-navic",
@@ -174,7 +173,7 @@ return packer.startup(function(use)
     --     end,
     -- })
     use({ "akinsho/toggleterm.nvim", config = require("plugins.configs.toggleterm"), keys = "<F12>" })
-    use({ "folke/which-key.nvim", config = require("plugins.configs.which-key"), event = "BufWinEnter" })
+    use({ "max397574/which-key.nvim", config = require("plugins.configs.which-key"), event = "BufWinEnter" })
     use({
         "folke/persistence.nvim",
         event = "BufReadPre",

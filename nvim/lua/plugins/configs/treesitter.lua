@@ -46,6 +46,8 @@ return function()
             "yaml",
             "norg",
             "python",
+            "dart",
+            "llvm",
         },
         highlight = {
             enable = true, -- false will disable the whole extension

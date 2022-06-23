@@ -18,11 +18,14 @@ return function()
         keys = {
             telescope = {
                 i = {
-                    select = "<cr>",
                     paste = "<c-p>",
                     paste_behind = "<c-k>",
                     replay = "<c-q>",
-                    custom = {},
+                    custom = {
+                        ["<cr>"] = function (opts)
+                            vim.fn.setreg("+", opts.entry.contents)
+                        end
+                    },
                 },
                 n = {
                     select = "<cr>",

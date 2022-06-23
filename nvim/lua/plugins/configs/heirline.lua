@@ -364,7 +364,8 @@ return function()
         {
             condition = function()
                 return conditions.buffer_matches({
-                    filetype = { "toggleterm", "Trouble", "WhichKey", "startup", "neogitstatus" },
+                    filetype = { "toggleterm", "Trouble", "startup", "neogitstatus" },
+                    buftype = { "terminal", "prompt", "help", "nofile" },
                 })
             end,
             init = function()
