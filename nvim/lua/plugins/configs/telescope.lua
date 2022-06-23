@@ -1,10 +1,12 @@
 return function()
+    local telescope = require("telescope")
+
     vim.cmd([[packadd sqlite.lua]])
     vim.cmd([[packadd telescope-frecency.nvim]])
 
     local actions = require("telescope.actions")
 
-    require("telescope").setup({
+    telescope.setup({
         defaults = {
             mappings = {
                 i = {
@@ -14,9 +16,10 @@ return function()
             prompt_prefix = "   ",
         },
     })
-    require("telescope").load_extension("projects")
-    require("telescope").load_extension("frecency")
-    require("telescope").load_extension("themes")
+    telescope.load_extension("projects")
+    telescope.load_extension("frecency")
+    telescope.load_extension("themes")
+    telescope.load_extension("neoclip")
     --require("telescope").load_extension("lspmanager")
 
     if vim.bo.filetype == "norg" then

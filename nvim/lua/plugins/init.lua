@@ -97,7 +97,6 @@ return packer.startup(function(use)
             { "nvim-lua/plenary.nvim" },
             {
                 "nvim-telescope/telescope-frecency.nvim",
-                requires = { "tami5/sqlite.lua" },
                 opt = true,
             },
         },
@@ -107,12 +106,9 @@ return packer.startup(function(use)
     })
     use({
         "AckslD/nvim-neoclip.lua",
-        requires = {
-            { "tami5/sqlite.lua", module = "sqlite" },
-        },
         config = require("plugins.configs.neoclip"),
-        after = "telescope.nvim",
     })
+    use("tami5/sqlite.lua")
 
     -- Git
     use({
