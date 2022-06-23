@@ -22,9 +22,9 @@ return function()
                     paste_behind = "<c-k>",
                     replay = "<c-q>",
                     custom = {
-                        ["<cr>"] = function (opts)
+                        ["<cr>"] = function(opts)
                             vim.fn.setreg("+", opts.entry.contents)
-                        end
+                        end,
                     },
                 },
                 n = {
