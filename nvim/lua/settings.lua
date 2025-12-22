@@ -9,6 +9,7 @@ vim.o.exrc = true
 vim.cmd("set timeoutlen=600")
 vim.cmd("syntax on")
 vim.cmd("set splitkeep=screen")
+vim.cmd.colorscheme("papadark")
 
 -- Indentation
 vim.o.expandtab = true -- convert tabs to spaces

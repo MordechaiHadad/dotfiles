@@ -17,7 +17,13 @@ return {
         "typescript", 
         "javascript", 
         "svelte",
-        "zig" 
+        "zig",
+        "json",
+        "html",
+        "css",
+        "bash",
+        "markdown",
+        "scss",
       })
 
       -- Start highlighting for the current buffer
