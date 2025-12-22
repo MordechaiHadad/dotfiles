@@ -8,3 +8,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "single",
 })
+
+
+-- Neovim 0.11+: set global defaults for *all* LSP servers.
+if vim.lsp and vim.lsp.config then
+  vim.lsp.config("*", {
+    capabilities = require("blink.cmp").get_lsp_capabilities(),
+  })
+end
