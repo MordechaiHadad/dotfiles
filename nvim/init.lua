@@ -1,0 +1,5 @@
+require("bootstrap.lazy")
+require("settings")
+require("keymaps")
+require("autocommands")
+require("lsp")
