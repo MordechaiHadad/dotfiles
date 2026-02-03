@@ -1,5 +1,5 @@
-require("bootstrap.lazy")
 require("settings")
-require("keymaps")
 require("autocommands")
+require("keymaps")
+require("bootstrap.lazy")
 require("lsp")

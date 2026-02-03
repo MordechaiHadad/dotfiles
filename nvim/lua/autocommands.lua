@@ -46,3 +46,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "mise.toml", ".mise.toml", ".env.*" },
+  callback = function()
+    vim.b.copilot_enabled = false
+  end,
+})
