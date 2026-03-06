@@ -43,17 +43,28 @@ keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opts)
 
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>") -- Exit search mode
 
--- Which key
+-- Which key base
 whichkey.add({
     {
         "<leader>f",
         function()
             vim.lsp.buf.format({ async = true })
         end,
-        desc = "Format Buffer"
+        desc = "format buffer"
     },
-    { "<leader>s",  "<cmd>Telescope live_grep<cr>",  desc = "Search (Live Grep)" },
-    { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-    { "<leader>sb", "<cmd>Telescope buffers<cr>",    desc = "Find Buffers" },
-    { "<leader>sh", "<cmd>Telescope help_tags<cr>",  desc = "Help Tags" },
+    { "<leader>s",  "<cmd>telescope live_grep<cr>",  desc = "search (live grep)" },
+    { "<leader>sf", "<cmd>telescope find_files<cr>", desc = "find files" },
+    { "<leader>sb", "<cmd>telescope buffers<cr>",    desc = "find buffers" },
+    { "<leader>sh", "<cmd>telescope help_tags<cr>",  desc = "help tags" },
+})
+
+-- Which key trouble
+whichkey.add({
+    { "<leader>t",  group = "trouble" },
+    { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)" },
+    { "<leader>tT", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)" },
+    { "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)" },
+    { "<leader>tr", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / References (Trouble)" },
+    { "<leader>tl", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)" },
+    { "<leader>tq", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)" },
 })
