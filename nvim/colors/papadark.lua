@@ -34,6 +34,7 @@ local colors = {
   line_color = "#3B4252",
   visual_grey = "#3E4452",
   interface_color = "#84D9AA",
+  light_blue_dimmed = "#7cabbd"
 }
 
 -- Base remaps
@@ -192,6 +193,7 @@ hl("TelescopeSelectionCaret", { fg = colors.bg_alt, bg = colors.bg_alt })
 -- Plugins: lsp underline (themer used style="underline" and sp=...)
 hl("DiagnosticUnderlineWarn", { underline = true, sp = colors.yellow })
 hl("DiagnosticUnderlineHint", { underline = true, sp = colors.light_blue })
+hl("DiagnosticUnnecessary", { fg = colors.light_blue_dimmed })
 
 -- langs.md
 hl("markdownCode", { fg = colors.string })
