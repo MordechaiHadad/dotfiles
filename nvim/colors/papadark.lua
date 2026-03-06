@@ -59,6 +59,8 @@ hl("WarningMsg", { fg = colors.yellow })
 hl("Whitespace", { fg = colors.fg })
 hl("FloatBorder", { fg = colors.fg })
 hl("Comment", { fg = colors.comment, italic = true })
+hl("VertSplit", { fg = colors.vertsplit })
+hl("NeoTreeVertSplit", { fg = colors.vertsplit })
 
 hl("Constant", { fg = colors.blue })
 -- themer linked Character -> String, but base remaps didn't define String.
