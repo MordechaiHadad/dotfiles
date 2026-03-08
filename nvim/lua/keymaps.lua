@@ -9,14 +9,6 @@ keymap("n", "<Leader>e", ":Neotree<CR>", opts)          -- Open file explorer
 keymap("n", "tt", "<cmd>InspectTree<CR>", opts)         -- Toggle TreeSitter playground
 keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", opts) -- Save file in insert mode
 
--- Move selected line / block of text in visual mode
-keymap("x", "<C-Up>", ":MoveBlock(-1)<CR>", opts)
-keymap("x", "<C-Down>", ":MoveBlock(1)<CR>", opts)
-
--- Move line in normal mode
-keymap("n", "<C-Up>", ":MoveLine(-1)<CR>", opts)
-keymap("n", "<C-Down>", ":MoveLine(1)<CR>", opts)
-
 -- Move line in insert mode
 keymap("i", "<C-Up>", ":MoveLine(-1)<CR>", opts)
 keymap("i", "<C-Down>", ":MoveLine(1)<CR>", opts)
