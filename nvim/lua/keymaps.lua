@@ -28,6 +28,9 @@ keymap("n", "fw", ":Telescope live_grep<CR>", opts)
 -- LSP Keymaps
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definitions
 
+-- Terminal keymaps
+keymap("n", "<C-`>", function() Snacks.terminal.toggle() end)
+
 -- fuck you deleted bullshit
 keymap("n", "dd", '"_dd', opts)
 
@@ -52,10 +55,6 @@ whichkey.add({
         end,
         desc = "format buffer"
     },
-    { "<leader>s",  "<cmd>telescope live_grep<cr>",  desc = "search (live grep)" },
-    { "<leader>sf", "<cmd>telescope find_files<cr>", desc = "find files" },
-    { "<leader>sb", "<cmd>telescope buffers<cr>",    desc = "find buffers" },
-    { "<leader>sh", "<cmd>telescope help_tags<cr>",  desc = "help tags" },
 })
 
 -- Which key trouble
