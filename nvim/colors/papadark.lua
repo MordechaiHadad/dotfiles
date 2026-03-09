@@ -225,3 +225,8 @@ hl("BlinkCmpKindTypeParameter", { fg = colors.syntax.type })
 hl("BlinkCmpSignatureHelp", { fg = colors.fg, bg = colors.float })
 hl("BlinkCmpSignatureHelpBorder", { fg = colors.float, bg = colors.float })
 hl("BlinkCmpSignatureHelpActiveParameter", { fg = palette.yellow, bold = true })
+
+
+-- [ Plugins: mini-cursorword ]
+hl("MiniCursorword", { bg = colors.overlay })
+hl("MiniCursorwordCurrent", { bg = colors.overlay, bold = true })
