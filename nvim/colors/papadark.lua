@@ -5,36 +5,36 @@ vim.g.colors_name = "papadark"
 vim.o.termguicolors = true
 
 local function hl(group, spec)
-  vim.api.nvim_set_hl(0, group, spec)
+    vim.api.nvim_set_hl(0, group, spec)
 end
 
 local colors = {
-  bg = "#2e3440",
-  fg = "#E5E9F0",
-  bg_alt = "#2b2e36",
-  bg_float = "#3B4048",
-  inactive = "#4C566A",
-  subtle = "#4c566a",
-  red = "#d94848",
-  yellow = "#d4d198",
-  orange = "#d08770",
-  blue = "#5d8ac2",
-  green = "#98C379",
-  magenta = "#c487b9",
-  highlight = "#434c5e",
-  highlight_overlay = "#434c5e",
-  highlight_inactive = "#3e4452",
-  comment = "#699856",
-  light_blue = "#8fc6e3",
-  cyan = "#4EC9B0",
-  vertsplit = "#373e4a",
-  number = "#B4CDA8",
-  string = "#A3BE8C",
-  line_number = "#4C566A",
-  line_color = "#3B4252",
-  visual_grey = "#3E4452",
-  interface_color = "#84D9AA",
-  light_blue_dimmed = "#7cabbd"
+    bg = "#2e3440",
+    fg = "#E5E9F0",
+    bg_alt = "#2b2e36",
+    bg_float = "#3B4048",
+    inactive = "#4C566A",
+    subtle = "#4c566a",
+    red = "#d94848",
+    yellow = "#d4d198",
+    orange = "#d08770",
+    blue = "#5d8ac2",
+    green = "#98C379",
+    magenta = "#c487b9",
+    highlight = "#434c5e",
+    highlight_overlay = "#434c5e",
+    highlight_inactive = "#3e4452",
+    comment = "#699856",
+    light_blue = "#8fc6e3",
+    cyan = "#4EC9B0",
+    vertsplit = "#373e4a",
+    number = "#B4CDA8",
+    string = "#A3BE8C",
+    line_number = "#4C566A",
+    line_color = "#3B4252",
+    visual_grey = "#3E4452",
+    interface_color = "#84D9AA",
+    light_blue_dimmed = "#7cabbd"
 }
 
 -- Base remaps
@@ -193,8 +193,8 @@ hl("TelescopePromptBorder", { fg = colors.bg, bg = colors.bg_alt })
 hl("TelescopeSelectionCaret", { fg = colors.bg_alt, bg = colors.bg_alt })
 
 -- Plugins: lsp underline (themer used style="underline" and sp=...)
-hl("DiagnosticUnderlineWarn", { underline = true, sp = colors.yellow })
-hl("DiagnosticUnderlineHint", { underline = true, sp = colors.light_blue })
+hl("DiagnosticUnderlineWarn", { undercurl = true, sp = colors.yellow })
+hl("DiagnosticUnderlineHint", { undercurl = true, sp = colors.light_blue })
 hl("DiagnosticUnnecessary", { fg = colors.light_blue_dimmed })
 
 -- langs.md
@@ -202,10 +202,46 @@ hl("markdownCode", { fg = colors.string })
 
 
 -- Rust attribute / decorator semantic tokens -> Function (yellow)
-hl("@lsp.type.decorator.rust",            { link = "Function" })
+hl("@lsp.type.decorator.rust", { link = "Function" })
 hl("@lsp.typemod.decorator.attribute.rust", { link = "Function" })
-hl("@function.attribute.rust",          { link = "Function" })
+hl("@function.attribute.rust", { link = "Function" })
 
 -- Generic fallback (for other languages/servers)
-hl("@lsp.type.decorator",                 { link = "Function" })
-hl("@lsp.typemod.decorator.attribute",    { link = "Function" })
+hl("@lsp.type.decorator", { link = "Function" })
+hl("@lsp.typemod.decorator.attribute", { link = "Function" })
+
+-- Plugins: blink.cmp
+-- Main Menu
+hl("BlinkCmpMenu", { fg = colors.fg, bg = colors.bg_float })
+hl("BlinkCmpMenuBorder", { fg = colors.bg_float, bg = colors.bg_float }) -- Clean, borderless look
+hl("BlinkCmpMenuSelection", { bg = colors.highlight_overlay, bold = true })
+hl("BlinkCmpScrollBarThumb", { bg = colors.inactive })
+hl("BlinkCmpScrollBarGutter", { bg = colors.bg_float })
+
+-- Label Rendering
+hl("BlinkCmpLabel", { fg = colors.fg })
+hl("BlinkCmpLabelMatch", { fg = colors.light_blue, bold = true })
+hl("BlinkCmpLabelDetail", { fg = colors.inactive })
+hl("BlinkCmpLabelDescription", { fg = colors.inactive })
+hl("BlinkCmpSource", { fg = colors.cyan, italic = true })
+hl("BlinkCmpGhostText", { fg = colors.inactive })
+
+-- Documentation Window
+hl("BlinkCmpDoc", { fg = colors.fg, bg = colors.bg_float })
+hl("BlinkCmpDocBorder", { fg = colors.bg_float, bg = colors.bg_float })
+hl("BlinkCmpDocSeparator", { fg = colors.bg })
+
+-- Kinds (Icons)
+hl("BlinkCmpKind", { fg = colors.blue })
+hl("BlinkCmpKindVariable", { fg = colors.light_blue })
+hl("BlinkCmpKindFunction", { fg = colors.yellow })
+hl("BlinkCmpKindMethod", { fg = colors.yellow })
+hl("BlinkCmpKindKeyword", { fg = colors.blue })
+hl("BlinkCmpKindProperty", { fg = colors.light_blue })
+hl("BlinkCmpKindInterface", { fg = colors.cyan })
+hl("BlinkCmpKindTypeParameter", { fg = colors.cyan })
+
+-- Signature Help
+hl("BlinkCmpSignatureHelp", { fg = colors.fg, bg = colors.bg_float })
+hl("BlinkCmpSignatureHelpBorder", { fg = colors.bg_float, bg = colors.bg_float })
+hl("BlinkCmpSignatureHelpActiveParameter", { fg = colors.yellow, bold = true })

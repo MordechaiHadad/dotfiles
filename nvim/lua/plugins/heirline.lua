@@ -327,22 +327,20 @@ return {
         }
 
         local winbar = {
-            {
-                condition = function()
-                    return conditions.buffer_matches({
-                        filetype = { "toggleterm", "Trouble" },
-                        buftype = {
-                            "terminal",
-                            "prompt",
-                            "help",
-                            "nofile",
-                        },
-                    })
-                end,
-                init = function()
+            condition = function()
+                local bufnr = 0
+                local buftype = vim.bo[bufnr].buftype
+                local filetype = vim.bo[bufnr].filetype
+
+                -- If it's a float, a terminal, a prompt (Blink/Telescope), or empty...
+                if vim.api.nvim_win_get_config(0).relative ~= ""
+                    or buftype ~= "" -- "" is a normal file
+                    or filetype == "" then
                     vim.opt_local.winbar = nil
-                end,
-            },
+                    return false
+                end
+                return true
+            end,
             BufferComponent,
             ExplorerComponent,
             alignment(1),
@@ -353,18 +351,6 @@ return {
             hl = { bg = colors.line_color },
         }
 
-        require("heirline").setup({ statusline = statusline, winbar = winbar })
-
-        vim.api.nvim_create_autocmd("User", {
-            pattern = "HeirlineInitWinbar",
-            callback = function(args)
-                local buf = args.buf
-                local buftype = vim.tbl_contains({ "prompt", "nofile", "help", "quickfix" }, vim.bo[buf].buftype)
-                local filetype = vim.tbl_contains({ "gitcommit", "fugitive" }, vim.bo[buf].filetype)
-                if buftype or filetype then
-                    vim.opt_local.winbar = nil
-                end
-            end,
-        })
+        require("heirline").setup({ statusline = statusline })
     end
 }

@@ -1,18 +1,25 @@
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.diagnostic.config({
     signs = false,
+
+    -- Enable virtual text (the text at the end of the line)
+    virtual_text = {
+        spacing = 4,
+        prefix = "●",
+    },
+
     update_in_insert = true,
-    virtual_text = false,
+
     severity_sort = true,
+
+    -- Floating window settings (e.g., when you hover over an error)
+    float = {
+        border = "single",
+        source = "always", -- Shows which LSP sent the error (rust_analyzer, etc.)
+    },
 })
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "single",
-})
-
-
 -- Neovim 0.11+: set global defaults for *all* LSP servers.
 if vim.lsp and vim.lsp.config then
-  vim.lsp.config("*", {
-    capabilities = require("blink.cmp").get_lsp_capabilities(),
-  })
+    vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+    })
 end
