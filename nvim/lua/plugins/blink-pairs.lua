@@ -27,26 +27,26 @@ return {
       pairs = {},
     },
     highlights = {
-      enabled = true,
+      enabled = false,
       -- requires require('vim._extui').enable({}), otherwise has no effect
-      cmdline = true,
-      groups = {
-        'BlinkPairsOrange',
-        'BlinkPairsPurple',
-        'BlinkPairsBlue',
-      },
-      unmatched_group = 'BlinkPairsUnmatched',
-
-      -- highlights matching pairs under the cursor
-      matchparen = {
-        enabled = true,
-        -- known issue where typing won't update matchparen highlight, disabled by default
-        cmdline = false,
-        -- also include pairs not on top of the cursor, but surrounding the cursor
-        include_surrounding = false,
-        group = 'BlinkPairsMatchParen',
-        priority = 250,
-      },
+      -- cmdline = true,
+      -- groups = {
+      --   'BlinkPairsOrange',
+      --   'BlinkPairsPurple',
+      --   'BlinkPairsBlue',
+      -- },
+      -- unmatched_group = 'BlinkPairsUnmatched',
+      --
+      -- -- highlights matching pairs under the cursor
+      -- matchparen = {
+      --   enabled = true,
+      --   -- known issue where typing won't update matchparen highlight, disabled by default
+      --   cmdline = false,
+      --   -- also include pairs not on top of the cursor, but surrounding the cursor
+      --   include_surrounding = false,
+      --   group = 'BlinkPairsMatchParen',
+      --   priority = 250,
+      -- },
     },
     debug = false,
   }

@@ -1,6 +1,4 @@
 -- colors/papadark.lua
--- Native highlight version of themer.lua theme: papa_dark.lua (papa_dark/papadark).
-
 vim.g.colors_name = "papadark"
 vim.o.termguicolors = true
 
@@ -8,240 +6,222 @@ local function hl(group, spec)
     vim.api.nvim_set_hl(0, group, spec)
 end
 
-local colors = {
-    bg = "#2e3440",
-    fg = "#E5E9F0",
-    bg_alt = "#2b2e36",
-    bg_float = "#3B4048",
-    inactive = "#4C566A",
-    subtle = "#4c566a",
-    red = "#d94848",
-    yellow = "#d4d198",
-    orange = "#d08770",
-    blue = "#5d8ac2",
-    green = "#98C379",
+local function blend(foreground, background, alpha)
+    alpha = type(alpha) == "number" and alpha or 0.8
+    local function hexToRgb(c)
+        c = c:gsub("#", "")
+        return tonumber(c:sub(1, 2), 16), tonumber(c:sub(3, 4), 16), tonumber(c:sub(5, 6), 16)
+    end
+    local fgR, fgG, fgB = hexToRgb(foreground)
+    local bgR, bgG, bgB = hexToRgb(background)
+    local r = math.floor(fgR * alpha + bgR * (1 - alpha))
+    local g = math.floor(fgG * alpha + bgG * (1 - alpha))
+    local b = math.floor(fgB * alpha + bgB * (1 - alpha))
+    return string.format("#%02x%02x%02x", r, g, b)
+end
+
+local palette = {
+    base00  = "#2e3440", -- Primary BG
+    base01  = "#2b2e36", -- Alt BG
+    base02  = "#3b4252", -- Selection / Line Color
+    base03  = "#3e4452", -- Float BG / Visual Grey
+    base04  = "#4c566a", -- Inactive / Muted
+    base05  = "#e5e9f0", -- Primary FG
+    red     = "#d94848",
+    orange  = "#d08770",
+    yellow  = "#d4d198",
+    green   = "#98c379",
+    cyan    = "#4ec9b0",
+    blue    = "#5d8ac2",
     magenta = "#c487b9",
-    highlight = "#434c5e",
-    highlight_overlay = "#434c5e",
-    highlight_inactive = "#3e4452",
-    comment = "#699856",
-    light_blue = "#8fc6e3",
-    cyan = "#4EC9B0",
-    vertsplit = "#373e4a",
-    number = "#B4CDA8",
-    string = "#A3BE8C",
-    line_number = "#4C566A",
-    line_color = "#3B4252",
-    visual_grey = "#3E4452",
-    interface_color = "#84D9AA",
-    light_blue_dimmed = "#7cabbd"
+    sky     = "#8fc6e3", -- light_blue
+    mint    = "#84d9aa", -- interface_color
+    moss    = "#b4cda8", -- number
 }
 
--- Base remaps
+local sky_dim = blend(palette.sky, palette.base00, 0.8)
+
+local colors = {
+    bg      = palette.base00,
+    fg      = palette.base05,
+    surface = palette.base01,
+    overlay = palette.base02,
+    float   = palette.base03,
+    muted   = palette.base04,
+    unused  = sky_dim,
+    syntax  = {
+        keyword  = palette.blue,
+        func     = palette.yellow,
+        string   = palette.green,
+        type     = palette.cyan,
+        variable = palette.sky,
+        number   = palette.moss,
+        comment  = "#699856"
+    }
+}
+
+-- [ Base Editor Highlights ]
 hl("Normal", { fg = colors.fg, bg = colors.bg })
-hl("ColorColumn", { fg = colors.red })
-hl("CursorLine", { bg = colors.line_color })
+hl("ColorColumn", { fg = palette.red })
+hl("CursorLine", { bg = colors.overlay })
 hl("CursorLineNr", { fg = colors.fg })
-hl("Directory", { fg = colors.blue })
+hl("Directory", { fg = palette.blue })
 hl("EndOfBuffer", { fg = colors.bg })
-hl("ErrorMsg", { fg = colors.fg, bg = colors.red })
-hl("VertSplit", { fg = colors.vertsplit, bg = colors.bg })
-hl("Folded", { fg = colors.comment })
-hl("IncSearch", { fg = colors.yellow, bg = colors.comment })
-hl("MatchParen", { fg = colors.fg, bg = colors.blue })
-hl("NonText", { fg = colors.blue })
-hl("Search", { bg = colors.blue })
-hl("TabLine", { fg = colors.comment })
+hl("ErrorMsg", { fg = colors.fg, bg = palette.red })
+hl("VertSplit", { fg = colors.surface, bg = colors.bg })
+hl("Folded", { fg = colors.syntax.comment })
+hl("IncSearch", { fg = palette.yellow, bg = colors.syntax.comment })
+hl("MatchParen", { fg = colors.fg, bg = palette.blue })
+hl("NonText", { fg = palette.blue })
+hl("Search", { bg = palette.blue })
+hl("TabLine", { fg = colors.syntax.comment })
 hl("TabLineSel", { fg = colors.fg })
 hl("TabLineFill", { bg = colors.bg })
-hl("Visual", { bg = colors.visual_grey })
-hl("WarningMsg", { fg = colors.yellow })
+hl("Visual", { bg = colors.float })
+hl("WarningMsg", { fg = palette.yellow })
 hl("Whitespace", { fg = colors.fg })
 hl("FloatBorder", { fg = colors.fg })
-hl("Comment", { fg = colors.comment, italic = true })
-hl("VertSplit", { fg = colors.vertsplit })
-hl("NeoTreeVertSplit", { fg = colors.vertsplit })
+hl("Comment", { fg = colors.syntax.comment, italic = true })
+hl("NeoTreeVertSplit", { fg = colors.surface })
 
-hl("Constant", { fg = colors.blue })
--- themer linked Character -> String, but base remaps didn't define String.
--- define String so the link has an actual target.
-hl("String", { fg = colors.string })
+-- [ Standard Syntax ]
+hl("Constant", { fg = palette.blue })
+hl("String", { fg = colors.syntax.string })
 hl("Character", { link = "String" })
-hl("Number", { fg = colors.number })
+hl("Number", { fg = colors.syntax.number })
 hl("Boolean", { link = "Constant" })
 hl("Float", { link = "Number" })
-hl("Identifier", { fg = colors.light_blue })
-hl("Function", { fg = colors.yellow })
-hl("Statement", { fg = colors.blue })
+hl("Identifier", { fg = colors.syntax.variable })
+hl("Function", { fg = colors.syntax.func })
+hl("Statement", { fg = palette.blue })
 hl("PreProc", { link = "Statement" })
-hl("Type", { fg = colors.cyan })
-hl("Special", { fg = colors.blue })
+hl("Type", { fg = colors.syntax.type })
+hl("Special", { fg = palette.blue })
+hl("Keyword", { fg = palette.blue })
+hl("Error", { fg = colors.fg, bg = palette.red })
 
--- themer links TS groups to Keyword and Error; ensure those exist
-hl("Keyword", { fg = colors.blue })
-hl("Error", { fg = colors.fg, bg = colors.red })
+-- [ Treesitter (@ and TS groups) ]
+local ts_groups = {
+    ["@boolean"] = "Boolean",
+    ["TSBoolean"] = "Boolean",
+    ["@character"] = "Character",
+    ["TSCharacter"] = "Character",
+    ["@constant"] = "Constant",
+    ["TSConstant"] = "Constant",
+    ["@error"] = "Error",
+    ["TSError"] = "Error",
+    ["@function"] = "Function",
+    ["TSFunction"] = "Function",
+    ["@function.builtin"] = "Function",
+    ["TSFuncBuiltin"] = "Function",
+    ["@function.macro"] = "Function",
+    ["TSFuncMacro"] = "Function",
+    ["@method"] = "Function",
+    ["TSMethod"] = "Function",
+    ["@keyword.function"] = "Keyword",
+    ["TSKeywordFunction"] = "Keyword",
+    ["@conditional"] = "Keyword",
+    ["TSConditional"] = "Keyword",
+    ["@constant.builtin"] = "Keyword",
+    ["TSConstBuiltin"] = "Keyword",
+    ["@include"] = "Keyword",
+    ["TSInclude"] = "Keyword",
+    ["@variable.builtin"] = "Keyword",
+    ["TSVariableBuiltin"] = "Keyword",
+    ["@tag"] = "Keyword",
+    ["TSTag"] = "Keyword",
+    ["@text.title"] = "String",
+    ["TSTitle"] = "String",
+    ["@label"] = "String",
+    ["TSLabel"] = "String",
+}
+for group, target in pairs(ts_groups) do hl(group, { link = target }) end
 
--- Plugins: treesitter (new @ groups + old TS* groups)
-hl("@boolean", { link = "Boolean" })
-hl("TSBoolean", { link = "Boolean" })
+hl("@field", { fg = colors.syntax.variable })
+hl("TSField", { fg = colors.syntax.variable })
+hl("@property", { link = "@field" })
+hl("TSProperty", { link = "@field" })
+hl("@variable", { link = "@field" })
+hl("TSVariable", { link = "@field" })
+hl("@namespace", { fg = colors.syntax.type })
+hl("TSNamespace", { fg = colors.syntax.type })
+hl("@type", { fg = colors.syntax.type })
+hl("TSType", { fg = colors.syntax.type })
+hl("@type.builtin", { fg = palette.blue })
+hl("TSTypeBuiltin", { fg = palette.blue })
+hl("@keyword", { fg = palette.blue })
+hl("TSKeyword", { fg = palette.blue })
+hl("@punctuation.bracket", { fg = palette.blue })
+hl("TSPunctBracket", { fg = palette.blue })
+hl("@constructor", { fg = palette.blue })
+hl("TSConstructor", { fg = palette.blue })
 
-hl("@character", { link = "Character" })
-hl("TSCharacter", { link = "Character" })
+-- [ Plugins: Gitsigns ]
+hl("GitSignsChange", { fg = palette.yellow, bg = colors.bg })
+hl("GitSignsDelete", { fg = palette.red })
 
-hl("@constant", { link = "Constant" })
-hl("TSConstant", { link = "Constant" })
-
-hl("@error", { link = "Error" })
-hl("TSError", { link = "Error" })
-
-hl("@field", { fg = colors.light_blue })
-hl("TSField", { fg = colors.light_blue })
-
-hl("@function", { link = "Function" })
-hl("TSFunction", { link = "Function" })
-
-hl("@function.builtin", { link = "Function" })
-hl("TSFuncBuiltin", { link = "Function" })
-
-hl("@function.macro", { link = "Function" })
-hl("TSFuncMacro", { link = "Function" })
-
-hl("@namespace", { fg = colors.cyan })
-hl("TSNamespace", { fg = colors.cyan })
-
-hl("@type", { fg = colors.cyan })
-hl("TSType", { fg = colors.cyan })
-
-hl("@type.builtin", { fg = colors.blue })
-hl("TSTypeBuiltin", { fg = colors.blue })
-
-hl("@variable", { link = "TSField" })
-hl("TSVariable", { link = "TSField" })
-
-hl("@property", { link = "TSField" })
-hl("TSProperty", { link = "TSField" })
-
-hl("@keyword", { fg = colors.blue })
-hl("TSKeyword", { fg = colors.blue })
-
-hl("@punctuation.bracket", { fg = colors.blue })
-hl("TSPunctBracket", { fg = colors.blue })
-
-hl("@constructor", { fg = colors.blue })
-hl("TSConstructor", { fg = colors.blue })
-
-hl("@method", { link = "Function" })
-hl("TSMethod", { link = "Function" })
-
-hl("@keyword.function", { link = "Keyword" })
-hl("TSKeywordFunction", { link = "Keyword" })
-
-hl("@conditional", { link = "Keyword" })
-hl("TSConditional", { link = "Keyword" })
-
-hl("@constant.builtin", { link = "Keyword" })
-hl("TSConstBuiltin", { link = "Keyword" })
-
-hl("@include", { link = "Keyword" })
-hl("TSInclude", { link = "Keyword" })
-
-hl("@variable.builtin", { link = "Keyword" })
-hl("TSVariableBuiltin", { link = "Keyword" })
-
-hl("@tag", { link = "Keyword" })
-hl("TSTag", { link = "Keyword" })
-
-hl("@text.title", { link = "String" })
-hl("TSTitle", { link = "String" })
-
-hl("@label", { link = "String" })
-hl("TSLabel", { link = "String" })
-
--- Plugins: gitsigns
-hl("GitSignsChange", { fg = colors.yellow, bg = colors.bg })
-hl("GitSignsDelete", { fg = colors.red })
-
--- Plugins: cmp
-hl("CmpItemKind", { fg = colors.blue })
-hl("CmpItemKindVariable", { fg = colors.light_blue })
+-- [ Plugins: CMP ]
+hl("CmpItemKind", { fg = palette.blue })
+hl("CmpItemKindVariable", { fg = colors.syntax.variable })
 hl("CmpItemAbbr", { fg = colors.fg })
-hl("CmpItemAbbrMatch", { fg = colors.light_blue })
-hl("CmpItemMenu", { fg = colors.blue })
+hl("CmpItemAbbrMatch", { fg = colors.syntax.variable })
+hl("CmpItemMenu", { fg = palette.blue })
 
--- Plugins: trouble
-hl("TroubleSignError", { fg = colors.red })
-hl("TroubleSignWarning", { fg = colors.yellow })
+-- [ Plugins: Trouble ]
+hl("TroubleSignError", { fg = palette.red })
+hl("TroubleSignWarning", { fg = palette.yellow })
 
--- Plugins: nvim-tree
-hl("NvimTreeRootFolder", { fg = colors.light_blue })
-hl("NvimTreeFileDeleted", { fg = colors.red })
-hl("NvimTreeGitDeleted", { fg = colors.red })
-hl("NvimTreeGitDirty", { fg = colors.yellow })
+-- [ Plugins: Nvim-Tree ]
+hl("NvimTreeRootFolder", { fg = colors.syntax.variable })
+hl("NvimTreeFileDeleted", { fg = palette.red })
+hl("NvimTreeGitDeleted", { fg = palette.red })
+hl("NvimTreeGitDirty", { fg = palette.yellow })
 
--- Plugins: telescope
-hl("TelescopeSelection", { bg = colors.highlight_overlay })
-hl("TelescopeMatching", { fg = colors.blue })
-hl("TelescopeBorder", { fg = colors.bg_alt, bg = colors.bg_alt })
-hl("TelescopePromptPrefix", { fg = colors.blue, bg = colors.bg_alt })
-hl("TelescopeResultsTitle", { fg = colors.bg_alt, bg = colors.blue })
-hl("TelescopePreviewTitle", { fg = colors.bg_alt, bg = colors.green })
-hl("TelescopePromptTitle", { fg = colors.bg_alt, bg = colors.yellow })
-hl("TelescopePreviewNormal", { bg = colors.bg_alt })
-hl("TelescopeResultsNormal", { bg = colors.bg_alt })
-hl("TelescopePromptNormal", { fg = colors.fg, bg = colors.bg_alt })
-hl("TelescopePromptBorder", { fg = colors.bg, bg = colors.bg_alt })
-hl("TelescopeSelectionCaret", { fg = colors.bg_alt, bg = colors.bg_alt })
+-- [ Plugins: Telescope ]
+hl("TelescopeSelection", { bg = colors.float })
+hl("TelescopeMatching", { fg = palette.blue })
+hl("TelescopeBorder", { fg = colors.surface, bg = colors.surface })
+hl("TelescopePromptPrefix", { fg = palette.blue, bg = colors.surface })
+hl("TelescopeResultsTitle", { fg = colors.surface, bg = palette.blue })
+hl("TelescopePreviewTitle", { fg = colors.surface, bg = palette.green })
+hl("TelescopePromptTitle", { fg = colors.surface, bg = palette.yellow })
+hl("TelescopePreviewNormal", { bg = colors.surface })
+hl("TelescopeResultsNormal", { bg = colors.surface })
+hl("TelescopePromptNormal", { fg = colors.fg, bg = colors.surface })
+hl("TelescopePromptBorder", { fg = colors.bg, bg = colors.surface })
+hl("TelescopeSelectionCaret", { fg = colors.surface, bg = colors.surface })
 
--- Plugins: lsp underline (themer used style="underline" and sp=...)
-hl("DiagnosticUnderlineWarn", { undercurl = true, sp = colors.yellow })
-hl("DiagnosticUnderlineHint", { undercurl = true, sp = colors.light_blue })
-hl("DiagnosticUnnecessary", { fg = colors.light_blue_dimmed })
-
--- langs.md
-hl("markdownCode", { fg = colors.string })
-
-
--- Rust attribute / decorator semantic tokens -> Function (yellow)
-hl("@lsp.type.decorator.rust", { link = "Function" })
-hl("@lsp.typemod.decorator.attribute.rust", { link = "Function" })
-hl("@function.attribute.rust", { link = "Function" })
-
--- Generic fallback (for other languages/servers)
+-- [ LSP & Markdown ]
+hl("DiagnosticUnderlineWarn", { undercurl = true, sp = palette.yellow })
+hl("DiagnosticUnderlineHint", { undercurl = true, sp = palette.sky })
+hl("DiagnosticUnnecessary", { fg = colors.unused })
+hl("markdownCode", { fg = colors.syntax.string })
 hl("@lsp.type.decorator", { link = "Function" })
 hl("@lsp.typemod.decorator.attribute", { link = "Function" })
 
--- Plugins: blink.cmp
--- Main Menu
-hl("BlinkCmpMenu", { fg = colors.fg, bg = colors.bg_float })
-hl("BlinkCmpMenuBorder", { fg = colors.bg_float, bg = colors.bg_float }) -- Clean, borderless look
-hl("BlinkCmpMenuSelection", { bg = colors.highlight_overlay, bold = true })
-hl("BlinkCmpScrollBarThumb", { bg = colors.inactive })
-hl("BlinkCmpScrollBarGutter", { bg = colors.bg_float })
-
--- Label Rendering
+-- [ Plugins: Blink.cmp ]
+hl("BlinkCmpMenu", { fg = colors.fg, bg = colors.float })
+hl("BlinkCmpMenuBorder", { fg = colors.float, bg = colors.float })
+hl("BlinkCmpMenuSelection", { bg = colors.float, bold = true })
+hl("BlinkCmpScrollBarThumb", { bg = colors.muted })
+hl("BlinkCmpScrollBarGutter", { bg = colors.float })
 hl("BlinkCmpLabel", { fg = colors.fg })
-hl("BlinkCmpLabelMatch", { fg = colors.light_blue, bold = true })
-hl("BlinkCmpLabelDetail", { fg = colors.inactive })
-hl("BlinkCmpLabelDescription", { fg = colors.inactive })
-hl("BlinkCmpSource", { fg = colors.cyan, italic = true })
-hl("BlinkCmpGhostText", { fg = colors.inactive })
-
--- Documentation Window
-hl("BlinkCmpDoc", { fg = colors.fg, bg = colors.bg_float })
-hl("BlinkCmpDocBorder", { fg = colors.bg_float, bg = colors.bg_float })
+hl("BlinkCmpLabelMatch", { fg = colors.syntax.variable, bold = true })
+hl("BlinkCmpLabelDetail", { fg = colors.muted })
+hl("BlinkCmpLabelDescription", { fg = colors.muted })
+hl("BlinkCmpSource", { fg = colors.syntax.type, italic = true })
+hl("BlinkCmpGhostText", { fg = colors.muted })
+hl("BlinkCmpDoc", { fg = colors.fg, bg = colors.float })
+hl("BlinkCmpDocBorder", { fg = colors.float, bg = colors.float })
 hl("BlinkCmpDocSeparator", { fg = colors.bg })
-
--- Kinds (Icons)
-hl("BlinkCmpKind", { fg = colors.blue })
-hl("BlinkCmpKindVariable", { fg = colors.light_blue })
-hl("BlinkCmpKindFunction", { fg = colors.yellow })
-hl("BlinkCmpKindMethod", { fg = colors.yellow })
-hl("BlinkCmpKindKeyword", { fg = colors.blue })
-hl("BlinkCmpKindProperty", { fg = colors.light_blue })
-hl("BlinkCmpKindInterface", { fg = colors.cyan })
-hl("BlinkCmpKindTypeParameter", { fg = colors.cyan })
-
--- Signature Help
-hl("BlinkCmpSignatureHelp", { fg = colors.fg, bg = colors.bg_float })
-hl("BlinkCmpSignatureHelpBorder", { fg = colors.bg_float, bg = colors.bg_float })
-hl("BlinkCmpSignatureHelpActiveParameter", { fg = colors.yellow, bold = true })
+hl("BlinkCmpKind", { fg = palette.blue })
+hl("BlinkCmpKindVariable", { fg = colors.syntax.variable })
+hl("BlinkCmpKindFunction", { fg = colors.syntax.func })
+hl("BlinkCmpKindMethod", { fg = colors.syntax.func })
+hl("BlinkCmpKindKeyword", { fg = palette.blue })
+hl("BlinkCmpKindProperty", { fg = colors.syntax.variable })
+hl("BlinkCmpKindInterface", { fg = colors.syntax.type })
+hl("BlinkCmpKindTypeParameter", { fg = colors.syntax.type })
+hl("BlinkCmpSignatureHelp", { fg = colors.fg, bg = colors.float })
+hl("BlinkCmpSignatureHelpBorder", { fg = colors.float, bg = colors.float })
+hl("BlinkCmpSignatureHelpActiveParameter", { fg = palette.yellow, bold = true })
