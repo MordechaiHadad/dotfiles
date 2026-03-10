@@ -23,32 +23,33 @@ autocmd({ "FileType" }, {
 
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function(args)
-    pcall(vim.treesitter.start, args.buf)
-  end,
+    pattern = "*",
+    callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+    end,
 })
 
-local group = vim.api.nvim_create_augroup("AutoRoot", { clear = true })
+-- REASON FOR COMMENTED: Currently using maintained project.nvim
+-- local group = vim.api.nvim_create_augroup("AutoRoot", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  group = group,
-  callback = function(args)
-    local buf = args.buf
-    local name = vim.api.nvim_buf_get_name(buf)
-    if name == "" then return end
-
-    local root = vim.fs.root(buf, ".git")
-    if root then
-      -- Use window-local cwd so splits can have different roots if needed
-      vim.fn.chdir(root) -- or vim.cmd.lcd(root) if you prefer per-window cwd
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+--   group = group,
+--   callback = function(args)
+--     local buf = args.buf
+--     local name = vim.api.nvim_buf_get_name(buf)
+--     if name == "" then return end
+--
+--     local root = vim.fs.root(buf, ".git")
+--     if root then
+--       -- Use window-local cwd so splits can have different roots if needed
+--       vim.fn.chdir(root) -- or vim.cmd.lcd(root) if you prefer per-window cwd
+--     end
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "mise.toml", ".mise.toml", ".env.*" },
-  callback = function()
-    vim.b.copilot_enabled = false
-  end,
+    pattern = { "mise.toml", ".mise.toml", ".env.*" },
+    callback = function()
+        vim.b.copilot_enabled = false
+    end,
 })

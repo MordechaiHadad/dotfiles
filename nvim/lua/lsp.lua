@@ -2,10 +2,10 @@ vim.diagnostic.config({
     signs = false,
 
     -- Enable virtual text (the text at the end of the line)
-    virtual_text = {
-        spacing = 4,
-        prefix = "●",
-    },
+    -- virtual_text = {
+    --     spacing = 4,
+    --     prefix = "●",
+    -- },
 
     update_in_insert = true,
 
