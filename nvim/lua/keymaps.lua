@@ -19,6 +19,7 @@ keymap("n", "fw", ":Telescope live_grep<CR>", opts)
 
 -- LSP Keymaps
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definitions
+keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", opts) -- Rename symbol
 
 -- Terminal keymaps
 keymap("n", "<C-`>", function() Snacks.terminal.toggle() end)

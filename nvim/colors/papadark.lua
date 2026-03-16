@@ -20,6 +20,7 @@ local function blend(foreground, background, alpha)
     return string.format("#%02x%02x%02x", r, g, b)
 end
 
+
 local palette = {
     base00  = "#2e3440", -- Primary BG
     base01  = "#2b2e36", -- Alt BG

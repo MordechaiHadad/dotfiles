@@ -11,8 +11,8 @@ return {
             grey = "#3B4048",
             purple = "#c487b9",
             red = "#d94848",
-            light_blue = "#8fc6e3",
-            blue_green = "#4EC9B0",
+            sky = "#8fc6e3",
+            cyan = "#4EC9B0",
             line_color = "#353c4a",
         }
 
@@ -268,7 +268,7 @@ return {
             FileEncodingComponent,
             FileTypeComponent,
             ModeComponent,
-            hl = { bg = colors.line_color },
+            hl = { bg = colors.line_color, fg = colors.fg },
         }
 
         local function split(path, delimiter)
