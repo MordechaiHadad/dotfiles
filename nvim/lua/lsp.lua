@@ -18,8 +18,9 @@ vim.diagnostic.config({
     },
 })
 -- Neovim 0.11+: set global defaults for *all* LSP servers.
-if vim.lsp and vim.lsp.config then
+local blink_ok, blink = pcall(require, "blink")
+if vim.lsp and vim.lsp.config and blink_ok then
     vim.lsp.config("*", {
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
+        capabilities = blink.get_lsp_capabilities(),
     })
 end

@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
-local whichkey = require("which-key")
 
 -- General Keymaps
 keymap("n", "<Leader>e", ":Neotree<CR>", opts)          -- Open file explorer
@@ -22,7 +21,7 @@ keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definition
 keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", opts) -- Rename symbol
 
 -- Terminal keymaps
-keymap("n", "<C-`>", function() Snacks.terminal.toggle() end)
+keymap("n", "<C-/>", function() Snacks.terminal.toggle() end)
 
 -- fuck you deleted bullshit
 keymap("n", "dd", '"_dd', opts)
@@ -39,6 +38,9 @@ keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opts)
 
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>") -- Exit search mode
 
+local whichkey_ok, whichkey = pcall(require, "which-key")
+
+if whichkey_ok then
 -- Which key base
 whichkey.add({
     {
@@ -60,3 +62,7 @@ whichkey.add({
     { "<leader>tl", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)" },
     { "<leader>tq", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)" },
 })
+end
+
+
+
