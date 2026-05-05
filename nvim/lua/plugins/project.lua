@@ -1,6 +1,8 @@
 return {
   'DrKJeff16/project.nvim',
-  log = { enabled = true },
+  opts = {
+      log = { enabled = true }
+  },
   dependencies = { -- OPTIONAL. Choose any of the following
     {
       'nvim-telescope/telescope.nvim',
