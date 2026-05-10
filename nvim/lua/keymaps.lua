@@ -18,7 +18,7 @@ keymap("n", "fw", ":Telescope live_grep<CR>", opts)
 
 -- LSP Keymaps
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definitions
-keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", opts) -- Rename symbol
+keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", opts)  -- Rename symbol
 
 -- Terminal keymaps
 keymap("n", "<C-/>", function() Snacks.terminal.toggle() end)
@@ -41,28 +41,31 @@ keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>") -- Exit search mode
 local whichkey_ok, whichkey = pcall(require, "which-key")
 
 if whichkey_ok then
--- Which key base
-whichkey.add({
-    {
-        "<leader>f",
-        function()
-            vim.lsp.buf.format({ async = true })
-        end,
-        desc = "format buffer"
-    },
-})
+    -- Which key base
+    whichkey.add({
+        {
+            "<leader>f",
+            function()
+                vim.lsp.buf.format({ async = true })
+            end,
+            desc = "format buffer"
+        },
+    })
 
--- Which key trouble
-whichkey.add({
-    { "<leader>t",  group = "trouble" },
-    { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)" },
-    { "<leader>tT", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)" },
-    { "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)" },
-    { "<leader>tr", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / References (Trouble)" },
-    { "<leader>tl", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)" },
-    { "<leader>tq", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)" },
-})
+    -- Which key trouble
+    whichkey.add({
+        { "<leader>t",  group = "trouble" },
+        { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)" },
+        { "<leader>tT", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)" },
+        { "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)" },
+        { "<leader>tr", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / References (Trouble)" },
+        { "<leader>tl", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)" },
+        { "<leader>tq", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)" },
+    })
+
+    whichkey.add({
+        {"<leader>c", group = "code actions"},
+        {"<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action"},
+        {"<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename Symbol"},
+    })
 end
-
-
-
