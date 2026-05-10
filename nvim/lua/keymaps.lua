@@ -69,5 +69,6 @@ if whichkey_ok then
         { "<leader>c",  group = "code actions" },
         { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
         { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>",      desc = "Rename Symbol" },
+        { "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>",       desc = "Hover" },
     })
 end
