@@ -199,6 +199,7 @@ hl("DiagnosticUnnecessary", { fg = colors.unused })
 hl("markdownCode", { fg = colors.syntax.string })
 hl("@lsp.type.decorator", { link = "Function" })
 hl("@lsp.typemod.decorator.attribute", { link = "Function" })
+hl("@lsp.type.macro.rust", { link = "Function" })
 
 -- [ Plugins: Blink.cmp ]
 hl("BlinkCmpMenu", { fg = colors.fg, bg = colors.float })
