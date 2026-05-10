@@ -177,7 +177,7 @@ return {
             condition = conditions.has_diagnostics,
             on_click = {
                 callback = function()
-                    require("trouble").toggle({ mode = "document_diagnostics" })
+                    require("trouble").toggle("diagnostics")
                 end,
                 name = "toggle_trouble",
             },
