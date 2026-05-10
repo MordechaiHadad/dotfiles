@@ -235,3 +235,6 @@ hl("MiniCursorwordCurrent", { bg = colors.overlay, bold = true })
 
 -- [ Plugins: Snacks ]
 hl("SnacksIndent", { fg = colors.muted })
+
+-- [ Plugins: Treesitter-Context ]
+hl("TreesitterContext", { bg = colors.bg })
