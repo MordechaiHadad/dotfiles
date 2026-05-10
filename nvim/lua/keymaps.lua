@@ -21,7 +21,9 @@ keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definition
 keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", opts)  -- Rename symbol
 
 -- Terminal keymaps
-keymap("n", "<C-/>", function() Snacks.terminal.toggle() end)
+keymap("n", "<A-t>", function() Snacks.terminal.toggle() end, {
+    desc = "Toggle terminal"
+})
 
 -- fuck you deleted bullshit
 keymap("n", "dd", '"_dd', opts)
@@ -64,8 +66,8 @@ if whichkey_ok then
     })
 
     whichkey.add({
-        {"<leader>c", group = "code actions"},
-        {"<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action"},
-        {"<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename Symbol"},
+        { "<leader>c",  group = "code actions" },
+        { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+        { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>",      desc = "Rename Symbol" },
     })
 end

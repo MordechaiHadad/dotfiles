@@ -232,3 +232,6 @@ hl("BlinkCmpSignatureHelpActiveParameter", { fg = palette.yellow, bold = true })
 -- [ Plugins: mini-cursorword ]
 hl("MiniCursorword", { bg = colors.overlay })
 hl("MiniCursorwordCurrent", { bg = colors.overlay, bold = true })
+
+-- [ Plugins: Snacks ]
+hl("SnacksIndent", { fg = colors.muted })
