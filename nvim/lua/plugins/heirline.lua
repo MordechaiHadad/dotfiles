@@ -195,7 +195,7 @@ return {
                 condition = function(self)
                     return self.errors > 0
                 end,
-                provider = "",
+                provider = "",
                 hl = { fg = colors.red },
                 alignment(1),
                 {
@@ -210,7 +210,7 @@ return {
                 condition = function(self)
                     return self.warnings > 0
                 end,
-                provider = "",
+                provider = "",
                 hl = { fg = colors.yellow },
                 alignment(1),
                 {

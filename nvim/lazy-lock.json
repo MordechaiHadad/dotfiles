@@ -26,7 +26,7 @@
   "nvim-window-picker": { "branch": "main", "commit": "6382540b2ae5de6c793d4aa2e3fe6dbb518505ec" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "project.nvim": { "branch": "main", "commit": "715eae227f312c7693a467adcc29e67d3b3422e9" },
-  "rustaceanvim": { "branch": "master", "commit": "3ace64feb1ce3cf3c63e6297e1378a82fe548618" },
+  "rustaceanvim": { "branch": "master", "commit": "f69c85a955b9a83d495e3dc8d43adb6364a0b765" },
   "snacks.nvim": { "branch": "main", "commit": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" },
   "telescope.nvim": { "branch": "master", "commit": "5255aa27c422de944791318024167ad5d40aad20" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "147af4e49f51dd48f41972de26552872b8ba7b25" },
