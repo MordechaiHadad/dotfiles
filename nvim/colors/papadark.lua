@@ -195,7 +195,7 @@ hl("TelescopeSelectionCaret", { fg = colors.surface, bg = colors.surface })
 -- [ LSP & Markdown ]
 hl("DiagnosticUnderlineWarn", { undercurl = true, sp = palette.yellow })
 hl("DiagnosticUnderlineHint", { undercurl = true, sp = palette.sky })
-hl("DiagnosticUnnecessary", { fg = colors.unused })
+hl("DiagnosticUnnecessary", { fg = colors.unused, undercurl = true, sp = colors.unused })
 hl("markdownCode", { fg = colors.syntax.string })
 hl("@lsp.type.decorator", { link = "Function" })
 hl("@lsp.typemod.decorator.attribute", { link = "Function" })
