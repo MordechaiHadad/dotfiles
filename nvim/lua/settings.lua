@@ -34,3 +34,22 @@ vim.cmd("set shortmess+=c")
 vim.opt.foldlevel = 100
 
 vim.opt.laststatus = 3 -- Statusline
+
+-- Detect OS and Shell availability
+local is_windows = vim.fn.has("win32") == 1
+
+if is_windows then
+    -- Check if modern PowerShell (pwsh) is installed, else use Windows PowerShell
+    if vim.fn.executable("pwsh") == 1 then
+        vim.o.shell = "pwsh"
+    else
+        vim.o.shell = "powershell"
+    end
+
+    -- Essential flags to make PowerShell play nice with Neovim
+    vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.o.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    vim.o.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    vim.o.shellquote = ""
+    vim.o.shellxquote = ""
+end
