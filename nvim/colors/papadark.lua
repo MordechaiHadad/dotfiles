@@ -3,62 +3,61 @@ vim.g.colors_name = "papadark"
 vim.o.termguicolors = true
 
 local function hl(group, spec)
-    vim.api.nvim_set_hl(0, group, spec)
+	vim.api.nvim_set_hl(0, group, spec)
 end
 
 local function blend(foreground, background, alpha)
-    alpha = type(alpha) == "number" and alpha or 0.8
-    local function hexToRgb(c)
-        c = c:gsub("#", "")
-        return tonumber(c:sub(1, 2), 16), tonumber(c:sub(3, 4), 16), tonumber(c:sub(5, 6), 16)
-    end
-    local fgR, fgG, fgB = hexToRgb(foreground)
-    local bgR, bgG, bgB = hexToRgb(background)
-    local r = math.floor(fgR * alpha + bgR * (1 - alpha))
-    local g = math.floor(fgG * alpha + bgG * (1 - alpha))
-    local b = math.floor(fgB * alpha + bgB * (1 - alpha))
-    return string.format("#%02x%02x%02x", r, g, b)
+	alpha = type(alpha) == "number" and alpha or 0.8
+	local function hexToRgb(c)
+		c = c:gsub("#", "")
+		return tonumber(c:sub(1, 2), 16), tonumber(c:sub(3, 4), 16), tonumber(c:sub(5, 6), 16)
+	end
+	local fgR, fgG, fgB = hexToRgb(foreground)
+	local bgR, bgG, bgB = hexToRgb(background)
+	local r = math.floor(fgR * alpha + bgR * (1 - alpha))
+	local g = math.floor(fgG * alpha + bgG * (1 - alpha))
+	local b = math.floor(fgB * alpha + bgB * (1 - alpha))
+	return string.format("#%02x%02x%02x", r, g, b)
 end
 
-
 local palette = {
-    base00  = "#2e3440", -- Primary BG
-    base01  = "#2b2e36", -- Alt BG
-    base02  = "#3b4252", -- Selection / Line Color
-    base03  = "#3e4452", -- Float BG / Visual Grey
-    base04  = "#4c566a", -- Inactive / Muted
-    base05  = "#e5e9f0", -- Primary FG
-    red     = "#d94848",
-    orange  = "#d08770",
-    yellow  = "#d4d198",
-    green   = "#98c379",
-    cyan    = "#4ec9b0",
-    blue    = "#5d8ac2",
-    magenta = "#c487b9",
-    sky     = "#8fc6e3", -- light_blue
-    mint    = "#84d9aa", -- interface_color
-    moss    = "#b4cda8", -- number
+	base00 = "#2e3440", -- Primary BG
+	base01 = "#2b2e36", -- Alt BG
+	base02 = "#3b4252", -- Selection / Line Color
+	base03 = "#3e4452", -- Float BG / Visual Grey
+	base04 = "#4c566a", -- Inactive / Muted
+	base05 = "#e5e9f0", -- Primary FG
+	red = "#d94848",
+	orange = "#d08770",
+	yellow = "#d4d198",
+	green = "#98c379",
+	cyan = "#4ec9b0",
+	blue = "#5d8ac2",
+	magenta = "#c487b9",
+	sky = "#8fc6e3", -- light_blue
+	mint = "#84d9aa", -- interface_color
+	moss = "#b4cda8", -- number
 }
 
 local sky_dim = blend(palette.sky, palette.base00, 0.8)
 
 local colors = {
-    bg      = palette.base00,
-    fg      = palette.base05,
-    surface = palette.base01,
-    overlay = palette.base02,
-    float   = palette.base03,
-    muted   = palette.base04,
-    unused  = sky_dim,
-    syntax  = {
-        keyword  = palette.blue,
-        func     = palette.yellow,
-        string   = palette.green,
-        type     = palette.cyan,
-        variable = palette.sky,
-        number   = palette.moss,
-        comment  = "#699856"
-    }
+	bg = palette.base00,
+	fg = palette.base05,
+	surface = palette.base01,
+	overlay = palette.base02,
+	float = palette.base03,
+	muted = palette.base04,
+	unused = sky_dim,
+	syntax = {
+		keyword = palette.blue,
+		func = palette.yellow,
+		string = palette.green,
+		type = palette.cyan,
+		variable = palette.sky,
+		number = palette.moss,
+		comment = "#699856",
+	},
 }
 
 -- [ Base Editor Highlights ]
@@ -69,7 +68,7 @@ hl("CursorLineNr", { fg = colors.fg })
 hl("Directory", { fg = palette.blue })
 hl("EndOfBuffer", { fg = colors.bg })
 hl("ErrorMsg", { fg = colors.fg, bg = palette.red })
-hl("VertSplit", { fg = colors.surface, bg = colors.bg })
+hl("WinSeparator", { fg = colors.overlay, bg = colors.bg })
 hl("Folded", { fg = colors.syntax.comment })
 hl("IncSearch", { fg = palette.yellow, bg = colors.syntax.comment })
 hl("MatchParen", { fg = colors.fg, bg = palette.blue })
@@ -103,40 +102,42 @@ hl("Error", { fg = colors.fg, bg = palette.red })
 
 -- [ Treesitter (@ and TS groups) ]
 local ts_groups = {
-    ["@boolean"] = "Boolean",
-    ["TSBoolean"] = "Boolean",
-    ["@character"] = "Character",
-    ["TSCharacter"] = "Character",
-    ["@constant"] = "Constant",
-    ["TSConstant"] = "Constant",
-    ["@error"] = "Error",
-    ["TSError"] = "Error",
-    ["@function"] = "Function",
-    ["TSFunction"] = "Function",
-    ["@function.builtin"] = "Function",
-    ["TSFuncBuiltin"] = "Function",
-    ["@function.macro"] = "Function",
-    ["TSFuncMacro"] = "Function",
-    ["@method"] = "Function",
-    ["TSMethod"] = "Function",
-    ["@keyword.function"] = "Keyword",
-    ["TSKeywordFunction"] = "Keyword",
-    ["@conditional"] = "Keyword",
-    ["TSConditional"] = "Keyword",
-    ["@constant.builtin"] = "Keyword",
-    ["TSConstBuiltin"] = "Keyword",
-    ["@include"] = "Keyword",
-    ["TSInclude"] = "Keyword",
-    ["@variable.builtin"] = "Keyword",
-    ["TSVariableBuiltin"] = "Keyword",
-    ["@tag"] = "Keyword",
-    ["TSTag"] = "Keyword",
-    ["@text.title"] = "String",
-    ["TSTitle"] = "String",
-    ["@label"] = "String",
-    ["TSLabel"] = "String",
+	["@boolean"] = "Boolean",
+	["TSBoolean"] = "Boolean",
+	["@character"] = "Character",
+	["TSCharacter"] = "Character",
+	["@constant"] = "Constant",
+	["TSConstant"] = "Constant",
+	["@error"] = "Error",
+	["TSError"] = "Error",
+	["@function"] = "Function",
+	["TSFunction"] = "Function",
+	["@function.builtin"] = "Function",
+	["TSFuncBuiltin"] = "Function",
+	["@function.macro"] = "Function",
+	["TSFuncMacro"] = "Function",
+	["@method"] = "Function",
+	["TSMethod"] = "Function",
+	["@keyword.function"] = "Keyword",
+	["TSKeywordFunction"] = "Keyword",
+	["@conditional"] = "Keyword",
+	["TSConditional"] = "Keyword",
+	["@constant.builtin"] = "Keyword",
+	["TSConstBuiltin"] = "Keyword",
+	["@include"] = "Keyword",
+	["TSInclude"] = "Keyword",
+	["@variable.builtin"] = "Keyword",
+	["TSVariableBuiltin"] = "Keyword",
+	["@tag"] = "Keyword",
+	["TSTag"] = "Keyword",
+	["@text.title"] = "String",
+	["TSTitle"] = "String",
+	["@label"] = "String",
+	["TSLabel"] = "String",
 }
-for group, target in pairs(ts_groups) do hl(group, { link = target }) end
+for group, target in pairs(ts_groups) do
+	hl(group, { link = target })
+end
 
 hl("@field", { fg = colors.syntax.variable })
 hl("TSField", { fg = colors.syntax.variable })
@@ -227,7 +228,6 @@ hl("BlinkCmpKindTypeParameter", { fg = colors.syntax.type })
 hl("BlinkCmpSignatureHelp", { fg = colors.fg, bg = colors.float })
 hl("BlinkCmpSignatureHelpBorder", { fg = colors.float, bg = colors.float })
 hl("BlinkCmpSignatureHelpActiveParameter", { fg = palette.yellow, bold = true })
-
 
 -- [ Plugins: mini-cursorword ]
 hl("MiniCursorword", { bg = colors.overlay })
