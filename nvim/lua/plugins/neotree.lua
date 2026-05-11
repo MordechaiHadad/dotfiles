@@ -7,6 +7,12 @@ return {
 			"MunifTanjim/nui.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
+		opts = {
+			window = {
+				-- Calculate 20% of the total editor width
+				width = math.floor(vim.o.columns * 0.15),
+			},
+		},
 	},
 	{
 		"antosha417/nvim-lsp-file-operations",
