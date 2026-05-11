@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    stylua:
+      glob: "nvim/**/*.lua"
+      run: stylua {staged_files} && git add {staged_files}
