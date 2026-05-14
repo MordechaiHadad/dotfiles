@@ -252,9 +252,28 @@ return {
 		}
 
 		local FileTypeComponent = {
-			provider = function()
-				return (files[vim.bo.filetype] or vim.bo.filetype:gsub("^%l", string.upper))
+			init = function(self)
+				local filename = vim.api.nvim_buf_get_name(0)
+				local extension = vim.fn.fnamemodify(filename, ":e")
+				-- Get icon and color from nvim-web-devicons
+				self.icon, self.icon_color =
+					require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 			end,
+			{
+				-- The Icon
+				provider = function(self)
+					return self.icon and (self.icon .. " ")
+				end,
+				hl = function(self)
+					return { fg = self.icon_color }
+				end,
+			},
+			{
+				-- The Language Name
+				provider = function()
+					return (files[vim.bo.filetype] or vim.bo.filetype:gsub("^%l", string.upper))
+				end,
+			},
 			alignment(1),
 		}
 
