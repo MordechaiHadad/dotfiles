@@ -7,6 +7,7 @@ local opts = { noremap = true, silent = true }
 keymap("n", "<Leader>e", ":Neotree<CR>", opts) -- Open file explorer
 keymap("n", "tt", "<cmd>InspectTree<CR>", opts) -- Toggle TreeSitter playground
 keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", opts) -- Save file in insert mode
+keymap("n", "yb", ":%y+<CR>", { desc = "Yank entire buffer to system clipboard" })
 
 -- Move line in insert mode
 keymap("i", "<C-Up>", ":MoveLine(-1)<CR>", opts)
