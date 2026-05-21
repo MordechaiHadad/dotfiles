@@ -1,45 +1,44 @@
 vim.g.mapleader = " "
 
 local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local s = { silent = true }
+local desc = function(msg)
+	return { silent = true, desc = msg }
+end
 
 -- General Keymaps
-keymap("n", "<Leader>e", ":Neotree toggle<CR>", opts) -- Open file explorer
-keymap("n", "tt", "<cmd>InspectTree<CR>", opts) -- Toggle TreeSitter playground
-keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", opts) -- Save file in insert mode
-keymap("n", "yb", ":%y+<CR>", { desc = "Yank entire buffer to system clipboard" })
+keymap("n", "<Leader>e", ":Neotree toggle<CR>", s) -- Open file explorer
+keymap("n", "tt", "<cmd>InspectTree<CR>", s) -- Toggle TreeSitter playground
+keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", s) -- Save file in insert mode
+keymap("n", "yb", ":%y+<CR>", desc("Yank entire buffer to system clipboard")) -- Yank entire buffer to system clipboard
 
 -- Move line in insert mode
-keymap("i", "<C-Up>", ":MoveLine(-1)<CR>", opts)
-keymap("i", "<C-Down>", ":MoveLine(1)<CR>", opts)
+keymap("i", "<C-Up>", ":MoveLine(-1)<CR>", s)
+keymap("i", "<C-Down>", ":MoveLine(1)<CR>", s)
 
 -- Telescope keymaps
-keymap("n", "ff", ":Telescope find_files<CR>", opts) -- Find files
-keymap("n", "fw", ":Telescope live_grep<CR>", opts)
+keymap("n", "ff", ":Telescope find_files<CR>", s) -- Find files
+keymap("n", "fw", ":Telescope live_grep<CR>", s)
 
 -- LSP Keymaps
-keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts) -- Go to Definitions
-keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", opts) -- Rename symbol
+keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", s) -- Go to Definitions
+keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", s) -- Rename symbol
 
 -- Terminal keymaps
-keymap("n", "<A-t>", function()
-	Snacks.terminal.toggle()
-end, {
-	desc = "Toggle terminal",
-})
+keymap("n", "<A-t>", ":lua Snacks.terminal.toggle()<CR>", desc("Toggle terminal")) -- Toggle terminal with Alt+t
 
 -- fuck you deleted bullshit
-keymap("n", "dd", '"_dd', opts)
+keymap("n", "dd", '"_dd', s)
 
 keymap("n", "xx", function()
 	local line = vim.fn.getline(".")
 	vim.api.nvim_del_current_line()
 	vim.fn.setreg("+", line)
-end, opts) -- Replace dd to yank and delete
+end, s) -- Replace dd to yank and delete
 
 -- Bufferline
-keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", opts)
-keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opts)
+keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", s)
+keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", s)
 
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>") -- Exit search mode
 
