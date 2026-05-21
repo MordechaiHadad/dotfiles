@@ -8,9 +8,31 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
+			sources = {
+				"filesystem",
+				"buffers",
+				"git_status",
+				"document_symbols",
+			},
+			source_selector = {
+				winbar = true,
+				statusline = false,
+				sources = {
+					{ source = "filesystem", display_name = " 󰉓 Files " },
+					{ source = "buffers", display_name = " 󰓩 Buffers " },
+					{ source = "git_status", display_name = " 󰊢 Git " },
+					{ source = "document_symbols", display_name = "  Symbols " },
+				},
+			},
 			window = {
 				-- Calculate 20% of the total editor width
-				width = math.floor(vim.o.columns * 0.15),
+				width = "15%",
+
+				mappings = {
+					["<Tab>"] = "next_source",
+					["<S-Tab>"] = "prev_source",
+					["<C-r>"] = "noop",
+				},
 			},
 		},
 	},
