@@ -1,37 +1,33 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		branch = "main",
-		lazy = false,
+		branch = "master", -- <-- use stable branch
+		build = ":TSUpdate",
 		config = function()
-			-- Force Treesitter to use zig as the compiler to avoid the LoadLibrary 126 error.
-			-- Make sure zig.exe is in your PATH.
-			require("nvim-treesitter.install").compilers = { "zig" }
-
-			-- Use the new main-branch API to install your desired parsers.
-			require("nvim-treesitter").install({
-				"lua",
-				"vim",
-				"vimdoc",
-				"rust",
-				"typescript",
-				"javascript",
-				"svelte",
-				"zig",
-				"json",
-				"html",
-				"css",
-				"bash",
-				"markdown",
-				"scss",
-				"yaml",
-				"toml",
-				"c_sharp",
-				"python",
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"lua",
+					"vim",
+					"vimdoc",
+					"rust",
+					"typescript",
+					"javascript",
+					"svelte",
+					"python",
+					"zig",
+					"json",
+					"html",
+					"css",
+					"bash",
+					"markdown",
+					"scss",
+					"yaml",
+					"toml",
+					"c_sharp",
+				},
+				highlight = { enable = true },
+				indent = { enable = true },
 			})
-
-			-- Start highlighting for the current buffer
-			pcall(vim.treesitter.start)
 		end,
 	},
 	{
