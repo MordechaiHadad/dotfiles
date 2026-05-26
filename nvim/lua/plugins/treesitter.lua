@@ -4,7 +4,7 @@ return {
 		branch = "master", -- <-- use stable branch
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter").setup({
+			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"lua",
 					"vim",
@@ -25,6 +25,7 @@ return {
 					"toml",
 					"c_sharp",
 				},
+                auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
