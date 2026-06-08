@@ -44,7 +44,7 @@ return {
 			automatic_enable = {
 				exclude = { "rust_analyzer" },
 			},
-			ensure_installed = { "lua_ls", "svelte", "csharp_ls", "ruff", "vtsls", "tailwindcss", "pyright" },
+			ensure_installed = { "lua_ls", "svelte", "ruff", "vtsls", "tailwindcss", "pyright" },
 		},
 	},
 	{
