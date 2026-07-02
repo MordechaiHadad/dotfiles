@@ -39,4 +39,4 @@ New-Item -ItemType Junction -Path $TargetNvim -Value $SourceNvim | Out-Null
 Write-Host "Done."
 
 Write-Host "Now installing agent skills to ~/.config/opencode/skills"
-git clone ssh://git@codeberg.org/MordechaiHadad/skills.git ~/.config/opencode/skills
+git clone ssh://git@codeberg.org/MordechaiHadad/opencode.git ~/.config/opencode
