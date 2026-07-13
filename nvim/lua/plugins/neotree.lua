@@ -30,6 +30,19 @@ return {
 					["<Tab>"] = "next_source",
 					["<S-Tab>"] = "prev_source",
 					["<C-r>"] = "noop",
+					["d"] = function(state)
+						local node = state.tree:get_node()
+						if node.type == "file" then
+							-- 1. Spin up a brand new, isolated layout tab page
+							vim.cmd("tabedit " .. vim.fn.fnameescape(node.path))
+
+							-- 2. Run the unified inline layout command (it will split initially)
+							vim.cmd("Diff ++layout=unified")
+
+							-- 3. IMMEDIATELY close the base reference pane, maximizing the diff view full-screen
+							vim.cmd("only")
+						end
+					end,
 				},
 			},
 		},

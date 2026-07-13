@@ -26,6 +26,7 @@ return {
 				"yaml",
 				"toml",
 				"c_sharp",
+				"diff",
 			}
 
 			-- The rewrite handles installations through an explicit function call
