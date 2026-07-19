@@ -4,6 +4,15 @@ return {
 		branch = "main", -- Switched to the modern branch for Neovim 0.12+
 		build = ":TSUpdate",
 		config = function()
+			vim.treesitter.language.register("vinyl", "vinyl")
+
+			-- 2. Associate .vnl files with the 'vinyl' filetype
+			vim.filetype.add({
+				extension = {
+					vnl = "vinyl",
+				},
+			})
+
 			-- The top-level module is now used directly
 			require("nvim-treesitter").setup()
 
