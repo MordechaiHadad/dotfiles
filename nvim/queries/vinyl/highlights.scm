@@ -8,11 +8,19 @@
 ;; --- Keywords ---
 [
   "fn"
+  "struct"
+  "tuple"
+  "enum"
   "let"
   "return"
   "if"
   "else"
   "mut"
+  "while"
+  "loop"
+  "break"
+  "continue"
+  "match"
 ] @keyword
 
 (binary_expression operator: ["and" "or"] @keyword.operator)
@@ -25,14 +33,23 @@
 (call_expression
   function: (identifier) @function.call (#set! "priority" 105))
 
-;; --- Types ---
+;; --- Types & Definitions ---
 (primitive_type) @type.builtin
 (simple_type (identifier) @type)
 (generic_type (identifier) @type)
+(struct_definition name: (identifier) @type)
+(tuple_definition name: (identifier) @type)
+(enum_definition name: (identifier) @type)
 
-;; --- Variables & Parameters ---
+;; --- Fields & Variants ---
+(field_definition name: (identifier) @property)
+(field_access_expression field: (identifier) @property)
+(enum_variant name: (identifier) @type)
+
+;; --- Variables, Parameters & Patterns ---
 (parameter name: (identifier) @variable.parameter)
 (let_declaration name: (identifier) @variable)
+(wildcard_pattern) @variable.builtin
 
 ;; --- Literals ---
 (integer_literal) @number
@@ -41,6 +58,7 @@
 (char_literal) @character
 (string_literal) @string
 (raw_string_literal) @string
+(unit_literal) @constant
 
 ;; --- Operators ---
 (binary_expression operator: (_) @operator)
