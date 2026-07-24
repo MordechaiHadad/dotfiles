@@ -99,6 +99,7 @@ hl("Type", { fg = colors.syntax.type })
 hl("Special", { fg = palette.blue })
 hl("Keyword", { fg = palette.blue })
 hl("Error", { fg = colors.fg, bg = palette.red })
+hl("Operator", { fg = palette.blue })
 
 -- [ Treesitter (@ and TS groups) ]
 local ts_groups = {

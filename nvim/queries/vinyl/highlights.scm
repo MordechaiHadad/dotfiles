@@ -1,5 +1,4 @@
 ;; --- Fallbacks / Baselines (Must be at the top) ---
-;; Moving this here ensures specific overrides defined below take precedence.
 (identifier) @variable
 
 ;; --- Comments ---
@@ -23,10 +22,10 @@
   "match"
 ] @keyword
 
+(unary_expression operator: "not" @keyword.operator)
 (binary_expression operator: ["and" "or"] @keyword.operator)
 
 ;; --- Functions ---
-;; Use #set! priority for strict enforcement if the issue persists.
 (function_definition
   name: (identifier) @function (#set! "priority" 105))
 
@@ -40,10 +39,16 @@
 (struct_definition name: (identifier) @type)
 (tuple_definition name: (identifier) @type)
 (enum_definition name: (identifier) @type)
+(struct_literal_expression name: (identifier) @type)
+(enum_variant_expression
+  type: (identifier) @type
+  variant: (identifier) @type)
 
 ;; --- Fields & Variants ---
 (field_definition name: (identifier) @property)
 (field_access_expression field: (identifier) @property)
+(struct_literal_fields name: (identifier) @property)
+(field_pattern name: (identifier) @property)
 (enum_variant name: (identifier) @type)
 
 ;; --- Variables, Parameters & Patterns ---
@@ -58,10 +63,13 @@
 (char_literal) @character
 (string_literal) @string
 (raw_string_literal) @string
-(unit_literal) @constant
+(unit_literal) @constant.builtin
 
 ;; --- Operators ---
-(binary_expression operator: (_) @operator)
+(unary_expression operator: _ @operator)
+(binary_expression operator: _ @operator)
+(pipe_expression operator: _ @operator)
+(assignment_statement operator: _ @operator)
 
 ;; --- Attributes ---
 (attribute "@" @punctuation.special)
@@ -85,4 +93,6 @@
   ";"
   ":"
   "="
+  "::"
+  "=>"
 ] @punctuation.delimiter
