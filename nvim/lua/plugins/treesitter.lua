@@ -9,7 +9,7 @@ return {
 			-- 2. Associate .vnl files with the 'vinyl' filetype
 			vim.filetype.add({
 				extension = {
-					vnl = "vinyl",
+					vn = "vinyl",
 				},
 			})
 
