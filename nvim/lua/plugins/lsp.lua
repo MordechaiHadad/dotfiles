@@ -59,6 +59,9 @@ return {
 	{
 		"MordechaiHadad/vinyl.nvim",
 		ft = "vinyl",
+		build = function()
+			require("vinyl").build_parser()
+		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
