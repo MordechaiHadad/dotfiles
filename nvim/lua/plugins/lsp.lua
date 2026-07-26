@@ -56,4 +56,11 @@ return {
 			vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
 		end,
 	},
+	{
+		"MordechaiHadad/vinyl.nvim",
+		ft = "vinyl",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 }
