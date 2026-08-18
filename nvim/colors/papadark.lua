@@ -239,3 +239,15 @@ hl("SnacksIndent", { fg = colors.muted })
 
 -- [ Plugins: Treesitter-Context ]
 hl("TreesitterContext", { bg = colors.bg })
+
+-- [ Git & Diffview Highlights ]
+local diff_add_bg = blend(palette.green, palette.base00, 0.18)
+local diff_delete_bg = blend(palette.red, palette.base00, 0.18)
+local diff_change_bg = blend(palette.blue, palette.base00, 0.15)
+local diff_change_text = blend(palette.blue, palette.base00, 0.35)
+
+-- Standard Neovim Diff Groups
+hl("DiffAdd", { bg = diff_add_bg })
+hl("DiffDelete", { fg = palette.red, bg = diff_delete_bg })
+hl("DiffChange", { bg = diff_change_bg })
+hl("DiffText", { bg = diff_change_text, fg = colors.fg, bold = true })
