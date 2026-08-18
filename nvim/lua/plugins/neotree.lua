@@ -6,6 +6,7 @@ return {
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
             "nvim-tree/nvim-web-devicons",
+            "lewis6991/gitsigns.nvim"
         },
         opts = {
             sources = {
@@ -31,21 +32,39 @@ return {
                 commands = {
                     open_and_diff = function(state)
                         local node = state.tree:get_node()
-                        if not node then return end
+                        if not node or node.type ~= "file" then return end
 
-                        if node.type == "file" then
-                            ---@diagnostic disable-next-line: missing-parameter, param-type-mismatch
-                            require("neo-tree.sources.common.commands").open(state)
+                        -- 1. Open the file normally via Neo-tree
+                        ---@diagnostic disable-next-line: missing-parameter
+                        require("neo-tree.sources.common.commands").open(state)
 
-                            vim.schedule(function()
-                                if vim.bo.filetype ~= "neo-tree" then
-                                    require("gitsigns").diffthis()
-                                end
-                            end)
-                        else
-                            ---@diagnostic disable-next-line: missing-parameter, param-type-mismatch
-                            require("neo-tree.sources.common.commands").open(state)
-                        end
+                        vim.schedule(function()
+                            local file_path = node.path
+                            local rel_path = vim.fn.systemlist("git ls-files --full-name " ..
+                            vim.fn.shellescape(file_path))[1]
+                            if not rel_path or rel_path == "" then return end
+
+                            local target_ft = vim.bo.filetype
+
+                            -- 2. Turn on diff for the modified buffer
+                            vim.cmd("diffthis")
+
+                            -- 3. Open a scratch split on the left for the HEAD version
+                            vim.cmd("leftabove vnew")
+                            local scratch_buf = vim.api.nvim_get_current_buf()
+
+                            -- 4. Load HEAD contents from Git into scratch buffer
+                            vim.cmd("silent read !git show HEAD:" .. vim.fn.shellescape(rel_path))
+                            vim.cmd("1delete _")
+
+                            -- 5. Match filetype for syntax highlighting and configure scratch options
+                            vim.bo[scratch_buf].filetype = target_ft
+                            vim.bo[scratch_buf].buftype = "nofile"
+                            vim.bo[scratch_buf].bufhidden = "wipe"
+
+                            -- 6. Enable diff on HEAD buffer
+                            vim.cmd("diffthis")
+                        end)
                     end,
                 },
             },
