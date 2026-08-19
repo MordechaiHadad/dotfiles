@@ -3,13 +3,13 @@ vim.g.mapleader = " "
 local keymap = vim.keymap.set
 local s = { silent = true }
 local desc = function(msg)
-	return { silent = true, desc = msg }
+    return { silent = true, desc = msg }
 end
 
 -- General Keymaps
-keymap("n", "<Leader>e", ":Neotree toggle<CR>", s) -- Open file explorer
-keymap("n", "tt", "<cmd>InspectTree<CR>", s) -- Toggle TreeSitter playground
-keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", s) -- Save file in insert mode
+keymap("n", "<Leader>e", ":Neotree toggle<CR>", s)                            -- Open file explorer
+keymap("n", "tt", "<cmd>InspectTree<CR>", s)                                  -- Toggle TreeSitter playground
+keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", s)                          -- Save file in insert mode
 keymap("n", "yb", ":%y+<CR>", desc("Yank entire buffer to system clipboard")) -- Yank entire buffer to system clipboard
 
 -- Move line in insert mode
@@ -22,7 +22,7 @@ keymap("n", "fw", ":Telescope live_grep<CR>", s)
 
 -- LSP Keymaps
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", s) -- Go to Definitions
-keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", s) -- Rename symbol
+keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", s)  -- Rename symbol
 
 -- Terminal keymaps
 keymap("n", "<A-t>", ":lua Snacks.terminal.toggle()<CR>", desc("Toggle terminal")) -- Toggle terminal with Alt+t
@@ -31,9 +31,9 @@ keymap("n", "<A-t>", ":lua Snacks.terminal.toggle()<CR>", desc("Toggle terminal"
 keymap("n", "dd", '"_dd', s)
 
 keymap("n", "xx", function()
-	local line = vim.fn.getline(".")
-	vim.api.nvim_del_current_line()
-	vim.fn.setreg("+", line)
+    local line = vim.fn.getline(".")
+    vim.api.nvim_del_current_line()
+    vim.fn.setreg("+", line)
 end, s) -- Replace dd to yank and delete
 
 -- Bufferline
@@ -45,48 +45,77 @@ keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>") -- Exit search mode
 local whichkey_ok, whichkey = pcall(require, "which-key")
 
 if whichkey_ok then
-	-- Which key base
-	whichkey.add({
-		{
-			"<leader>f",
-			function()
-				vim.lsp.buf.format({ async = true })
-			end,
-			desc = "format buffer",
-		},
-	})
+    -- Which key base
+    whichkey.add({
+        {
+            "<leader>f",
+            function()
+                vim.lsp.buf.format({ async = true })
+            end,
+            desc = "format buffer",
+        },
+    })
 
-	-- Which key trouble
-	whichkey.add({
-		{ "<leader>t", group = "trouble" },
-		{ "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-		{
-			"<leader>tT",
-			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-			desc = "Buffer Diagnostics (Trouble)",
-		},
-		{ "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
-		{
-			"<leader>tr",
-			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-			desc = "LSP Definitions / References (Trouble)",
-		},
-		{
-			"<leader>tl",
-			"<cmd>Trouble loclist toggle<cr>",
-			desc = "Location List (Trouble)",
-		},
-		{
-			"<leader>tq",
-			"<cmd>Trouble qflist toggle<cr>",
-			desc = "Quickfix List (Trouble)",
-		},
-	})
+    -- Which key trouble
+    whichkey.add({
+        { "<leader>t",  group = "trouble" },
+        { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+        {
+            "<leader>tT",
+            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            desc = "Buffer Diagnostics (Trouble)",
+        },
+        { "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+        {
+            "<leader>tr",
+            "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+            desc = "LSP Definitions / References (Trouble)",
+        },
+        {
+            "<leader>tl",
+            "<cmd>Trouble loclist toggle<cr>",
+            desc = "Location List (Trouble)",
+        },
+        {
+            "<leader>tq",
+            "<cmd>Trouble qflist toggle<cr>",
+            desc = "Quickfix List (Trouble)",
+        },
+    })
 
-	whichkey.add({
-		{ "<leader>c", group = "code actions" },
-		{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
-		{ "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename Symbol" },
-		{ "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover" },
-	})
+    -- which key code actions
+    whichkey.add({
+        { "<leader>c",  group = "code actions" },
+        { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+        { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>",      desc = "Rename Symbol" },
+        { "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>",       desc = "Hover" },
+    })
+
+    -- Which key gitsigns
+    whichkey.add({
+        { "<leader>g",   group = "git" },
+        {
+            "<leader>gs",
+            ":Gitsigns stage_hunk<cr>",
+            desc = "Stage Hunk",
+            mode = { "n", "v" },
+        },
+        {
+            "<leader>gr",
+            ":Gitsigns reset_hunk<cr>",
+            desc = "Reset Hunk",
+            mode = { "n", "v" },
+        },
+        { "<leader>gu",  "<cmd>Gitsigns undo_stage_hunk<cr>",           desc = "Undo Stage Hunk" },
+        { "<leader>gS",  "<cmd>Gitsigns stage_buffer<cr>",              desc = "Stage Buffer" },
+        { "<leader>gR",  "<cmd>Gitsigns reset_buffer<cr>",              desc = "Reset Buffer" },
+        { "<leader>gp",  "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview Hunk" },
+        { "<leader>gb",  "<cmd>Gitsigns blame_line<cr>",                desc = "Blame Line" },
+        { "<leader>gd",  "<cmd>Gitsigns diffthis<cr>",                  desc = "Diff This" },
+        { "<leader>gt",  group = "toggles" },
+        { "<leader>gtb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Line Blame" },
+        { "<leader>gtd", "<cmd>Gitsigns toggle_deleted<cr>",            desc = "Toggle Deleted" },
+        { "]h",          "<cmd>Gitsigns next_hunk<cr>",                 desc = "Next Hunk" },
+        { "[h",          "<cmd>Gitsigns prev_hunk<cr>",                 desc = "Prev Hunk" },
+    })
 end
