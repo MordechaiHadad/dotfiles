@@ -7,8 +7,17 @@ local desc = function(msg)
 end
 
 -- General Keymaps
-keymap("n", "<Leader>e", ":Neotree focus<CR>", desc("Open/Focus Neo-tree"))   -- Focus file explorer, never closes
-keymap("n", "<Leader>E", ":Neotree toggle<CR>", desc("Toggle Neo-tree"))      -- Open/close file explorer
+local focus_neotree = function()
+    for _, winid in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+        if vim.bo[vim.api.nvim_win_get_buf(winid)].filetype == "neo-tree" then
+            vim.api.nvim_set_current_win(winid)
+            return
+        end
+    end
+    vim.cmd("Neotree focus")
+end
+keymap("n", "<Leader>e", focus_neotree, desc("Open/Focus Neo-tree"))
+keymap("n", "<Leader>E", ":Neotree toggle<CR>", desc("Toggle Neo-tree"))
 keymap("n", "tt", "<cmd>InspectTree<CR>", s)                                  -- Toggle TreeSitter playground
 keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", s)                          -- Save file in insert mode
 keymap("n", "yb", ":%y+<CR>", desc("Yank entire buffer to system clipboard")) -- Yank entire buffer to system clipboard
