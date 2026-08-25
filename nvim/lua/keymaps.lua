@@ -7,7 +7,8 @@ local desc = function(msg)
 end
 
 -- General Keymaps
-keymap("n", "<Leader>e", ":Neotree toggle<CR>", s)                            -- Open file explorer
+keymap("n", "<Leader>e", ":Neotree focus<CR>", desc("Open/Focus Neo-tree"))   -- Focus file explorer, never closes
+keymap("n", "<Leader>E", ":Neotree toggle<CR>", desc("Toggle Neo-tree"))      -- Open/close file explorer
 keymap("n", "tt", "<cmd>InspectTree<CR>", s)                                  -- Toggle TreeSitter playground
 keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", s)                          -- Save file in insert mode
 keymap("n", "yb", ":%y+<CR>", desc("Yank entire buffer to system clipboard")) -- Yank entire buffer to system clipboard
