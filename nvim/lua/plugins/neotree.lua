@@ -31,26 +31,23 @@ return {
 				},
 				commands = {
 					open_and_diff = function(state)
-						local common = require("neo-tree.sources.common.commands")
-						local utils = require("neo-tree.utils")
-
-						common.open(
-							state,
-							utils.wrap(function()
-								local bufnr = vim.api.nvim_get_current_buf()
-
-								print("INLINE DIFF BUFFER:", bufnr)
-
-								require("functions").inline_git_diff(bufnr)
-							end)
-						)
+						local node = state.tree:get_node()
+						if not node then
+							return
+						end
+						if node.type and node.type ~= "file" then
+							return
+						end
+						local path = node.path or (node.get_id and node:get_id())
+						if not path or path == "" then
+							return
+						end
+						require("functions").inline_git_diff(nil, path)
 					end,
 				},
 			},
 			window = {
-				-- Calculate 20% of the total editor width
 				width = "15%",
-
 				mappings = {
 					["<Tab>"] = "next_source",
 					["<S-Tab>"] = "prev_source",
@@ -63,7 +60,7 @@ return {
 		"antosha417/nvim-lsp-file-operations",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-neo-tree/neo-tree.nvim", -- makes sure that this loads after Neo-tree.
+			"nvim-neo-tree/neo-tree.nvim",
 		},
 		config = function()
 			require("lsp-file-operations").setup()
@@ -77,11 +74,8 @@ return {
 				filter_rules = {
 					include_current_win = false,
 					autoselect_one = true,
-					-- filter using buffer options
 					bo = {
-						-- if the file type is one of following, the window will be ignored
 						filetype = { "neo-tree", "neo-tree-popup", "notify" },
-						-- if the buffer type is one of following, the window will be ignored
 						buftype = { "terminal", "quickfix" },
 					},
 				},
