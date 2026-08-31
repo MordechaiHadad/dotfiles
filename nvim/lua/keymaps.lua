@@ -7,7 +7,17 @@ local desc = function(msg)
 end
 
 -- General Keymaps
-keymap("n", "<Leader>e", ":Neotree toggle<CR>", s)                            -- Open file explorer
+local focus_neotree = function()
+    for _, winid in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+        if vim.bo[vim.api.nvim_win_get_buf(winid)].filetype == "neo-tree" then
+            vim.api.nvim_set_current_win(winid)
+            return
+        end
+    end
+    vim.cmd("Neotree focus")
+end
+keymap("n", "<Leader>e", focus_neotree, desc("Open/Focus Neo-tree"))
+keymap("n", "<Leader>E", ":Neotree toggle<CR>", desc("Toggle Neo-tree"))
 keymap("n", "tt", "<cmd>InspectTree<CR>", s)                                  -- Toggle TreeSitter playground
 keymap({ "i", "n" }, "<C-s>", "<cmd>:w<cr><esc>", s)                          -- Save file in insert mode
 keymap("n", "yb", ":%y+<CR>", desc("Yank entire buffer to system clipboard")) -- Yank entire buffer to system clipboard
@@ -22,6 +32,7 @@ keymap("n", "fw", ":Telescope live_grep<CR>", s)
 
 -- LSP Keymaps
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", s) -- Go to Definitions
+keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>", s) -- Go to References
 keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", s)  -- Rename symbol
 
 -- Terminal keymaps
@@ -117,5 +128,20 @@ if whichkey_ok then
         { "<leader>gtd", "<cmd>Gitsigns toggle_deleted<cr>",            desc = "Toggle Deleted" },
         { "]h",          "<cmd>Gitsigns next_hunk<cr>",                 desc = "Next Hunk" },
         { "[h",          "<cmd>Gitsigns prev_hunk<cr>",                 desc = "Prev Hunk" },
+    })
+
+    -- Which key pithos
+    whichkey.add({
+        { "<leader>p",  group = "pithos" },
+        { "<leader>ps", "<cmd>Pithos sessions<cr>", desc = "Session Picker" },
+        { "<leader>pa", "<cmd>Pithos attach<cr>",   desc = "Attach Session" },
+        { "<leader>pe", ":Pithos exec ",            desc = "Exec Command In Session" },
+        { "<leader>pc", "<cmd>Pithos cd<cr>",       desc = "Cd To Sandbox" },
+        { "<leader>pd", "<cmd>Pithos diff<cr>",     desc = "Diff Buffer Vs Sandbox" },
+        { "<leader>pp", "<cmd>Pithos path<cr>",     desc = "Show Sandbox Path" },
+        { "<leader>pP", "<cmd>Pithos pull<cr>",     desc = "Pull Changes" },
+        { "<leader>pr", "<cmd>Pithos run<cr>",      desc = "Run" },
+        { "<leader>pb", "<cmd>Pithos build<cr>",    desc = "Build Image" },
+        { "<leader>pi", "<cmd>Pithos init<cr>",     desc = "Init Config" },
     })
 end
