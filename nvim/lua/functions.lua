@@ -1,292 +1,90 @@
 local M = {}
+local inlineDiffNamespace = vim.api.nvim_create_namespace("inline_git_diff")
 
-local inline_diff_ns = vim.api.nvim_create_namespace("inline_git_diff")
-
-local function find_buf_for_path(abs_path)
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_buf_is_valid(buf) then
-			local name = vim.api.nvim_buf_get_name(buf)
-			if name ~= "" and vim.fn.fnamemodify(name, ":p") == abs_path then
-				return buf
-			end
+local function findBufferForPath(absolutePath)
+	for _, bufferId in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_valid(bufferId) and vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufferId), ":p") == absolutePath then
+			return bufferId
 		end
 	end
-	return nil
 end
 
-local function get_git_root(path)
-	local dir = vim.fn.fnamemodify(path, ":h")
-	if dir == "" then
-		dir = "."
-	end
+local function findGitRoot(absolutePath)
+	local directory = vim.fn.fnamemodify(absolutePath, ":h")
 	if vim.fs and vim.fs.root then
-		local root = vim.fs.root(dir, ".git")
-		if root then
-			return root
-		end
+		local root = vim.fs.root(directory, ".git")
+		if root then return root end
 	end
-	local ok, result = pcall(function()
-		if vim.system then
-			local obj = vim.system({ "git", "rev-parse", "--show-toplevel" }, { text = true, cwd = dir }):wait()
-			if obj.code == 0 and obj.stdout then
-				return vim.trim(obj.stdout)
-			end
-		end
-		return nil
-	end)
-	if ok and result and result ~= "" then
-		return result
-	end
-	local out = vim.fn.systemlist("git -C " .. vim.fn.shellescape(dir) .. " rev-parse --show-toplevel 2>/dev/null")
-	if out[1] and out[1] ~= "" then
-		return out[1]
-	end
-	return nil
+	local output = vim.fn.systemlist("git -C " .. vim.fn.shellescape(directory) .. " rev-parse --show-toplevel 2>/dev/null")
+	return output[1] ~= "" and output[1] or nil
 end
 
-local function is_tracked(git_root, rel_path)
-	if vim.system then
-		local obj = vim.system(
-			{ "git", "-C", git_root, "ls-files", "--error-unmatch", "--", rel_path },
-			{ text = true }
-		)
-			:wait()
-		return obj.code == 0
-	end
-	vim.fn.system(
-		"git -C "
-			.. vim.fn.shellescape(git_root)
-			.. " ls-files --error-unmatch -- "
-			.. vim.fn.shellescape(rel_path)
-			.. " 2>/dev/null"
-	)
-	return vim.v.shell_error == 0
-end
-
-local function parse_unified0(diff_lines)
-	local hunks = {}
-	local idx = 1
-	while idx <= #diff_lines do
-		local line = diff_lines[idx]
-		local a_start, a_count, b_start, b_count = line:match("^@@ %-(%d+),?(%d*) %+(%d+),?(%d*) @@")
-		if a_start then
-			a_start = tonumber(a_start)
-			a_count = a_count == "" and 1 or tonumber(a_count)
-			b_start = tonumber(b_start)
-			b_count = b_count == "" and 1 or tonumber(b_count)
-			local hunk_lines = {}
-			idx = idx + 1
-			while idx <= #diff_lines do
-				local candidate = diff_lines[idx]
-				if
-					candidate:match("^@@ ")
-					or candidate:match("^diff ")
-					or candidate:match("^index ")
-					or candidate:match("^%-%-%- ")
-					or candidate:match("^%+%+%+ ")
-				then
-					break
-				end
-				table.insert(hunk_lines, candidate)
-				idx = idx + 1
+local function parseHunks(lines)
+	local hunks, index = {}, 1
+	while index <= #lines do
+		local aStart, aCount, bStart, bCount = lines[index]:match("^@@ %-(%d+),?(%d*) %+(%d+),?(%d*) @@")
+		if aStart then
+			aStart, aCount, bStart, bCount = tonumber(aStart), aCount == "" and 1 or tonumber(aCount), tonumber(bStart), bCount == "" and 1 or tonumber(bCount)
+			local hunkLines, nextIndex = {}, index + 1
+			while nextIndex <= #lines and not lines[nextIndex]:match("^@@ ") and not lines[nextIndex]:match("^diff ") and not lines[nextIndex]:match("^index ") and not lines[nextIndex]:match("^%-%-%- ") and not lines[nextIndex]:match("^%+%+%+ ") do
+				hunkLines[#hunkLines + 1] = lines[nextIndex]
+				nextIndex = nextIndex + 1
 			end
-			table.insert(hunks, {
-				added = { start = b_start, count = b_count },
-				removed = { start = a_start, count = a_count },
-				lines = hunk_lines,
-			})
-		else
-			idx = idx + 1
-		end
+			hunks[#hunks + 1] = { added = { start = bStart, count = bCount }, removed = { start = aStart, count = aCount }, lines = hunkLines }
+			index = nextIndex
+		else index = index + 1 end
 	end
 	return hunks
 end
 
-local function get_hunks_via_git(abs_path, git_root, rel_path)
-	local diff_lines = {}
-	if vim.system then
-		local obj = vim.system(
-			{ "git", "-C", git_root, "diff", "HEAD", "--unified=0", "--no-color", "--", rel_path },
-			{ text = true }
-		):wait()
-		if obj.stdout and obj.stdout ~= "" then
-			diff_lines = vim.split(obj.stdout, "\n", { plain = true })
-		end
-	else
-		diff_lines = vim.fn.systemlist(
-			"git -C "
-				.. vim.fn.shellescape(git_root)
-				.. " diff HEAD --unified=0 --no-color -- "
-				.. vim.fn.shellescape(rel_path)
-		)
+function M.inline_git_diff(bufferNumber, targetPath)
+	if type(bufferNumber) == "string" and not targetPath then targetPath, bufferNumber = bufferNumber, nil end
+	local providedBuffer = bufferNumber and vim.api.nvim_buf_is_valid(bufferNumber) and bufferNumber or nil
+	local filePath = targetPath and targetPath ~= "" and targetPath or providedBuffer and vim.api.nvim_buf_get_name(providedBuffer) or vim.api.nvim_buf_get_name(0)
+	if not filePath or filePath == "" then vim.notify("inline_git_diff: no file", vim.log.levels.WARN) return end
+	local absolutePath = vim.fn.fnamemodify(filePath, ":p")
+	local sourceBuffer = providedBuffer or findBufferForPath(absolutePath)
+	local fileLines, filetype, displayName = nil, nil, absolutePath
+	if sourceBuffer and vim.api.nvim_buf_is_valid(sourceBuffer) and vim.api.nvim_buf_is_loaded(sourceBuffer) then
+		local bufferName = vim.api.nvim_buf_get_name(sourceBuffer)
+		if bufferName ~= "" and vim.fn.fnamemodify(bufferName, ":p") == absolutePath then fileLines, filetype, displayName = vim.api.nvim_buf_get_lines(sourceBuffer, 0, -1, false), vim.bo[sourceBuffer].filetype, bufferName end
 	end
-	return parse_unified0(diff_lines)
-end
-
-function M.inline_git_diff(bufnr, target_path)
-	local path = target_path
-	local provided_buf = nil
-
-	if type(bufnr) == "string" and not path then
-		path = bufnr
-		bufnr = nil
+	if not fileLines then
+		if vim.fn.filereadable(absolutePath) == 0 then vim.notify("inline_git_diff: not readable: " .. absolutePath, vim.log.levels.WARN) return end
+		fileLines = vim.fn.readfile(absolutePath)
+		filetype = vim.filetype and vim.filetype.match and vim.filetype.match({ filename = absolutePath }) or vim.bo[0].filetype or ""
 	end
-
-	if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
-		provided_buf = bufnr
-	end
-
-	if not path or path == "" then
-		if provided_buf then
-			path = vim.api.nvim_buf_get_name(provided_buf)
-		end
-	end
-
-	if not path or path == "" then
-		path = vim.api.nvim_buf_get_name(0)
-	end
-
-	if not path or path == "" then
-		vim.notify("inline_git_diff: no file path", vim.log.levels.WARN)
-		return
-	end
-
-	local abs_path = vim.fn.fnamemodify(path, ":p")
-
-	local source_buf = provided_buf
-	if not source_buf or not vim.api.nvim_buf_is_valid(source_buf) then
-		source_buf = find_buf_for_path(abs_path)
-	end
-
-	local lines
-	local filetype
-	local display_name = abs_path
-	local is_buffer_source = false
-
-	if source_buf and vim.api.nvim_buf_is_valid(source_buf) and vim.api.nvim_buf_is_loaded(source_buf) then
-		local buf_name = vim.api.nvim_buf_get_name(source_buf)
-		if buf_name ~= "" and vim.fn.fnamemodify(buf_name, ":p") == abs_path then
-			lines = vim.api.nvim_buf_get_lines(source_buf, 0, -1, false)
-			filetype = vim.bo[source_buf].filetype
-			display_name = buf_name
-			is_buffer_source = true
-		end
-	end
-
-	if not lines then
-		if vim.fn.filereadable(abs_path) == 0 then
-			vim.notify("inline_git_diff: file not readable: " .. abs_path, vim.log.levels.WARN)
-			return
-		end
-		lines = vim.fn.readfile(abs_path)
-		if vim.filetype and vim.filetype.match then
-			filetype = vim.filetype.match({ filename = abs_path }) or ""
-		end
-		if not filetype or filetype == "" then
-			filetype = vim.bo[0].filetype or ""
-		end
-	end
-
-	if not filetype then
-		filetype = ""
-	end
-
-	local git_root = get_git_root(abs_path)
-	if not git_root then
-		vim.notify("inline_git_diff: not in git repo", vim.log.levels.WARN)
-		return
-	end
-
-	local rel_path = abs_path:sub(#git_root + 2)
-	if rel_path == "" then
-		rel_path = vim.fn.fnamemodify(abs_path, ":t")
-	end
-
-	local hunks = {}
-	local tracked = is_tracked(git_root, rel_path)
-
-	if not tracked then
-		if #lines > 0 then
-			hunks = {
-				{
-					added = { start = 1, count = #lines },
-					removed = { start = 0, count = 0 },
-					lines = {},
-				},
-			}
-			for _, line in ipairs(lines) do
-				table.insert(hunks[1].lines, "+" .. line)
-			end
-		end
-	else
-		hunks = get_hunks_via_git(abs_path, git_root, rel_path)
-	end
-
+	local gitRoot = findGitRoot(absolutePath)
+	if not gitRoot then vim.notify("inline_git_diff: not in repo", vim.log.levels.WARN) return end
+	local relativePath = absolutePath:sub(#gitRoot + 2)
+	if relativePath == "" then relativePath = vim.fn.fnamemodify(absolutePath, ":t") end
+	local hunks
+	vim.fn.system("git -C " .. vim.fn.shellescape(gitRoot) .. " ls-files --error-unmatch -- " .. vim.fn.shellescape(relativePath) .. " 2>/dev/null")
+	if vim.v.shell_error ~= 0 then
+		if #fileLines > 0 then hunks = { { added = { start = 1, count = #fileLines }, removed = { start = 0, count = 0 }, lines = {} } } end
+	else hunks = parseHunks(vim.fn.systemlist("git -C " .. vim.fn.shellescape(gitRoot) .. " diff HEAD --unified=0 --no-color -- " .. vim.fn.shellescape(relativePath))) end
 	if not hunks or #hunks == 0 then
-		if source_buf and vim.api.nvim_buf_is_valid(source_buf) then
-			local ok, gs = pcall(require, "gitsigns")
-			if ok then
-				local gs_hunks = gs.get_hunks(source_buf)
-				if gs_hunks and #gs_hunks > 0 then
-					hunks = gs_hunks
-				end
-			end
-		end
+		if sourceBuffer and vim.api.nvim_buf_is_valid(sourceBuffer) then local ok, gitsigns = pcall(require, "gitsigns") if ok then local gh = gitsigns.get_hunks(sourceBuffer) if gh and #gh > 0 then hunks = gh end end end
 	end
-
-	if not hunks or #hunks == 0 then
-		vim.notify("No git changes", vim.log.levels.INFO)
-		return
-	end
-
+	if not hunks or #hunks == 0 then vim.notify("No git changes", vim.log.levels.INFO) return end
 	vim.cmd("tabnew")
-	local diff_buf = vim.api.nvim_get_current_buf()
-	vim.api.nvim_buf_set_lines(diff_buf, 0, -1, false, lines)
-	vim.bo[diff_buf].buftype = "nofile"
-	vim.bo[diff_buf].bufhidden = "wipe"
-	vim.bo[diff_buf].swapfile = false
-	vim.bo[diff_buf].modifiable = false
-	vim.bo[diff_buf].filetype = filetype
-
+	local diffBuffer = vim.api.nvim_get_current_buf()
+	vim.api.nvim_buf_set_lines(diffBuffer, 0, -1, false, fileLines)
+	vim.bo[diffBuffer].buftype = "nofile"
+	vim.bo[diffBuffer].bufhidden = "wipe"
+	vim.bo[diffBuffer].swapfile = false
+	vim.bo[diffBuffer].modifiable = false
+	vim.bo[diffBuffer].filetype = filetype or ""
 	for _, hunk in ipairs(hunks) do
-		if hunk.added.count > 0 then
-			local start = hunk.added.start - 1
-			local finish = start + hunk.added.count
-			pcall(vim.api.nvim_buf_set_extmark, diff_buf, inline_diff_ns, start, 0, {
-				end_row = finish,
-				end_col = 0,
-				hl_group = "DiffAdd",
-			})
-		end
+		if hunk.added.count > 0 then pcall(vim.api.nvim_buf_set_extmark, diffBuffer, inlineDiffNamespace, hunk.added.start - 1, 0, { end_row = hunk.added.start - 1 + hunk.added.count, end_col = 0, hl_group = "DiffAdd" }) end
 		if hunk.removed.count > 0 then
-			local deleted = {}
-			for _, line in ipairs(hunk.lines) do
-				if line:sub(1, 1) == "-" then
-					table.insert(deleted, { { "- " .. line:sub(2), "DiffDelete" } })
-				end
-			end
-			if #deleted > 0 then
-				pcall(vim.api.nvim_buf_set_extmark, diff_buf, inline_diff_ns, math.max(hunk.added.start - 1, 0), 0, {
-					virt_lines = deleted,
-					virt_lines_above = true,
-				})
-			end
+			local virtualLines = {}
+			for _, lineText in ipairs(hunk.lines) do if lineText:sub(1, 1) == "-" then virtualLines[#virtualLines + 1] = { { "- " .. lineText:sub(2), "DiffDelete" } } end end
+			if #virtualLines > 0 then pcall(vim.api.nvim_buf_set_extmark, diffBuffer, inlineDiffNamespace, math.max(hunk.added.start - 1, 0), 0, { virt_lines = virtualLines, virt_lines_above = true }) end
 		end
 	end
-
-	pcall(vim.api.nvim_buf_set_name, diff_buf, "InlineGitDiff://" .. display_name)
+	pcall(vim.api.nvim_buf_set_name, diffBuffer, "InlineGitDiff://" .. displayName)
 end
 
-vim.api.nvim_create_user_command("InlineGitDiff", function(opts)
-	local target = nil
-	if opts.args and opts.args ~= "" then
-		target = vim.fn.expand(opts.args)
-	end
-	if target and target ~= "" then
-		M.inline_git_diff(nil, target)
-	else
-		M.inline_git_diff(vim.api.nvim_get_current_buf())
-	end
-end, { nargs = "?", complete = "file" })
-
+vim.api.nvim_create_user_command("InlineGitDiff", function(options) local target = options.args ~= "" and vim.fn.expand(options.args) or nil if target and target ~= "" then M.inline_git_diff(nil, target) else M.inline_git_diff(vim.api.nvim_get_current_buf()) end end, { nargs = "?", complete = "file" })
 return M
