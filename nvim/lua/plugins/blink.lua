@@ -66,8 +66,8 @@ return {
 				enabled = true,
 				-- requires require('vim._core.ui2').enable({}), otherwise has no effect
 				cmdline = true,
-				-- set to { 'BlinkPairs' } to disable rainbow highlighting
-				groups = { "BlinkPairsOrange", "BlinkPairsPurple", "BlinkPairsBlue" },
+				-- single group = no rainbow colors, all matched pairs share one color
+				groups = { "BlinkPairs" },
 				unmatched_group = "BlinkPairsUnmatched",
 
 				-- highlights matching pairs under the cursor
