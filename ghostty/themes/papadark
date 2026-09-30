@@ -1,0 +1,64 @@
+# papadark — Ghostty theme
+# Reference layout: a blue-dominant theme (bg #11131a / primary #4d8efe /
+# cursor #adc6ff). Every colour here is papadark — nvim/colors/papadark.lua.
+#
+# How the reference maps onto papadark:
+#   background   #11131a          -> #2e3440   base00
+#   foreground   #e1e2eb          -> #e5e9f0   base05
+#   cursor       #adc6ff (= pal 6)-> #8fc6e3   sky, "light_blue" (= pal 6)
+#   selection    #4d8efe (= pal 5)-> #5d8ac2   blue, the hero (= pal 5)
+#   pal 0 = background itself      -> #2e3440
+#   pal 8 = grey above bg          -> #4c566a   base04 "Inactive / Muted"
+#   pal 4 = soft tint of primary   -> #96b3d7   blue + 35% white
+#   pal 7/15 brighter than fg      -> fg + 50% / 80% white
+#   pal 9-14 = pastel lifts        -> each hue + 50% white
+#
+# The reference keeps every cool slot blue (no cyan, no purple), so papadark's
+# teal #4ec9b0 and magenta #c487b9 sit this one out. To bring teal back, swap
+# palette 4/12 to #4ec9b0/#7ad7c4.
+#
+# Install: symlink this to ~/.config/ghostty/themes/papadark
+# Activate: add `theme = papadark` to ~/.config/ghostty/config
+
+# [ Base ]
+background = #2e3440
+foreground = #e5e9f0
+
+# [ Cursor ] = palette 6, as in the reference
+cursor-color = #8fc6e3
+cursor-text = #2e3440
+
+# [ Selection ] = palette 5, as in the reference
+selection-background = #5d8ac2
+selection-foreground = #e5e9f0
+
+# [ Splits ] from the blue-grey surface ramp
+split-divider-color = #3b4252
+unfocused-split-fill = #4c566a
+
+# [ Palette ]
+
+# black — palette 0 is the background itself, bright black is the muted grey
+palette = 0=#2e3440
+palette = 8=#4c566a
+# red
+palette = 1=#d94848
+palette = 9=#eca4a4
+# green
+palette = 2=#98c379
+palette = 10=#cce1bc
+# yellow
+palette = 3=#d4d198
+palette = 11=#eae8cc
+# soft blue — blue + 35% white (reference: the tinted secondary blue)
+palette = 4=#96b3d7
+palette = 12=#cbd9eb
+# primary blue — hero accent, identical to the selection colour
+palette = 5=#5d8ac2
+palette = 13=#aec5e1
+# sky — "light_blue", identical to the cursor colour
+palette = 6=#8fc6e3
+palette = 14=#c7e3f1
+# white — both brighter than the foreground, as in the reference
+palette = 7=#f2f4f8
+palette = 15=#fafbfc
