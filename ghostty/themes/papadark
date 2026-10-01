@@ -1,21 +1,44 @@
 # papadark — Ghostty theme
-# Reference layout: a blue-dominant theme (bg #11131a / primary #4d8efe /
-# cursor #adc6ff). Every colour here is papadark — nvim/colors/papadark.lua.
+# Reference layout (blue-dominant: bg #11131a / primary #4d8efe / cursor
+# #adc6ff), rebuilt inside the tonal range of nvim/colors/papadark.lua so the
+# terminal reads like the editor instead of like a pastel theme.
 #
-# How the reference maps onto papadark:
-#   background   #11131a          -> #2e3440   base00
-#   foreground   #e1e2eb          -> #e5e9f0   base05
-#   cursor       #adc6ff (= pal 6)-> #8fc6e3   sky, "light_blue" (= pal 6)
-#   selection    #4d8efe (= pal 5)-> #5d8ac2   blue, the hero (= pal 5)
-#   pal 0 = background itself      -> #2e3440
-#   pal 8 = grey above bg          -> #4c566a   base04 "Inactive / Muted"
-#   pal 4 = soft tint of primary   -> #96b3d7   blue + 35% white
-#   pal 7/15 brighter than fg      -> fg + 50% / 80% white
-#   pal 9-14 = pastel lifts        -> each hue + 50% white
+# Tonal rules (what "too light" was) + chroma rules (what "make them pop,
+# better contrast" was):
+#   - nothing is brighter than the editor's foreground (lum 233)
+#   - chroma first, not lightness: every accent keeps its hue and roughly its
+#     editor lightness, but saturation goes up (red 66->80, green 38->58,
+#     yellow 41->62, blue 45->74, sky 60->75) so colours separate from the
+#     desaturated blue-grey background instead of sitting flat on it
+#   - contrast against #2e3440 went UP for every slot (red 2.96->3.13,
+#     blue 3.50->4.14, selection 2.45->3.04, sky 6.75->6.96, and the same
+#     for all six brights)
+#   - brights 9-14 = same hue and chroma, one clear lightness step — they are
+#     NOT white-mixed any more, because +25% white desaturated them into
+#     chalky pastels (Ghostty's bold-color = bright maps bold text onto these
+#     slots, so every bold word looked washed out)
+#   - palette 7/15 sit AT or below the foreground — the reference had them
+#     brighter than it, which is why white text looked hotter than in nvim
+#   - selection = a balanced blue (#3c7cdd): ~3.0:1 visible against the bg
+#     and ~3.4:1 for text sitting on it (pulling it darker for text
+#     contrast is what made it muddy last round)
+#   - bright black (8) is TEXT, not a surface: zsh-autosuggestions (fg=8),
+#     fish (brblack) and completion lists print in it, so it has to be
+#     readable — 1.69:1 as #4c566a, 4.86:1 as #98a2b5
 #
-# The reference keeps every cool slot blue (no cyan, no purple), so papadark's
-# teal #4ec9b0 and magenta #c487b9 sit this one out. To bring teal back, swap
-# palette 4/12 to #4ec9b0/#7ad7c4.
+# Reference structure -> papadark:
+#   background   #11131a            -> #2e3440   base00
+#   foreground   #e1e2eb            -> #e5e9f0   base05
+#   cursor       #adc6ff (= pal 6)  -> #86caee   sky, "light_blue" (= pal 6)
+#   selection    #4d8efe (= pal 5)  -> #3c7cdd   saturated blue (= pal 5)
+#   pal 0 = background itself       -> #2e3440
+#   pal 8 = grey above bg           -> #98a2b5   the grey shells print suggestions in
+#   pal 4 = secondary blue          -> #5697e6   the editor's blue, re-chromed
+#   pal 9-14 = one step brighter    -> same hue, chroma held
+#
+# The reference keeps every cool slot blue, so papadark's teal #4ec9b0 and
+# magenta #c487b9 sit this one out — swap palette 4/12 to #4ec9b0/#7ad7c4
+# to bring the teal back.
 #
 # Install: symlink this to ~/.config/ghostty/themes/papadark
 # Activate: add `theme = papadark` to ~/.config/ghostty/config
@@ -25,11 +48,11 @@ background = #2e3440
 foreground = #e5e9f0
 
 # [ Cursor ] = palette 6, as in the reference
-cursor-color = #8fc6e3
+cursor-color = #86caee
 cursor-text = #2e3440
 
-# [ Selection ] = palette 5, as in the reference
-selection-background = #5d8ac2
+# [ Selection ] = palette 5, as in the reference (now chroma-lifted)
+selection-background = #3c7cdd
 selection-foreground = #e5e9f0
 
 # [ Splits ] from the blue-grey surface ramp
@@ -38,27 +61,29 @@ unfocused-split-fill = #4c566a
 
 # [ Palette ]
 
-# black — palette 0 is the background itself, bright black is the muted grey
+# black — palette 0 is the background itself; bright black (8) is the grey
+# your shell prints suggestions/completions in (zsh-autosuggestions fg=8,
+# fish brblack): #4c566a was 1.69:1 on this bg and unreadable, #98a2b5 is 4.86:1
 palette = 0=#2e3440
-palette = 8=#4c566a
-# red
-palette = 1=#d94848
-palette = 9=#eca4a4
-# green
-palette = 2=#98c379
-palette = 10=#cce1bc
-# yellow
-palette = 3=#d4d198
-palette = 11=#eae8cc
-# soft blue — blue + 35% white (reference: the tinted secondary blue)
-palette = 4=#96b3d7
-palette = 12=#cbd9eb
-# primary blue — hero accent, identical to the selection colour
-palette = 5=#5d8ac2
-palette = 13=#aec5e1
-# sky — "light_blue", identical to the cursor colour
-palette = 6=#8fc6e3
-palette = 14=#c7e3f1
-# white — both brighter than the foreground, as in the reference
-palette = 7=#f2f4f8
-palette = 15=#fafbfc
+palette = 8=#98a2b5
+# red — lum 113, contrast 3.13 (was 115 / 2.96), sat 66 -> 80
+palette = 1=#ea3e3e
+palette = 9=#f07575
+# green — lum 167, contrast 6.43 (was 174 / 6.20), sat 38 -> 58
+palette = 2=#7ece46
+palette = 10=#a0db76
+# yellow — lum 202, contrast 8.16 (was 203 / 7.95), sat 41 -> 62
+palette = 3=#dbd566
+palette = 11=#e5e18f
+# blue — palette 4 is the editor's blue re-chromed (lum 141 vs 131, sat 74)
+palette = 4=#5697e6
+palette = 12=#75aaea
+# primary/selection blue — lum 116, visible on bg 3.04:1, text on it 3.37:1
+palette = 5=#3c7cdd
+palette = 13=#6396e3
+# sky — "light_blue", identical to the cursor colour — lum 186, contrast 6.96
+palette = 6=#86caee
+palette = 14=#a5d8f3
+# white — 7 is dimmer than the foreground, 15 IS the foreground (lum 233)
+palette = 7=#ced3dc
+palette = 15=#e5e9f0
