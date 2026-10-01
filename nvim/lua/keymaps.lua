@@ -27,8 +27,9 @@ keymap("i", "<C-Up>", ":MoveLine(-1)<CR>", s)
 keymap("i", "<C-Down>", ":MoveLine(1)<CR>", s)
 
 -- Telescope keymaps
-keymap("n", "ff", ":Telescope find_files<CR>", s) -- Find files
-keymap("n", "fw", ":Telescope live_grep<CR>", s)
+keymap("n", "ff", ":Telescope find_files<CR>", desc("Find files with telescope"))
+keymap("n", "fw", ":Telescope live_grep<CR>", desc("Find word with telescope"))
+keymap("n", "fs", ":Telescope lsp_document_symbols<CR>", desc("Find symbols in current buffer with telescope"))
 
 -- LSP Keymaps
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", s) -- Go to Definitions
