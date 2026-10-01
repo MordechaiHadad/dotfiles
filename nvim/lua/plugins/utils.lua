@@ -78,5 +78,13 @@ return {
             "nvim-telescope/telescope.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
         },
-    }
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        event = "VeryLazy",
+        keys = {
+            { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find todos" },
+        },
+    },
 }
