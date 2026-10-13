@@ -42,7 +42,7 @@ return {
 						if not path or path == "" then
 							return
 						end
-						require("functions").inline_git_diff(nil, path)
+						require("inline_diff").inline_git_diff(nil, path)
 					end,
 				},
 			},
