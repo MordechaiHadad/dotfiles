@@ -68,6 +68,34 @@ if whichkey_ok then
         },
     })
 
+    -- Which key math (numbat calculator)
+    whichkey.add({
+        { "<leader>m", group = "math" },
+        {
+            "<leader>mc",
+            function()
+                require("numbat").toggle()
+            end,
+            desc = "Toggle calculator",
+        },
+        {
+            "<leader>me",
+            function()
+                require("numbat").evaluate_line()
+            end,
+            desc = "Evaluate line with numbat + yank",
+            mode = "n",
+        },
+        {
+            "<leader>me",
+            function()
+                require("numbat").evaluate_visual()
+            end,
+            desc = "Evaluate selection with numbat + yank",
+            mode = "x",
+        },
+    })
+
     -- Which key trouble
     whichkey.add({
         { "<leader>t",  group = "trouble" },
