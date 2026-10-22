@@ -37,8 +37,6 @@ local function parseHunks(lines)
 	return hunks
 end
 
-local inlineDiffGroup = vim.api.nvim_create_augroup("InlineGitDiffWinbar", { clear = true })
-
 local function normalize_hunks(hunks, line_count)
 	local items = {}
 	for _, hunk in ipairs(hunks) do
@@ -73,17 +71,30 @@ local function current_hunk_index(items, cursor_lnum)
 	return idx
 end
 
-local function update_diff_winbar(bufnr)
-	if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then return end
+---Summarize the diff state for the window bar.
+---@param bufnr integer|nil Buffer to inspect, defaults to the current buffer.
+---@return table|nil
+function M.hunk_state(bufnr)
+	if not bufnr or bufnr == 0 then
+		bufnr = vim.api.nvim_get_current_buf()
+	end
 	local items = vim.b[bufnr].inline_diff_hunks
-	if not items or #items == 0 then return end
+	if not items or #items == 0 then return nil end
 	local win = vim.fn.bufwinid(bufnr)
-	if win == -1 then return end
-	local cursor_lnum = vim.api.nvim_win_get_cursor(win)[1]
-	local idx = current_hunk_index(items, cursor_lnum)
-	local short = vim.fn.fnamemodify(vim.b[bufnr].inline_diff_file or "", ":t")
-	if short == "" then short = "diff" end
-	vim.wo[win].winbar = string.format(" %%#Title#%s%%*  Hunk %d/%d (+%d -%d)", short, idx, #items, vim.b[bufnr].inline_diff_added or 0, vim.b[bufnr].inline_diff_removed or 0)
+	local cursor_lnum = win ~= -1 and vim.api.nvim_win_get_cursor(win)[1] or 1
+	local name = vim.fn.fnamemodify(vim.b[bufnr].inline_diff_file or "", ":t")
+	return {
+		index = current_hunk_index(items, cursor_lnum),
+		total = #items,
+		added = vim.b[bufnr].inline_diff_added or 0,
+		removed = vim.b[bufnr].inline_diff_removed or 0,
+		name = name ~= "" and name or "diff",
+	}
+end
+
+local function attach_heirline_winbar(win)
+	if not package.loaded["heirline"] then return end
+	vim.wo[win].winbar = "%{%v:lua.require'heirline'.eval_winbar()%}"
 end
 
 function M.inline_diff_next()
@@ -104,7 +115,7 @@ function M.inline_diff_next()
 	if cursor >= items[#items].lnum then target = items[1].lnum end
 	pcall(vim.api.nvim_win_set_cursor, 0, { target, 0 })
 	vim.cmd("normal! zz")
-	update_diff_winbar(bufnr)
+	vim.cmd("redrawstatus")
 end
 
 function M.inline_diff_prev()
@@ -125,7 +136,7 @@ function M.inline_diff_prev()
 	if cursor <= items[1].lnum then target = items[#items].lnum end
 	pcall(vim.api.nvim_win_set_cursor, 0, { target, 0 })
 	vim.cmd("normal! zz")
-	update_diff_winbar(bufnr)
+	vim.cmd("redrawstatus")
 end
 
 function M.inline_git_diff(bufferNumber, targetPath)
@@ -144,6 +155,11 @@ function M.inline_git_diff(bufferNumber, targetPath)
 		if vim.fn.filereadable(absolutePath) == 0 then vim.notify("inline_git_diff: not readable: " .. absolutePath, vim.log.levels.WARN) return end
 		fileLines = vim.fn.readfile(absolutePath)
 		filetype = vim.filetype and vim.filetype.match and vim.filetype.match({ filename = absolutePath }) or vim.bo[0].filetype or ""
+	end
+	if not filetype or filetype == "" then
+		filetype = vim.filetype and vim.filetype.match and vim.filetype.match({ filename = absolutePath })
+			or vim.bo[0].filetype
+			or ""
 	end
 	local gitRoot = findGitRoot(absolutePath)
 	if not gitRoot then vim.notify("inline_git_diff: not in repo", vim.log.levels.WARN) return end
@@ -165,6 +181,12 @@ function M.inline_git_diff(bufferNumber, targetPath)
 	vim.bo[diffBuffer].bufhidden = "wipe"
 	vim.bo[diffBuffer].swapfile = false
 	vim.bo[diffBuffer].modifiable = false
+	local items = normalize_hunks(hunks, math.max(#fileLines, 1))
+	local added_total, removed_total = diff_totals(items)
+	vim.b[diffBuffer].inline_diff_hunks = items
+	vim.b[diffBuffer].inline_diff_file = displayName
+	vim.b[diffBuffer].inline_diff_added = added_total
+	vim.b[diffBuffer].inline_diff_removed = removed_total
 	vim.bo[diffBuffer].filetype = filetype or ""
 	for _, hunk in ipairs(hunks) do
 		if hunk.added and hunk.added.count and hunk.added.count > 0 then pcall(vim.api.nvim_buf_set_extmark, diffBuffer, inlineDiffNamespace, hunk.added.start - 1, 0, { end_row = hunk.added.start - 1 + hunk.added.count, end_col = 0, hl_group = "DiffAdd" }) end
@@ -175,27 +197,16 @@ function M.inline_git_diff(bufferNumber, targetPath)
 		end
 	end
 	pcall(vim.api.nvim_buf_set_name, diffBuffer, "InlineGitDiff://" .. displayName)
-	local items = normalize_hunks(hunks, math.max(#fileLines, 1))
-	local added_total, removed_total = diff_totals(items)
-	vim.b[diffBuffer].inline_diff_hunks = items
-	vim.b[diffBuffer].inline_diff_file = displayName
-	vim.b[diffBuffer].inline_diff_added = added_total
-	vim.b[diffBuffer].inline_diff_removed = removed_total
 	vim.keymap.set("n", "J", M.inline_diff_next, { buffer = diffBuffer, silent = true, desc = "Next diff hunk" })
 	vim.keymap.set("n", "K", M.inline_diff_prev, { buffer = diffBuffer, silent = true, desc = "Previous diff hunk" })
 	vim.keymap.set("n", "q", "<cmd>tabclose<cr>", { buffer = diffBuffer, silent = true, desc = "Close diff view" })
-	vim.api.nvim_clear_autocmds({ group = inlineDiffGroup, buffer = diffBuffer })
-	vim.api.nvim_create_autocmd({ "CursorMoved", "BufEnter" }, {
-		group = inlineDiffGroup,
-		buffer = diffBuffer,
-		callback = function(args) update_diff_winbar(args.buf) end,
-		desc = "Update InlineGitDiff winbar hunk counter",
-	})
 	if #items > 0 then
 		pcall(vim.api.nvim_win_set_cursor, 0, { items[1].lnum, 0 })
 		vim.cmd("normal! zz")
 	end
-	update_diff_winbar(diffBuffer)
+	local diffWindow = vim.api.nvim_get_current_win()
+	attach_heirline_winbar(diffWindow)
+	vim.cmd("redrawstatus")
 end
 
 vim.api.nvim_create_user_command("InlineGitDiff", function(options) local target = options.args ~= "" and vim.fn.expand(options.args) or nil if target and target ~= "" then M.inline_git_diff(nil, target) else M.inline_git_diff(vim.api.nvim_get_current_buf()) end end, { nargs = "?", complete = "file" })

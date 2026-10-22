@@ -246,11 +246,12 @@ return {
 
 		local FileTypeComponent = {
 			init = function(self)
-				local filename = vim.api.nvim_buf_get_name(0)
+				local filename = vim.b.inline_diff_file or vim.api.nvim_buf_get_name(0)
 				local extension = vim.fn.fnamemodify(filename, ":e")
 				-- Get icon and color from nvim-web-devicons
 				self.icon, self.icon_color =
 					require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+				self.label = files[vim.bo.filetype] or vim.bo.filetype:gsub("^%l", string.upper)
 			end,
 			{
 				-- The Icon
@@ -262,12 +263,60 @@ return {
 				end,
 			},
 			{
-				-- The Language Name
-				provider = function()
-					return (files[vim.bo.filetype] or vim.bo.filetype:gsub("^%l", string.upper))
+				provider = function(self)
+					return self.label
 				end,
 			},
 			alignment(1),
+		}
+
+		local DiffBar = {
+			condition = function()
+				return vim.b.inline_diff_hunks ~= nil
+			end,
+			init = function(self)
+				self.state = require("inline_diff").hunk_state(0)
+			end,
+			hl = { bg = colors.line_color, fg = colors.fg },
+			{
+				provider = function(self)
+					if not self.state then
+						return ""
+					end
+					return string.format("Hunk %d/%d", self.state.index, self.state.total)
+				end,
+				hl = { fg = colors.blue, bold = true },
+				alignment(1),
+			},
+			{
+				provider = function(self)
+					return self.state and (" " .. self.state.added) or ""
+				end,
+				hl = { fg = colors.green },
+				alignment(1),
+			},
+			{
+				provider = function(self)
+					return self.state and (" " .. self.state.removed) or ""
+				end,
+				hl = { fg = colors.red },
+				alignment(1),
+			},
+			align,
+			{
+				provider = "J/K",
+				hl = { fg = colors.fg, italic = true },
+				alignment(1),
+			},
+			{
+				provider = "q",
+				hl = { fg = colors.fg, italic = true },
+				alignment(1),
+			},
+			{
+				provider = "",
+				hl = { fg = colors.line_color, bg = colors.bg },
+			},
 		}
 
 		local statusline = {
@@ -279,7 +328,6 @@ return {
 			RulerComponenet,
 			FileEncodingComponent,
 			FileTypeComponent,
-			ModeComponent,
 			hl = { bg = colors.line_color, fg = colors.fg },
 		}
 
@@ -338,7 +386,7 @@ return {
 			provider = "Explorer",
 		}
 
-		local winbar = {
+		local FileWinbar = {
 			condition = function()
 				local bufnr = 0
 				local buftype = vim.bo[bufnr].buftype
@@ -365,6 +413,20 @@ return {
 			hl = { bg = colors.line_color },
 		}
 
-		require("heirline").setup({ statusline = statusline })
+		local winbar = {
+			fallthrough = false,
+			DiffBar,
+			FileWinbar,
+		}
+
+		require("heirline").setup({
+			statusline = statusline,
+			winbar = winbar,
+			opts = {
+				disable_winbar_cb = function(args)
+					return vim.b[args.buf].inline_diff_hunks == nil
+				end,
+			},
+		})
 	end,
 }
