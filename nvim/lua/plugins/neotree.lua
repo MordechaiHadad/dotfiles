@@ -26,7 +26,7 @@ return {
 			git_status = {
 				window = {
 					mappings = {
-						["<CR>"] = "open_and_diff",
+						["<cr>"] = "open_and_diff",
 					},
 				},
 				commands = {
