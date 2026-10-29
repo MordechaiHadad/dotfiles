@@ -42,6 +42,3 @@ mkdir -p "$(dirname "$TARGET_NVIM")"
 ln -s "$SOURCE_NVIM" "$TARGET_NVIM"
 
 echo "Done."
-
-echo "Now installing agent skills to ~/.config/opencode/skills"
-git clone ssh://git@codeberg.org/MordechaiHadad/opencode.git ~/.config/opencode
