@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "mise.toml", ".mise.toml", ".env.*" },
+	pattern = { "mise.toml", ".mise.toml", ".env.*", "*.fish" },
 	callback = function()
 		vim.b.copilot_enabled = false
 	end,
