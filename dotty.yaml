@@ -1,0 +1,15 @@
+version: 1
+
+profiles:
+  minimal:
+    folders:
+      - source: nvim
+        target: config:/nvim
+      - source: opencode
+        target: config:/opencode
+
+  full:
+    extends: [minimal]
+    folders:
+      - source: ghostty
+        target: config:/ghostty
