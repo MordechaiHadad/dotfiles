@@ -32,8 +32,8 @@ keymap("n", "fw", ":Telescope live_grep<CR>", desc("Find word with telescope"))
 keymap("n", "fs", ":Telescope lsp_document_symbols<CR>", desc("Find symbols in current buffer with telescope"))
 
 -- LSP Keymaps
-keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", s) -- Go to Definitions
-keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>", s) -- Go to References
+keymap("n", "gd", ":Telescope lsp_definitions<CR>", s) -- Go to Definitions
+keymap("n", "gr", ":Telescope lsp_references()<CR>", s) -- Go to References
 keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", s)  -- Rename symbol
 
 -- Terminal keymaps
