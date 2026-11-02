@@ -33,7 +33,7 @@ keymap("n", "fs", ":Telescope lsp_document_symbols<CR>", desc("Find symbols in c
 
 -- LSP Keymaps
 keymap("n", "gd", ":Telescope lsp_definitions<CR>", s) -- Go to Definitions
-keymap("n", "gr", ":Telescope lsp_references()<CR>", s) -- Go to References
+keymap("n", "gr", ":Telescope lsp_references<CR>", s) -- Go to References
 keymap("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", s)  -- Rename symbol
 
 -- Terminal keymaps
